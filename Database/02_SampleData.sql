@@ -138,7 +138,7 @@ VALUES (CAST(GETDATE() AS DATE), (SELECT DepartmentId FROM dbo.Department WHERE 
 
 /* ---------- سجل العمليات (أمثلة) ---------- */
 INSERT dbo.AuditLog (UserId, Action, EntityName, EntityId, Details, CreatedAt) VALUES
- (@store, N'ImportAssets', N'Asset', NULL, N'بيانات تجريبية: 23 أصل', DATEADD(DAY, -30, SYSDATETIME())),
+ (@store, N'AddAsset', N'Asset', NULL, N'بيانات تجريبية: 23 أصل', DATEADD(DAY, -30, SYSDATETIME())),
  (@store, N'Handover', N'Asset', (SELECT AssetId FROM dbo.Asset WHERE SerialNo = N'PC-001'), N'PersonId=' + CAST((SELECT PersonId FROM dbo.Person WHERE EmployeeNo = N'EMP-007') AS NVARCHAR(10)), DATEADD(DAY, -20, SYSDATETIME())),
  (@store, N'Receive', N'Asset', (SELECT AssetId FROM dbo.Asset WHERE SerialNo = N'PC-002'), N'يحتاج صيانة', DATEADD(DAY, -15, SYSDATETIME())),
  (@store, N'AddMaintenance', N'Asset', (SELECT AssetId FROM dbo.Asset WHERE SerialNo = N'PC-002'), N'إصلاح عطل', DATEADD(DAY, -14, SYSDATETIME())),

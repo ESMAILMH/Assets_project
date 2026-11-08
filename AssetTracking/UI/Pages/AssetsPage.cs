@@ -4,7 +4,7 @@ using AssetTracking.Forms;
 
 namespace AssetTracking.Pages;
 
-/// <summary>الأصول: بحث وتصفية، إضافة وتعديل وأرشفة، تسليم واستلام، صيانة، تخريد، استيراد، وصورة الأصل.</summary>
+/// <summary>الأصول: بحث وتصفية، إضافة وتعديل وأرشفة، تسليم واستلام، صيانة، تخريد، وصورة الأصل.</summary>
 public partial class AssetsPage : PageBase
 {
     private int? _photoAssetId;
@@ -40,7 +40,6 @@ public partial class AssetsPage : PageBase
 
     // ------------------------------------------------------------ أزرار العمليات
     private void btnAdd_Click(object? sender, EventArgs e) => Ui.Try(() => OpenCard(null));
-    private void btnImport_Click(object? sender, EventArgs e) => Ui.Try(() => OpenDialog(new ImportDialog()));
     private void btnCard_Click(object? sender, EventArgs e) => Ui.Try(() => { if (RequireSelection() is { } r) OpenCard((int)r["Id"]); });
 
     private void btnHandover_Click(object? sender, EventArgs e) => Ui.Try(() =>

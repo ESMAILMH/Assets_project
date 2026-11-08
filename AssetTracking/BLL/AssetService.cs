@@ -21,7 +21,7 @@ public static class AssetService
         return AssetDal.Search(Clean(text), null, null, null, null, personId);
     }
 
-    /// <summary>التحقق من بيانات الأصل (تُستخدم للإدخال اليدوي وللاستيراد). ترجع رسالة الخطأ أو null.</summary>
+    /// <summary>التحقق من بيانات الأصل (عند الإضافة والتعديل). ترجع رسالة الخطأ أو null.</summary>
     public static string? Validate(AssetInput a)
     {
         if (string.IsNullOrWhiteSpace(a.SerialNo)) return "الرقم التسلسلي فارغ";

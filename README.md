@@ -26,7 +26,7 @@
 | الشاشة | المدير | أمين المخزن | الموظف |
 |---|:-:|:-:|:-:|
 | الشاشة الرئيسية (إحصائيات + عدّاد التنبيهات) | ✔ | ✔ | |
-| الأصول: إضافة، تعديل، صورة، أرشفة، بحث، استيراد Excel | ✔ | ✔ | |
+| الأصول: إضافة، تعديل، صورة، أرشفة، بحث | ✔ | ✔ | |
 | التسليم والاستلام + محضر تسليم/استلام | ✔ | ✔ | |
 | الصيانة (من شاشة الأصول) | ✔ | ✔ | |
 | تنبيهات انتهاء العمر | ✔ | ✔ | |
@@ -59,7 +59,7 @@
 | | كشف الجرد ونتيجته | جلسة الجرد |
 | الرقابة | سجل العمليات (للمدير) | مستخدم، فترة |
 
-إضافة إلى: **بطاقة الأصل** (من نافذة الأصل)، و**تقرير أخطاء الاستيراد** (من نافذة الاستيراد).
+إضافة إلى: **بطاقة الأصل** (من نافذة الأصل).
 
 ## ربط المتطلبات بالكود
 
@@ -68,7 +68,6 @@
 | FR-01, FR-02 الدخول والمستخدمون | `BLL/UserService.cs`، `UI/Forms/LoginForm.cs`، `UI/Pages/UsersPage.cs` |
 | FR-03..05 البيانات الأساسية | `BLL/MasterDataService.cs`، `UI/Pages/MasterDataPage.cs`، `PersonsPage.cs` |
 | FR-06, FR-10..12 الأصل والصورة والأرشفة | `BLL/AssetService.cs`، `UI/Forms/AssetDialog.cs` |
-| FR-07..09 استيراد Excel والقالب | `BLL/ImportService.cs`، `UI/Forms/ImportDialog.cs` |
 | FR-13..16 التسليم والاستلام والحركات | `sp_HandoverAsset` / `sp_ReceiveAsset` ← `DAL/CustodyDal.cs` ← `BLL/OperationsService.cs` |
 | FR-17, FR-18 الصيانة (تسجيل، تعديل، عرض) | `DAL/MaintenanceDal.cs`، `UI/Forms/MaintenanceDialogs.cs` |
 | FR-19, FR-20 الإهلاك والتنبيهات | `vw_AssetValuation` و `vw_EndOfLifeAlerts` ← `UI/Pages/AlertsPage.cs` + العدّاد في `MainForm` |

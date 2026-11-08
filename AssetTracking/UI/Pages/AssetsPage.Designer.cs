@@ -35,7 +35,6 @@
             this.lblCount = new System.Windows.Forms.Label();
             this.flpActions = new System.Windows.Forms.FlowLayoutPanel();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.btnImport = new System.Windows.Forms.Button();
             this.btnCard = new System.Windows.Forms.Button();
             this.btnHandover = new System.Windows.Forms.Button();
             this.btnReceive = new System.Windows.Forms.Button();
@@ -173,7 +172,6 @@
             // flpActions
             // 
             this.flpActions.Controls.Add(this.btnAdd);
-            this.flpActions.Controls.Add(this.btnImport);
             this.flpActions.Controls.Add(this.btnCard);
             this.flpActions.Controls.Add(this.btnHandover);
             this.flpActions.Controls.Add(this.btnReceive);
@@ -202,21 +200,6 @@
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnImport
-            // 
-            this.btnImport.BackColor = System.Drawing.Color.FromArgb(25, 135, 84);
-            this.btnImport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnImport.FlatAppearance.BorderSize = 0;
-            this.btnImport.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.btnImport.ForeColor = System.Drawing.Color.White;
-            this.btnImport.Size = new System.Drawing.Size(170, 36);
-            this.btnImport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnImport.Text = "📥 استيراد Excel";
-            this.btnImport.UseVisualStyleBackColor = false;
-            this.btnImport.Name = "btnImport";
-            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // btnCard
             // 
@@ -495,7 +478,6 @@
         private System.Windows.Forms.Label lblCount;
         private System.Windows.Forms.FlowLayoutPanel flpActions;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.Button btnCard;
         private System.Windows.Forms.Button btnHandover;
         private System.Windows.Forms.Button btnReceive;
