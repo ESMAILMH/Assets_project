@@ -77,7 +77,7 @@
             this.btnNew.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNew.FlatAppearance.BorderSize = 0;
-            this.btnNew.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnNew.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnNew.ForeColor = System.Drawing.Color.White;
             this.btnNew.Size = new System.Drawing.Size(170, 36);
             this.btnNew.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -92,7 +92,7 @@
             this.btnOpen.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnOpen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOpen.FlatAppearance.BorderSize = 0;
-            this.btnOpen.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnOpen.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnOpen.ForeColor = System.Drawing.Color.White;
             this.btnOpen.Size = new System.Drawing.Size(130, 36);
             this.btnOpen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -107,7 +107,7 @@
             this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrint.FlatAppearance.BorderSize = 0;
-            this.btnPrint.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnPrint.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnPrint.ForeColor = System.Drawing.Color.White;
             this.btnPrint.Size = new System.Drawing.Size(130, 36);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -119,7 +119,7 @@
             // lblTitle
             // 
             this.lblTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
+            this.lblTitle.Font = new System.Drawing.Font("Cairo", 16F, System.Drawing.FontStyle.Bold);
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(30, 77, 120);
             this.lblTitle.Size = new System.Drawing.Size(900, 42);
             this.lblTitle.Text = "الجرد";
@@ -137,7 +137,7 @@
             this.Controls.Add(this.lblCount);
             this.Controls.Add(this.flpActions);
             this.Controls.Add(this.lblTitle);
-            this.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Font = new System.Drawing.Font("Cairo", 10F);
             this.Name = "InventoryPage";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();

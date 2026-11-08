@@ -68,7 +68,7 @@
             this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.FlatAppearance.BorderSize = 0;
-            this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnAdd.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnAdd.ForeColor = System.Drawing.Color.White;
             this.btnAdd.Size = new System.Drawing.Size(150, 36);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -83,7 +83,7 @@
             this.btnEdit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEdit.FlatAppearance.BorderSize = 0;
-            this.btnEdit.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnEdit.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnEdit.ForeColor = System.Drawing.Color.White;
             this.btnEdit.Size = new System.Drawing.Size(120, 36);
             this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -98,7 +98,7 @@
             this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrint.FlatAppearance.BorderSize = 0;
-            this.btnPrint.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnPrint.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnPrint.ForeColor = System.Drawing.Color.White;
             this.btnPrint.Size = new System.Drawing.Size(120, 36);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -113,7 +113,7 @@
             this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.FlatAppearance.BorderSize = 0;
-            this.btnClose.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnClose.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Size = new System.Drawing.Size(120, 36);
             this.btnClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -134,7 +134,7 @@
             this.Text = "سجل صيانة الأصل";
             this.Controls.Add(this.pnlGrid);
             this.Controls.Add(this.pnlButtons);
-            this.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Font = new System.Drawing.Font("Cairo", 10F);
             this.Name = "MaintenanceListDialog";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;

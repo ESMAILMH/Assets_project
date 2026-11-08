@@ -79,7 +79,7 @@
             this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.FlatAppearance.BorderSize = 0;
-            this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnAdd.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnAdd.ForeColor = System.Drawing.Color.White;
             this.btnAdd.Size = new System.Drawing.Size(130, 36);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -94,7 +94,7 @@
             this.btnEdit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEdit.FlatAppearance.BorderSize = 0;
-            this.btnEdit.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnEdit.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnEdit.ForeColor = System.Drawing.Color.White;
             this.btnEdit.Size = new System.Drawing.Size(130, 36);
             this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -109,7 +109,7 @@
             this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrint.FlatAppearance.BorderSize = 0;
-            this.btnPrint.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnPrint.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnPrint.ForeColor = System.Drawing.Color.White;
             this.btnPrint.Size = new System.Drawing.Size(130, 36);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -124,7 +124,7 @@
             this.btnExcel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExcel.FlatAppearance.BorderSize = 0;
-            this.btnExcel.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnExcel.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnExcel.ForeColor = System.Drawing.Color.White;
             this.btnExcel.Size = new System.Drawing.Size(100, 36);
             this.btnExcel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -136,7 +136,7 @@
             // lblTitle
             // 
             this.lblTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
+            this.lblTitle.Font = new System.Drawing.Font("Cairo", 16F, System.Drawing.FontStyle.Bold);
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(30, 77, 120);
             this.lblTitle.Size = new System.Drawing.Size(900, 42);
             this.lblTitle.Text = "قائمة";
@@ -155,7 +155,7 @@
             this.Controls.Add(this.lblCount);
             this.Controls.Add(this.flpActions);
             this.Controls.Add(this.lblTitle);
-            this.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Font = new System.Drawing.Font("Cairo", 10F);
             this.Name = "SimpleListPage";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();

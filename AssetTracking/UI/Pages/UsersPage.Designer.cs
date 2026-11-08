@@ -80,7 +80,7 @@
             this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.FlatAppearance.BorderSize = 0;
-            this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnAdd.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnAdd.ForeColor = System.Drawing.Color.White;
             this.btnAdd.Size = new System.Drawing.Size(130, 36);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -95,7 +95,7 @@
             this.btnEdit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEdit.FlatAppearance.BorderSize = 0;
-            this.btnEdit.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnEdit.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnEdit.ForeColor = System.Drawing.Color.White;
             this.btnEdit.Size = new System.Drawing.Size(130, 36);
             this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -110,7 +110,7 @@
             this.btnReset.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReset.FlatAppearance.BorderSize = 0;
-            this.btnReset.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnReset.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnReset.ForeColor = System.Drawing.Color.White;
             this.btnReset.Size = new System.Drawing.Size(220, 36);
             this.btnReset.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -132,14 +132,14 @@
             this.lblRoles.AutoSize = true;
             this.lblRoles.Margin = new System.Windows.Forms.Padding(4, 10, 4, 4);
             this.lblRoles.Text = "مدير: كل الصلاحيات واعتماد التخريد — أمين مخزن: التشغيل اليومي — موظف: يعرض أصوله فقط";
-            this.lblRoles.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblRoles.Font = new System.Drawing.Font("Cairo", 9F);
             this.lblRoles.ForeColor = System.Drawing.Color.FromArgb(108, 117, 125);
             this.lblRoles.Name = "lblRoles";
             // 
             // lblTitle
             // 
             this.lblTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
+            this.lblTitle.Font = new System.Drawing.Font("Cairo", 16F, System.Drawing.FontStyle.Bold);
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(30, 77, 120);
             this.lblTitle.Size = new System.Drawing.Size(900, 42);
             this.lblTitle.Text = "المستخدمون والصلاحيات";
@@ -158,7 +158,7 @@
             this.Controls.Add(this.flpActions);
             this.Controls.Add(this.flpFilters);
             this.Controls.Add(this.lblTitle);
-            this.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Font = new System.Drawing.Font("Cairo", 10F);
             this.Name = "UsersPage";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();

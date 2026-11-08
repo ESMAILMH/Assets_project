@@ -77,7 +77,7 @@
             this.label1.Size = new System.Drawing.Size(150, 27);
             this.label1.Text = "الرقم التسلسلي *";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.label1.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.label1.Name = "label1";
             // 
             // txtSerial
@@ -95,7 +95,7 @@
             this.label2.Size = new System.Drawing.Size(150, 27);
             this.label2.Text = "الاسم *";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.label2.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.label2.Name = "label2";
             // 
             // txtName
@@ -112,7 +112,7 @@
             this.label3.Size = new System.Drawing.Size(150, 27);
             this.label3.Text = "التصنيف *";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.label3.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.label3.Name = "label3";
             // 
             // cmbCategory
@@ -195,7 +195,7 @@
             this.label8.Size = new System.Drawing.Size(150, 27);
             this.label8.Text = "تاريخ بدء الاستخدام *";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.label8.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.label8.Name = "label8";
             // 
             // dtpInService
@@ -213,7 +213,7 @@
             this.label9.Size = new System.Drawing.Size(150, 27);
             this.label9.Text = "التكلفة (د.ل) *";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.label9.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.label9.Name = "label9";
             // 
             // numCost
@@ -233,7 +233,7 @@
             this.label10.Size = new System.Drawing.Size(150, 27);
             this.label10.Text = "العمر الافتراضي (سنة) *";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.label10.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.label10.Name = "label10";
             // 
             // numLife
@@ -280,7 +280,7 @@
             this.lblStatusValue.Size = new System.Drawing.Size(400, 27);
             this.lblStatusValue.Text = "—";
             this.lblStatusValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblStatusValue.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblStatusValue.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.lblStatusValue.ForeColor = System.Drawing.Color.FromArgb(30, 77, 120);
             this.lblStatusValue.Name = "lblStatusValue";
             // 
@@ -300,7 +300,7 @@
             this.lblDepreciationValue.Size = new System.Drawing.Size(400, 27);
             this.lblDepreciationValue.Text = "—";
             this.lblDepreciationValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblDepreciationValue.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblDepreciationValue.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.lblDepreciationValue.ForeColor = System.Drawing.Color.FromArgb(30, 77, 120);
             this.lblDepreciationValue.Name = "lblDepreciationValue";
             // 
@@ -320,7 +320,7 @@
             this.lblBookValue.Size = new System.Drawing.Size(400, 27);
             this.lblBookValue.Text = "—";
             this.lblBookValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblBookValue.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblBookValue.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.lblBookValue.ForeColor = System.Drawing.Color.FromArgb(30, 77, 120);
             this.lblBookValue.Name = "lblBookValue";
             // 
@@ -340,7 +340,7 @@
             this.lblRemainingValue.Size = new System.Drawing.Size(400, 27);
             this.lblRemainingValue.Text = "—";
             this.lblRemainingValue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblRemainingValue.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblRemainingValue.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.lblRemainingValue.ForeColor = System.Drawing.Color.FromArgb(30, 77, 120);
             this.lblRemainingValue.Name = "lblRemainingValue";
             // 
@@ -370,7 +370,7 @@
             this.btnPickImage.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPickImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPickImage.FlatAppearance.BorderSize = 0;
-            this.btnPickImage.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnPickImage.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnPickImage.ForeColor = System.Drawing.Color.White;
             this.btnPickImage.Size = new System.Drawing.Size(112, 40);
             this.btnPickImage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -386,7 +386,7 @@
             this.btnRemoveImage.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRemoveImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemoveImage.FlatAppearance.BorderSize = 0;
-            this.btnRemoveImage.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnRemoveImage.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnRemoveImage.ForeColor = System.Drawing.Color.White;
             this.btnRemoveImage.Size = new System.Drawing.Size(112, 40);
             this.btnRemoveImage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -412,7 +412,7 @@
             this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.FlatAppearance.BorderSize = 0;
-            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnSave.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnSave.ForeColor = System.Drawing.Color.White;
             this.btnSave.Size = new System.Drawing.Size(120, 36);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -428,7 +428,7 @@
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.FlatAppearance.BorderSize = 0;
-            this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnCancel.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnCancel.ForeColor = System.Drawing.Color.White;
             this.btnCancel.Size = new System.Drawing.Size(120, 36);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -444,7 +444,7 @@
             this.btnPrintCard.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPrintCard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrintCard.FlatAppearance.BorderSize = 0;
-            this.btnPrintCard.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnPrintCard.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnPrintCard.ForeColor = System.Drawing.Color.White;
             this.btnPrintCard.Size = new System.Drawing.Size(170, 36);
             this.btnPrintCard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -457,7 +457,7 @@
             // 
             this.lblHeader.BackColor = System.Drawing.Color.FromArgb(30, 77, 120);
             this.lblHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblHeader.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.lblHeader.Font = new System.Drawing.Font("Cairo", 12F, System.Drawing.FontStyle.Bold);
             this.lblHeader.ForeColor = System.Drawing.Color.White;
             this.lblHeader.Padding = new System.Windows.Forms.Padding(16, 0, 16, 0);
             this.lblHeader.Size = new System.Drawing.Size(880, 48);
@@ -512,7 +512,7 @@
             this.Controls.Add(this.grpImage);
             this.Controls.Add(this.pnlButtons);
             this.Controls.Add(this.lblHeader);
-            this.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Font = new System.Drawing.Font("Cairo", 10F);
             this.Name = "AssetDialog";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;

@@ -79,7 +79,7 @@
             this.btnCard.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCard.FlatAppearance.BorderSize = 0;
-            this.btnCard.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnCard.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnCard.ForeColor = System.Drawing.Color.White;
             this.btnCard.Size = new System.Drawing.Size(170, 36);
             this.btnCard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -94,7 +94,7 @@
             this.btnStatement.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnStatement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStatement.FlatAppearance.BorderSize = 0;
-            this.btnStatement.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnStatement.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnStatement.ForeColor = System.Drawing.Color.White;
             this.btnStatement.Size = new System.Drawing.Size(130, 36);
             this.btnStatement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -128,7 +128,7 @@
             // lblTitle
             // 
             this.lblTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
+            this.lblTitle.Font = new System.Drawing.Font("Cairo", 16F, System.Drawing.FontStyle.Bold);
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(30, 77, 120);
             this.lblTitle.Size = new System.Drawing.Size(900, 42);
             this.lblTitle.Text = "أصولي";
@@ -147,7 +147,7 @@
             this.Controls.Add(this.flpActions);
             this.Controls.Add(this.flpFilters);
             this.Controls.Add(this.lblTitle);
-            this.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Font = new System.Drawing.Font("Cairo", 10F);
             this.Name = "MyAssetsPage";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();

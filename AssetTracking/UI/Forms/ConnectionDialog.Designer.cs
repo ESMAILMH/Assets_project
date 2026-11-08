@@ -52,7 +52,7 @@
             this.label1.Size = new System.Drawing.Size(150, 27);
             this.label1.Text = "اسم الخادم *";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.label1.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.label1.Name = "label1";
             // 
             // txtServer
@@ -69,7 +69,7 @@
             this.label2.Size = new System.Drawing.Size(150, 27);
             this.label2.Text = "قاعدة البيانات *";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.label2.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.label2.Name = "label2";
             // 
             // txtDatabase
@@ -174,7 +174,7 @@
             this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.FlatAppearance.BorderSize = 0;
-            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnSave.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnSave.ForeColor = System.Drawing.Color.White;
             this.btnSave.Size = new System.Drawing.Size(120, 36);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -190,7 +190,7 @@
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.FlatAppearance.BorderSize = 0;
-            this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnCancel.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnCancel.ForeColor = System.Drawing.Color.White;
             this.btnCancel.Size = new System.Drawing.Size(120, 36);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -206,7 +206,7 @@
             this.btnTest.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnTest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTest.FlatAppearance.BorderSize = 0;
-            this.btnTest.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnTest.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnTest.ForeColor = System.Drawing.Color.White;
             this.btnTest.Size = new System.Drawing.Size(170, 36);
             this.btnTest.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -219,7 +219,7 @@
             // 
             this.lblHeader.BackColor = System.Drawing.Color.FromArgb(30, 77, 120);
             this.lblHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblHeader.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.lblHeader.Font = new System.Drawing.Font("Cairo", 12F, System.Drawing.FontStyle.Bold);
             this.lblHeader.ForeColor = System.Drawing.Color.White;
             this.lblHeader.Padding = new System.Windows.Forms.Padding(16, 0, 16, 0);
             this.lblHeader.Size = new System.Drawing.Size(560, 48);
@@ -257,7 +257,7 @@
             this.Controls.Add(this.txtDept);
             this.Controls.Add(this.pnlButtons);
             this.Controls.Add(this.lblHeader);
-            this.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Font = new System.Drawing.Font("Cairo", 10F);
             this.Name = "ConnectionDialog";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;

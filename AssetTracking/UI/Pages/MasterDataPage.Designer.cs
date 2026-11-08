@@ -65,7 +65,7 @@
             // lblTitle
             // 
             this.lblTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
+            this.lblTitle.Font = new System.Drawing.Font("Cairo", 16F, System.Drawing.FontStyle.Bold);
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(30, 77, 120);
             this.lblTitle.Size = new System.Drawing.Size(900, 46);
             this.lblTitle.Text = "الأقسام والمواقع والتصنيفات";
@@ -81,7 +81,7 @@
             this.Size = new System.Drawing.Size(1000, 650);
             this.Controls.Add(this.tabs);
             this.Controls.Add(this.lblTitle);
-            this.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Font = new System.Drawing.Font("Cairo", 10F);
             this.Name = "MasterDataPage";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tabCategories.ResumeLayout(false);

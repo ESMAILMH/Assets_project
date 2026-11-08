@@ -20,7 +20,7 @@ public static class Theme
     public static readonly Color Neutral = Color.FromArgb(108, 117, 125);
     public static readonly Color GridAlt = Color.FromArgb(248, 250, 252);
 
-    public const string FontName = "Segoe UI";
+    public const string FontName = "Cairo";
     public static readonly Font Base = new(FontName, 10F);
     public static readonly Font Bold = new(FontName, 10F, FontStyle.Bold);
     public static readonly Font Small = new(FontName, 9F);

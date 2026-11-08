@@ -43,7 +43,7 @@
             this.label1.Size = new System.Drawing.Size(150, 27);
             this.label1.Text = "كلمة المرور الحالية *";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.label1.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.label1.Name = "label1";
             // 
             // txtCurrent
@@ -60,7 +60,7 @@
             this.label2.Size = new System.Drawing.Size(150, 27);
             this.label2.Text = "الجديدة *";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.label2.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.label2.Name = "label2";
             // 
             // txtNew
@@ -77,7 +77,7 @@
             this.label3.Size = new System.Drawing.Size(150, 27);
             this.label3.Text = "تأكيد الجديدة *";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.label3.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.label3.Name = "label3";
             // 
             // txtConfirm
@@ -103,7 +103,7 @@
             this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.FlatAppearance.BorderSize = 0;
-            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnSave.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnSave.ForeColor = System.Drawing.Color.White;
             this.btnSave.Size = new System.Drawing.Size(120, 36);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -119,7 +119,7 @@
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.FlatAppearance.BorderSize = 0;
-            this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnCancel.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnCancel.ForeColor = System.Drawing.Color.White;
             this.btnCancel.Size = new System.Drawing.Size(120, 36);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -132,7 +132,7 @@
             // 
             this.lblHeader.BackColor = System.Drawing.Color.FromArgb(30, 77, 120);
             this.lblHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblHeader.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.lblHeader.Font = new System.Drawing.Font("Cairo", 12F, System.Drawing.FontStyle.Bold);
             this.lblHeader.ForeColor = System.Drawing.Color.White;
             this.lblHeader.Padding = new System.Windows.Forms.Padding(16, 0, 16, 0);
             this.lblHeader.Size = new System.Drawing.Size(460, 48);
@@ -162,7 +162,7 @@
             this.Controls.Add(this.txtConfirm);
             this.Controls.Add(this.pnlButtons);
             this.Controls.Add(this.lblHeader);
-            this.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Font = new System.Drawing.Font("Cairo", 10F);
             this.Name = "ChangePasswordDialog";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;

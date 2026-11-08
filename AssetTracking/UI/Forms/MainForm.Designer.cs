@@ -97,7 +97,7 @@
             this.btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDashboard.FlatAppearance.BorderSize = 0;
             this.btnDashboard.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(38, 58, 84);
-            this.btnDashboard.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.btnDashboard.Font = new System.Drawing.Font("Cairo", 10.5F);
             this.btnDashboard.ForeColor = System.Drawing.Color.White;
             this.btnDashboard.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.btnDashboard.Padding = new System.Windows.Forms.Padding(18, 0, 0, 0);
@@ -116,7 +116,7 @@
             this.btnAssets.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAssets.FlatAppearance.BorderSize = 0;
             this.btnAssets.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(38, 58, 84);
-            this.btnAssets.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.btnAssets.Font = new System.Drawing.Font("Cairo", 10.5F);
             this.btnAssets.ForeColor = System.Drawing.Color.White;
             this.btnAssets.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.btnAssets.Padding = new System.Windows.Forms.Padding(18, 0, 0, 0);
@@ -135,7 +135,7 @@
             this.btnCustody.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCustody.FlatAppearance.BorderSize = 0;
             this.btnCustody.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(38, 58, 84);
-            this.btnCustody.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.btnCustody.Font = new System.Drawing.Font("Cairo", 10.5F);
             this.btnCustody.ForeColor = System.Drawing.Color.White;
             this.btnCustody.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.btnCustody.Padding = new System.Windows.Forms.Padding(18, 0, 0, 0);
@@ -154,7 +154,7 @@
             this.btnAlerts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAlerts.FlatAppearance.BorderSize = 0;
             this.btnAlerts.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(38, 58, 84);
-            this.btnAlerts.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.btnAlerts.Font = new System.Drawing.Font("Cairo", 10.5F);
             this.btnAlerts.ForeColor = System.Drawing.Color.White;
             this.btnAlerts.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.btnAlerts.Padding = new System.Windows.Forms.Padding(18, 0, 0, 0);
@@ -173,7 +173,7 @@
             this.btnDisposal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDisposal.FlatAppearance.BorderSize = 0;
             this.btnDisposal.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(38, 58, 84);
-            this.btnDisposal.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.btnDisposal.Font = new System.Drawing.Font("Cairo", 10.5F);
             this.btnDisposal.ForeColor = System.Drawing.Color.White;
             this.btnDisposal.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.btnDisposal.Padding = new System.Windows.Forms.Padding(18, 0, 0, 0);
@@ -192,7 +192,7 @@
             this.btnInventory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInventory.FlatAppearance.BorderSize = 0;
             this.btnInventory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(38, 58, 84);
-            this.btnInventory.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.btnInventory.Font = new System.Drawing.Font("Cairo", 10.5F);
             this.btnInventory.ForeColor = System.Drawing.Color.White;
             this.btnInventory.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.btnInventory.Padding = new System.Windows.Forms.Padding(18, 0, 0, 0);
@@ -211,7 +211,7 @@
             this.btnPersons.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPersons.FlatAppearance.BorderSize = 0;
             this.btnPersons.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(38, 58, 84);
-            this.btnPersons.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.btnPersons.Font = new System.Drawing.Font("Cairo", 10.5F);
             this.btnPersons.ForeColor = System.Drawing.Color.White;
             this.btnPersons.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.btnPersons.Padding = new System.Windows.Forms.Padding(18, 0, 0, 0);
@@ -230,7 +230,7 @@
             this.btnMasterData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMasterData.FlatAppearance.BorderSize = 0;
             this.btnMasterData.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(38, 58, 84);
-            this.btnMasterData.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.btnMasterData.Font = new System.Drawing.Font("Cairo", 10.5F);
             this.btnMasterData.ForeColor = System.Drawing.Color.White;
             this.btnMasterData.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.btnMasterData.Padding = new System.Windows.Forms.Padding(18, 0, 0, 0);
@@ -249,7 +249,7 @@
             this.btnReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReports.FlatAppearance.BorderSize = 0;
             this.btnReports.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(38, 58, 84);
-            this.btnReports.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.btnReports.Font = new System.Drawing.Font("Cairo", 10.5F);
             this.btnReports.ForeColor = System.Drawing.Color.White;
             this.btnReports.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.btnReports.Padding = new System.Windows.Forms.Padding(18, 0, 0, 0);
@@ -268,7 +268,7 @@
             this.btnMyAssets.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMyAssets.FlatAppearance.BorderSize = 0;
             this.btnMyAssets.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(38, 58, 84);
-            this.btnMyAssets.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.btnMyAssets.Font = new System.Drawing.Font("Cairo", 10.5F);
             this.btnMyAssets.ForeColor = System.Drawing.Color.White;
             this.btnMyAssets.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.btnMyAssets.Padding = new System.Windows.Forms.Padding(18, 0, 0, 0);
@@ -287,7 +287,7 @@
             this.btnUsers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUsers.FlatAppearance.BorderSize = 0;
             this.btnUsers.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(38, 58, 84);
-            this.btnUsers.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.btnUsers.Font = new System.Drawing.Font("Cairo", 10.5F);
             this.btnUsers.ForeColor = System.Drawing.Color.White;
             this.btnUsers.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.btnUsers.Padding = new System.Windows.Forms.Padding(18, 0, 0, 0);
@@ -306,7 +306,7 @@
             this.btnAudit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAudit.FlatAppearance.BorderSize = 0;
             this.btnAudit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(38, 58, 84);
-            this.btnAudit.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.btnAudit.Font = new System.Drawing.Font("Cairo", 10.5F);
             this.btnAudit.ForeColor = System.Drawing.Color.White;
             this.btnAudit.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
             this.btnAudit.Padding = new System.Windows.Forms.Padding(18, 0, 0, 0);
@@ -321,7 +321,7 @@
             // lblFooter
             // 
             this.lblFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblFooter.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblFooter.Font = new System.Drawing.Font("Cairo", 9F);
             this.lblFooter.ForeColor = System.Drawing.Color.FromArgb(150, 165, 185);
             this.lblFooter.Size = new System.Drawing.Size(240, 44);
             this.lblFooter.Text = "كلية التقنيات الهندسية – يفرن";
@@ -331,7 +331,7 @@
             // lblLogo
             // 
             this.lblLogo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblLogo.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
+            this.lblLogo.Font = new System.Drawing.Font("Cairo", 13F, System.Drawing.FontStyle.Bold);
             this.lblLogo.ForeColor = System.Drawing.Color.White;
             this.lblLogo.Size = new System.Drawing.Size(240, 64);
             this.lblLogo.Text = "حصر الأصول";
@@ -365,7 +365,7 @@
             this.btnLogout.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogout.FlatAppearance.BorderSize = 0;
-            this.btnLogout.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnLogout.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnLogout.ForeColor = System.Drawing.Color.White;
             this.btnLogout.Size = new System.Drawing.Size(130, 36);
             this.btnLogout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -380,7 +380,7 @@
             this.btnChangePassword.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnChangePassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChangePassword.FlatAppearance.BorderSize = 0;
-            this.btnChangePassword.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnChangePassword.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnChangePassword.ForeColor = System.Drawing.Color.White;
             this.btnChangePassword.Size = new System.Drawing.Size(150, 36);
             this.btnChangePassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -394,13 +394,13 @@
             this.lblCurrentUser.AutoSize = true;
             this.lblCurrentUser.Margin = new System.Windows.Forms.Padding(4, 10, 4, 4);
             this.lblCurrentUser.Text = "👤 المستخدم";
-            this.lblCurrentUser.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblCurrentUser.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.lblCurrentUser.Name = "lblCurrentUser";
             // 
             // lblAppTitle
             // 
             this.lblAppTitle.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblAppTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.lblAppTitle.Font = new System.Drawing.Font("Cairo", 12F, System.Drawing.FontStyle.Bold);
             this.lblAppTitle.ForeColor = System.Drawing.Color.FromArgb(30, 77, 120);
             this.lblAppTitle.Padding = new System.Windows.Forms.Padding(16, 0, 0, 0);
             this.lblAppTitle.Size = new System.Drawing.Size(420, 58);
@@ -421,7 +421,7 @@
             this.Controls.Add(this.pnlContent);
             this.Controls.Add(this.pnlSidebar);
             this.Controls.Add(this.pnlHeader);
-            this.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Font = new System.Drawing.Font("Cairo", 10F);
             this.Name = "MainForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;

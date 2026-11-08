@@ -45,13 +45,13 @@
             this.lblUser.Size = new System.Drawing.Size(340, 24);
             this.lblUser.Text = "اسم المستخدم";
             this.lblUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblUser.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblUser.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.lblUser.Name = "lblUser";
             // 
             // txtUser
             // 
             this.txtUser.Location = new System.Drawing.Point(50, 198);
-            this.txtUser.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtUser.Font = new System.Drawing.Font("Cairo", 12F);
             this.txtUser.Size = new System.Drawing.Size(340, 32);
             this.txtUser.Name = "txtUser";
             // 
@@ -62,13 +62,13 @@
             this.lblPass.Size = new System.Drawing.Size(340, 24);
             this.lblPass.Text = "كلمة المرور";
             this.lblPass.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblPass.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblPass.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.lblPass.Name = "lblPass";
             // 
             // txtPass
             // 
             this.txtPass.Location = new System.Drawing.Point(50, 268);
-            this.txtPass.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtPass.Font = new System.Drawing.Font("Cairo", 12F);
             this.txtPass.Size = new System.Drawing.Size(340, 32);
             this.txtPass.UseSystemPasswordChar = true;
             this.txtPass.Name = "txtPass";
@@ -99,7 +99,7 @@
             this.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.FlatAppearance.BorderSize = 0;
-            this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnLogin.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnLogin.ForeColor = System.Drawing.Color.White;
             this.btnLogin.Size = new System.Drawing.Size(340, 42);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -133,7 +133,7 @@
             this.lblOrg.Size = new System.Drawing.Size(440, 26);
             this.lblOrg.Text = "كلية التقنيات الهندسية – يفرن";
             this.lblOrg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblOrg.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblOrg.Font = new System.Drawing.Font("Cairo", 9F);
             this.lblOrg.ForeColor = System.Drawing.Color.FromArgb(210, 225, 240);
             this.lblOrg.Name = "lblOrg";
             // 
@@ -144,7 +144,7 @@
             this.lblAppTitle.Size = new System.Drawing.Size(440, 36);
             this.lblAppTitle.Text = "نظام حصر الأصول وتتبع العهد";
             this.lblAppTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblAppTitle.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Bold);
+            this.lblAppTitle.Font = new System.Drawing.Font("Cairo", 13F, System.Drawing.FontStyle.Bold);
             this.lblAppTitle.ForeColor = System.Drawing.Color.White;
             this.lblAppTitle.Name = "lblAppTitle";
             // 
@@ -178,7 +178,7 @@
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.lnkSettings);
             this.Controls.Add(this.pnlHeader);
-            this.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Font = new System.Drawing.Font("Cairo", 10F);
             this.Name = "LoginForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;

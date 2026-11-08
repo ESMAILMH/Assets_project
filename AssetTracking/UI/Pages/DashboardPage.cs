@@ -36,7 +36,7 @@ public partial class DashboardPage : PageBase
     {
         var card = new Panel { Size = new Size(240, 110), BackColor = Theme.Surface, Margin = new Padding(6) };
         card.Controls.Add(new Label { Text = value, Font = Theme.CardValue, ForeColor = color, Dock = DockStyle.Fill, Padding = new Padding(14, 0, 14, 0), TextAlign = ContentAlignment.MiddleLeft });
-        card.Controls.Add(new Label { Text = title, ForeColor = Theme.MutedText, Dock = DockStyle.Top, Height = 34, Padding = new Padding(14, 10, 14, 0) });
+        card.Controls.Add(new Label { Text = title, ForeColor = Theme.MutedText, Dock = DockStyle.Top, Height = 40, Padding = new Padding(14, 8, 14, 0) });
         card.Controls.Add(new Panel { Dock = DockStyle.Left, Width = 6, BackColor = color });
         flpCards.Controls.Add(card);
     }

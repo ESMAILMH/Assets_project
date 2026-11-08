@@ -82,7 +82,7 @@
             this.lblSerial.AutoSize = true;
             this.lblSerial.Margin = new System.Windows.Forms.Padding(4, 10, 4, 4);
             this.lblSerial.Text = "الرقم التسلسلي للأصل الموجود:";
-            this.lblSerial.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblSerial.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.lblSerial.Name = "lblSerial";
             // 
             // txtSerial
@@ -98,7 +98,7 @@
             this.btnRegister.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegister.FlatAppearance.BorderSize = 0;
-            this.btnRegister.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnRegister.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnRegister.ForeColor = System.Drawing.Color.White;
             this.btnRegister.Size = new System.Drawing.Size(120, 36);
             this.btnRegister.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -112,13 +112,13 @@
             this.lblMessage.AutoSize = true;
             this.lblMessage.Margin = new System.Windows.Forms.Padding(4, 10, 4, 4);
             this.lblMessage.Text = "";
-            this.lblMessage.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblMessage.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.lblMessage.Name = "lblMessage";
             // 
             // lblHeader
             // 
             this.lblHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblHeader.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.lblHeader.Font = new System.Drawing.Font("Cairo", 12F, System.Drawing.FontStyle.Bold);
             this.lblHeader.ForeColor = System.Drawing.Color.FromArgb(30, 77, 120);
             this.lblHeader.Padding = new System.Windows.Forms.Padding(12, 8, 12, 0);
             this.lblHeader.Size = new System.Drawing.Size(1040, 42);
@@ -143,7 +143,7 @@
             this.btnCloseSession.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCloseSession.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCloseSession.FlatAppearance.BorderSize = 0;
-            this.btnCloseSession.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnCloseSession.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnCloseSession.ForeColor = System.Drawing.Color.White;
             this.btnCloseSession.Size = new System.Drawing.Size(230, 36);
             this.btnCloseSession.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -158,7 +158,7 @@
             this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrint.FlatAppearance.BorderSize = 0;
-            this.btnPrint.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnPrint.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnPrint.ForeColor = System.Drawing.Color.White;
             this.btnPrint.Size = new System.Drawing.Size(140, 36);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -173,7 +173,7 @@
             this.btnExcel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExcel.FlatAppearance.BorderSize = 0;
-            this.btnExcel.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnExcel.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnExcel.ForeColor = System.Drawing.Color.White;
             this.btnExcel.Size = new System.Drawing.Size(120, 36);
             this.btnExcel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -188,7 +188,7 @@
             this.btnBack.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBack.FlatAppearance.BorderSize = 0;
-            this.btnBack.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnBack.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnBack.ForeColor = System.Drawing.Color.White;
             this.btnBack.Size = new System.Drawing.Size(120, 36);
             this.btnBack.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -211,7 +211,7 @@
             this.Controls.Add(this.flpScan);
             this.Controls.Add(this.lblHeader);
             this.Controls.Add(this.pnlButtons);
-            this.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Font = new System.Drawing.Font("Cairo", 10F);
             this.Name = "InventorySessionForm";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.RightToLeftLayout = true;

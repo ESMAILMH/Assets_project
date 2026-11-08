@@ -88,7 +88,7 @@
             this.btnCard.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCard.FlatAppearance.BorderSize = 0;
-            this.btnCard.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnCard.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnCard.ForeColor = System.Drawing.Color.White;
             this.btnCard.Size = new System.Drawing.Size(170, 36);
             this.btnCard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -103,7 +103,7 @@
             this.btnDispose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDispose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDispose.FlatAppearance.BorderSize = 0;
-            this.btnDispose.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnDispose.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnDispose.ForeColor = System.Drawing.Color.White;
             this.btnDispose.Size = new System.Drawing.Size(170, 36);
             this.btnDispose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -118,7 +118,7 @@
             this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrint.FlatAppearance.BorderSize = 0;
-            this.btnPrint.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnPrint.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnPrint.ForeColor = System.Drawing.Color.White;
             this.btnPrint.Size = new System.Drawing.Size(130, 36);
             this.btnPrint.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -133,7 +133,7 @@
             this.btnExcel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExcel.FlatAppearance.BorderSize = 0;
-            this.btnExcel.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnExcel.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.btnExcel.ForeColor = System.Drawing.Color.White;
             this.btnExcel.Size = new System.Drawing.Size(100, 36);
             this.btnExcel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
@@ -209,7 +209,7 @@
             // lblTitle
             // 
             this.lblTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
+            this.lblTitle.Font = new System.Drawing.Font("Cairo", 16F, System.Drawing.FontStyle.Bold);
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(30, 77, 120);
             this.lblTitle.Size = new System.Drawing.Size(900, 42);
             this.lblTitle.Text = "تنبيهات انتهاء العمر";
@@ -228,7 +228,7 @@
             this.Controls.Add(this.flpActions);
             this.Controls.Add(this.flpFilters);
             this.Controls.Add(this.lblTitle);
-            this.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Font = new System.Drawing.Font("Cairo", 10F);
             this.Name = "AlertsPage";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
