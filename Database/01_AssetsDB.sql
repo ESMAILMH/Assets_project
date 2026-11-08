@@ -1,11 +1,20 @@
-﻿/* =====================================================================
+/* =====================================================================
    Assets and Custody Tracking System - SQL Server schema
    Run in SSMS. Save/open this file as UTF-8 (Arabic seed data).
    ===================================================================== */
+USE master;
+GO
 IF DB_ID(N'AssetsDB') IS NULL
     CREATE DATABASE AssetsDB COLLATE Arabic_CI_AS;
 GO
 USE AssetsDB;
+GO
+-- حماية: إذا لم تُنشأ القاعدة لأي سبب، يتوقف السكربت بدل إنشاء الجداول في قاعدة أخرى (مثل master)
+IF DB_NAME() <> N'AssetsDB'
+BEGIN
+    RAISERROR(N'لم يتم إنشاء قاعدة AssetsDB أو الانتقال إليها. توقف التنفيذ.', 16, 1);
+    SET NOEXEC ON;
+END
 GO
 
 /* ---------- 1. Lookup / master tables ---------- */

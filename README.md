@@ -6,7 +6,10 @@
 
 ## التشغيل
 
-1. شغّل `Database/01_AssetsDB.sql` في SSMS (ينشئ قاعدة `AssetsDB` بالجداول والعروض والإجراءات المخزنة).
+1. افتح الملف `Database/01_AssetsDB.sql` في SSMS من **File ← Open ← File** (لا تنسخ النص من صفحة GitHub) واضغط Execute.
+   ينشئ قاعدة `AssetsDB` بالجداول والعروض والإجراءات المخزنة.
+   > إذا ظهرت أخطاء مثل `There is already an object named ...` فهذا يعني أن الجداول أُنشئت سابقاً في قاعدة master:
+   > شغّل `Database/00_Cleanup.sql` مرة واحدة، ثم أعد تشغيل `01_AssetsDB.sql`.
 2. *(اختياري)* شغّل `Database/02_SampleData.sql` لإضافة بيانات تجريبية.
 3. افتح `AssetTracking.sln` في Visual Studio 2022 واضغط **F5**.
 4. **أول تشغيل:** يطلب التطبيق إنشاء حساب **المدير** (كلمة المرور تُشفَّر في C# ثم تُحفظ).
