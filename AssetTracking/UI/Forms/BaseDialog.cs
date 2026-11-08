@@ -105,7 +105,7 @@ public class BaseDialog : Form
 
     protected TextBox AddText(string label, int maxLength = 150, bool multiline = false)
     {
-        var tb = new TextBox { MaxLength = maxLength, Multiline = multiline };
+        var tb = new TextBox { MaxLength = maxLength, Multiline = multiline, AcceptsReturn = multiline }; // Enter = سطر جديد لا حفظ
         if (multiline)
         {
             tb.Height = 64;

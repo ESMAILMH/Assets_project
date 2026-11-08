@@ -13,6 +13,7 @@
 2. *(اختياري)* شغّل `Database/02_SampleData.sql` لإضافة بيانات تجريبية كاملة
    (5 أقسام، 8 مواقع، 8 أشخاص، 23 أصلاً، عهد مفتوحة ومنتهية، صيانة، تخريد، جرد) مع حسابات دخول:
    `admin / Admin@123` (مدير) — `store / Store@123` (أمين مخزن) — `user / User@123` (موظف).
+   ثم *(اختياري)* `Database/03_SampleImages.sql` لإضافة صور توضيحية للأصول التجريبية.
 3. افتح `AssetTracking.sln` في Visual Studio 2022 واضغط **F5**.
 4. **أول تشغيل:** يطلب التطبيق إنشاء حساب **المدير** (كلمة المرور تُشفَّر في C# ثم تُحفظ).
 5. إذا كان اسم الخادم غير `.\SQLEXPRESS` عدّله من **إعدادات الاتصال** في شاشة الدخول، أو من `appsettings.json`.
@@ -69,7 +70,7 @@
 | FR-06, FR-10..12 الأصل والصورة والأرشفة | `BLL/AssetService.cs`، `UI/Forms/AssetDialog.cs` |
 | FR-07..09 استيراد Excel والقالب | `BLL/ImportService.cs`، `UI/Forms/ImportDialog.cs` |
 | FR-13..16 التسليم والاستلام والحركات | `sp_HandoverAsset` / `sp_ReceiveAsset` ← `DAL/CustodyDal.cs` ← `BLL/OperationsService.cs` |
-| FR-17, FR-18 الصيانة | `DAL/MaintenanceDal.cs`، `UI/Forms/MaintenanceDialogs.cs` |
+| FR-17, FR-18 الصيانة (تسجيل، تعديل، عرض) | `DAL/MaintenanceDal.cs`، `UI/Forms/MaintenanceDialogs.cs` |
 | FR-19, FR-20 الإهلاك والتنبيهات | `vw_AssetValuation` و `vw_EndOfLifeAlerts` ← `UI/Pages/AlertsPage.cs` + العدّاد في `MainForm` |
 | FR-21, FR-22 التخريد | `sp_ProposeDisposal` / `sp_ApproveDisposal` ← `UI/Pages/DisposalPage.cs` |
 | FR-23 البحث | `DAL/AssetDal.Search` |

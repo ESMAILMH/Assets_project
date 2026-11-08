@@ -30,12 +30,31 @@ public static class OperationsService
     }
 
     // ------------------------------------------------------------ الصيانة
-    public static void AddMaintenance(int assetId, DateTime date, string type, string? description, string? performedBy, decimal? cost)
+    /// <summary>إضافة سجل صيانة (id = null) أو تعديله.</summary>
+    public static void SaveMaintenance(int? id, int assetId, DateTime date, string type, string? description, string? performedBy, decimal? cost)
     {
+        if (id is null)
+        {
+            AddMaintenance(assetId, date, type, description, performedBy, cost);
+            return;
+        }
         Session.Demand(Session.CanManage);
+        ValidateMaintenance(date, type, cost);
+        MaintenanceDal.Update(id.Value, date, type.Trim(), Trim(description), Trim(performedBy), cost);
+        AuditDal.Log("EditMaintenance", "Asset", assetId, type);
+    }
+
+    private static void ValidateMaintenance(DateTime date, string type, decimal? cost)
+    {
         if (string.IsNullOrWhiteSpace(type)) throw new AppException("الرجاء اختيار نوع الصيانة.");
         if (date.Date > DateTime.Today) throw new AppException("تاريخ الصيانة لا يمكن أن يكون في المستقبل.");
         if (cost < 0) throw new AppException("التكلفة لا يمكن أن تكون سالبة.");
+    }
+
+    public static void AddMaintenance(int assetId, DateTime date, string type, string? description, string? performedBy, decimal? cost)
+    {
+        Session.Demand(Session.CanManage);
+        ValidateMaintenance(date, type, cost);
         MaintenanceDal.Insert(assetId, date, type.Trim(), Trim(description), Trim(performedBy), cost);
         AuditDal.Log("AddMaintenance", "Asset", assetId, type);
     }
