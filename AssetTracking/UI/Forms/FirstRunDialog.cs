@@ -2,27 +2,21 @@ using AssetTracking.BLL;
 
 namespace AssetTracking.Forms;
 
-/// <summary>أول تشغيل: إنشاء حساب المدير (كلمة المرور تُشفَّر في C#).</summary>
-public sealed class FirstRunDialog : BaseDialog
+/// <summary>أول تشغيل: إنشاء حساب المدير.</summary>
+public partial class FirstRunDialog : DialogBase
 {
-    private readonly TextBox _user, _pass, _confirm;
-
-    public FirstRunDialog() : base("أول تشغيل — إنشاء حساب المدير", 480)
+    public FirstRunDialog()
     {
-        AddInfo("", "لا يوجد أي مستخدم في النظام. أنشئ حساب المدير:");
-        _user = AddText("اسم المستخدم", 50);
-        _user.Text = "admin";
-        _pass = AddText("كلمة المرور", 100);
-        _confirm = AddText("تأكيد كلمة المرور", 100);
-        _pass.UseSystemPasswordChar = _confirm.UseSystemPasswordChar = true;
-        BtnSave.Text = "إنشاء";
+        InitializeComponent();
+        lblInfo.Text = "لا يوجد أي مستخدم في النظام. أنشئ حساب المدير.";
+        txtUser.Text = "admin";
     }
 
-    protected override bool Save()
+    private void btnSave_Click(object? sender, EventArgs e) => TrySave(() =>
     {
-        if (_pass.Text != _confirm.Text) throw new AppException("كلمة المرور وتأكيدها غير متطابقين.");
-        UserService.CreateFirstManager(_user.Text, _pass.Text);
+        if (txtPass.Text != txtConfirm.Text) throw new AppException("كلمة المرور وتأكيدها غير متطابقين.");
+        UserService.CreateFirstManager(txtUser.Text, txtPass.Text);
         Ui.Info("تم إنشاء حساب المدير. سجّل الدخول الآن.");
         return true;
-    }
+    });
 }

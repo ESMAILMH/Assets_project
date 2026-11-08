@@ -6,48 +6,34 @@ public interface IPage
     void RefreshData();
 }
 
-/// <summary>صفحة قياسية: عنوان، شريط بحث وتصفية، أزرار العمليات، جدول، وعدد السجلات.</summary>
+/// <summary>
+/// أساس الصفحات: لا يحتوي عناصر (كل صفحة تصمم عناصرها في ملف Designer الخاص بها)،
+/// فقط دوال مساعدة: ربط الجدول، عدد السجلات، فتح النوافذ، الطباعة والتصدير.
+/// كل صفحة تستدعي InitPage(grid, lblCount) بعد InitializeComponent.
+/// </summary>
 public class PageBase : UserControl, IPage
 {
-    protected readonly Label TitleLabel;
-    protected readonly FlowLayoutPanel Toolbar;
-    protected readonly FlowLayoutPanel Actions;
-    protected readonly DataGridView Grid;
-    protected readonly Label CountLabel;
+    private DataGridView? _grid;
+    private Label? _count;
     private bool _loaded;
+
+    /// <summary>false أثناء تحميل القوائم المنسدلة حتى لا يُعاد التحميل مع كل تغيير.</summary>
     protected bool Ready { get; set; }
 
-    public PageBase(string title)
+    protected void InitPage(DataGridView grid, Label count, TextBox? search = null)
     {
-        Ui.ApplyRtl(this);
-        Dock = DockStyle.Fill;
-        BackColor = Theme.Background;
-        Padding = new Padding(20, 14, 20, 10);
-
-        TitleLabel = new Label
-        {
-            Text = title, Font = Theme.Title, ForeColor = Theme.Primary,
-            Dock = DockStyle.Top, Height = 42, TextAlign = ContentAlignment.MiddleLeft
-        };
-        Toolbar = new FlowLayoutPanel { Dock = DockStyle.Top, AutoSize = true, WrapContents = true, Padding = new Padding(0, 2, 0, 2) };
-        Actions = new FlowLayoutPanel { Dock = DockStyle.Top, AutoSize = true, WrapContents = true, Padding = new Padding(0, 0, 0, 8) };
-        Grid = Ui.MakeGrid();
-        var gridHost = new Panel { Dock = DockStyle.Fill, Padding = new Padding(1), BackColor = Theme.Border };
-        gridHost.Controls.Add(Grid);
-        CountLabel = new Label { Dock = DockStyle.Bottom, Height = 28, ForeColor = Theme.MutedText, TextAlign = ContentAlignment.MiddleLeft };
-
-        // ترتيب الإضافة مهم للـ Dock: العنصر الذي يملأ الفراغ أولاً
-        Controls.Add(gridHost);
-        Controls.Add(CountLabel);
-        Controls.Add(Actions);
-        Controls.Add(Toolbar);
-        Controls.Add(TitleLabel);
+        _grid = grid;
+        _count = count;
+        Ui.StyleGrid(grid);
+        if (search == null) return;
+        Ui.OnTextChangedDebounced(search, () => Ui.Try(RefreshData));
+        search.KeyDown += (_, e) => { if (e.KeyCode == Keys.Escape) search.Clear(); }; // Esc يمسح البحث
     }
 
     protected override void OnLoad(EventArgs e)
     {
         base.OnLoad(e);
-        if (_loaded || DesignMode) return;
+        if (_loaded || DesignMode || _grid == null) return;
         _loaded = true;
         Ui.Try(RefreshData);
         Ready = true;
@@ -55,10 +41,27 @@ public class PageBase : UserControl, IPage
 
     public virtual void RefreshData() { }
 
+    /// <summary>ربطه بحدث SelectedIndexChanged للقوائم المنسدلة: يحدّث الجدول عند تغيير التصفية.</summary>
+    protected void Filter_Changed(object? sender, EventArgs e)
+    {
+        if (Ready) Ui.Try(RefreshData);
+    }
+
     protected void Bind(DataTable table)
     {
-        Ui.BindGrid(Grid, table);
-        CountLabel.Text = table.Rows.Count == 0 ? "لا توجد بيانات مطابقة" : $"عدد السجلات: {table.Rows.Count}";
+        Ui.BindGrid(_grid!, table);
+        _count!.Text = table.Rows.Count == 0 ? "لا توجد بيانات مطابقة" : $"عدد السجلات: {table.Rows.Count}";
+    }
+
+    protected DataTable? CurrentTable => _grid?.DataSource as DataTable;
+
+    protected DataRowView? Selected => _grid == null ? null : Ui.CurrentRow(_grid);
+
+    protected DataRowView? RequireSelection()
+    {
+        var row = Selected;
+        if (row == null) Ui.Info("الرجاء تحديد سجل من الجدول أولاً.");
+        return row;
     }
 
     /// <summary>يفتح نافذة، ويحدّث الصفحة إذا تم الحفظ.</summary>
@@ -68,57 +71,15 @@ public class PageBase : UserControl, IPage
             if (dialog.ShowDialog(FindForm()) == DialogResult.OK) RefreshData();
     }
 
-    protected DataTable? CurrentTable => Grid.DataSource as DataTable;
-    protected DataRowView? Selected => Ui.CurrentRow(Grid);
-
-    protected DataRowView? RequireSelection()
+    protected void PrintGrid(string title, string? subtitle = null)
     {
-        var row = Selected;
-        if (row == null) Ui.Info("الرجاء تحديد سجل من الجدول أولاً.");
-        return row;
+        if (CurrentTable is { } t)
+            ReportPrinter.Preview(new ReportResult(title, new[] { new ReportSection("", Sorted(t)) }, subtitle), FindForm());
     }
 
-    protected Button AddAction(string text, Color color, Action action)
+    protected void ExportGrid(string title)
     {
-        var b = Ui.MakeButton(text, color, (_, _) => Ui.Try(action));
-        Actions.Controls.Add(b);
-        return b;
-    }
-
-    protected T AddTool<T>(string? label, T control) where T : Control
-    {
-        if (label != null) Toolbar.Controls.Add(Ui.MakeLabel(label));
-        Toolbar.Controls.Add(control);
-        return control;
-    }
-
-    protected TextBox AddSearchBox(string placeholder)
-    {
-        var tb = Ui.MakeTextBox(240, placeholder);
-        Ui.OnTextChangedDebounced(tb, () => Ui.Try(RefreshData));
-        tb.KeyDown += (_, e) => { if (e.KeyCode == Keys.Escape) tb.Clear(); }; // Esc يمسح البحث
-        return AddTool("بحث:", tb);
-    }
-
-    /// <summary>قائمة منسدلة للتصفية: تغيّرها يحدّث الجدول.</summary>
-    protected ComboBox AddFilter(string label, int width = 150)
-    {
-        var c = AddTool(label, Ui.MakeCombo(width));
-        c.SelectedIndexChanged += (_, _) => { if (Ready) Ui.Try(RefreshData); };
-        return c;
-    }
-
-    protected void AddPrintExport(string title, Func<string?>? subtitle = null)
-    {
-        AddAction("🖨 طباعة", Theme.Neutral, () =>
-        {
-            if (CurrentTable is { } t)
-                ReportPrinter.Preview(new ReportResult(title, new[] { new ReportSection("", Sorted(t)) }, subtitle?.Invoke()), FindForm());
-        });
-        AddAction("Excel", Theme.Success, () =>
-        {
-            if (CurrentTable is { } t) Ui.ExportExcel(Sorted(t), title, FindForm());
-        });
+        if (CurrentTable is { } t) Ui.ExportExcel(Sorted(t), title, FindForm());
     }
 
     private static DataTable Sorted(DataTable t) => t.DefaultView is { Sort.Length: > 0 } v ? v.ToTable() : t;

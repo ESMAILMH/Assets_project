@@ -4,24 +4,17 @@ using AssetTracking.Forms;
 namespace AssetTracking.Pages;
 
 /// <summary>تنبيهات انتهاء العمر (UC-15): أصول في آخر سنة من عمرها وأصول انتهى عمرها.</summary>
-public sealed class AlertsPage : PageBase
+public partial class AlertsPage : PageBase
 {
-    private readonly ComboBox _type, _department, _category;
-
-    public AlertsPage() : base("تنبيهات انتهاء العمر")
+    public AlertsPage()
     {
-        _type = AddFilter("التنبيه:", 170);
-        _department = AddFilter("القسم:");
-        _category = AddFilter("التصنيف:");
-        Toolbar.Controls.Add(Ui.MakeLabel("الأصل المنتهي يبقى قيد الاستخدام حتى يعتمد المدير تخريده.", Theme.Small, Theme.MutedText));
-
-        AddAction("📄 بطاقة الأصل", Theme.Info, () => { if (RequireSelection() is { } r) OpenDialog(new AssetDialog((int)r["Id"])); });
-        if (Session.CanManage)
-            AddAction("♻ اقتراح تخريد", Theme.Danger, () => { if (RequireSelection() is { } r) OpenDialog(new ProposeDisposalDialog((int)r["Id"])); });
-        AddPrintExport("تنبيهات انتهاء العمر");
-        Grid.CellFormatting += (_, e) =>
+        InitializeComponent();
+        InitPage(grid, lblCount);
+        btnDispose.Visible = Session.CanManage;
+        foreach (var c in new[] { cmbType, cmbDepartment, cmbCategory }) c.SelectedIndexChanged += Filter_Changed;
+        grid.CellFormatting += (_, e) =>
         {
-            if (e.RowIndex >= 0 && Grid.Rows[e.RowIndex].DataBoundItem is DataRowView r)
+            if (e.RowIndex >= 0 && grid.Rows[e.RowIndex].DataBoundItem is DataRowView r)
                 e.CellStyle!.ForeColor = (string)r["AlertType"] == "Expired" ? Theme.Danger : Theme.Warning;
         };
     }
@@ -30,10 +23,17 @@ public sealed class AlertsPage : PageBase
     {
         bool ready = Ready;
         Ready = false;
-        if (_type.DataSource == null) Ui.BindCombo(_type, Labels.WithAll(Labels.AlertTypes));
-        Rebind(_department, () => Ui.BindCombo(_department, MasterDataDal.DepartmentList(), "— الكل —"));
-        Rebind(_category, () => Ui.BindCombo(_category, MasterDataDal.CategoryList(), "— الكل —"));
+        if (cmbType.DataSource == null) Ui.BindCombo(cmbType, Labels.WithAll(Labels.AlertTypes));
+        Rebind(cmbDepartment, () => Ui.BindCombo(cmbDepartment, MasterDataDal.DepartmentList(), "— الكل —"));
+        Rebind(cmbCategory, () => Ui.BindCombo(cmbCategory, MasterDataDal.CategoryList(), "— الكل —"));
         Ready = ready;
-        Bind(AssetDal.Alerts(Ui.SelectedCode(_type), Ui.SelectedId(_department), Ui.SelectedId(_category)));
+        Bind(AssetDal.Alerts(Ui.SelectedCode(cmbType), Ui.SelectedId(cmbDepartment), Ui.SelectedId(cmbCategory)));
     }
+
+    private void btnCard_Click(object? sender, EventArgs e) =>
+        Ui.Try(() => { if (RequireSelection() is { } r) OpenDialog(new AssetDialog((int)r["Id"])); });
+    private void btnDispose_Click(object? sender, EventArgs e) =>
+        Ui.Try(() => { if (RequireSelection() is { } r) OpenDialog(new ProposeDisposalDialog((int)r["Id"])); });
+    private void btnPrint_Click(object? sender, EventArgs e) => Ui.Try(() => PrintGrid("تنبيهات انتهاء العمر"));
+    private void btnExcel_Click(object? sender, EventArgs e) => Ui.Try(() => ExportGrid("تنبيهات انتهاء العمر"));
 }

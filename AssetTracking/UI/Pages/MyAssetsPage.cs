@@ -4,25 +4,27 @@ using AssetTracking.Forms;
 namespace AssetTracking.Pages;
 
 /// <summary>أصولي (UC-14): الموظف يرى الأصول التي في عهدته فقط.</summary>
-public sealed class MyAssetsPage : PageBase
+public partial class MyAssetsPage : PageBase
 {
-    private readonly TextBox _search;
-
-    public MyAssetsPage() : base("أصولي")
+    public MyAssetsPage()
     {
-        _search = AddSearchBox("الرقم التسلسلي أو الاسم...");
-        AddAction("📄 بطاقة الأصل", Theme.Info, () =>
-        {
-            if (RequireSelection() is not { } r) return;
-            using var d = new AssetDialog((int)r["Id"], readOnly: true);
-            d.ShowDialog(FindForm());
-        });
-        AddAction("🖨 كشف عهدتي", Theme.Neutral, () =>
-        {
-            if (Session.Current?.PersonId is int id)
-                ReportPrinter.Preview(ReportCatalog.PersonStatement(new ReportFilterValues { PersonId = id }), FindForm());
-        });
+        InitializeComponent();
+        InitPage(grid, lblCount, txtSearch);
+        txtSearch.PlaceholderText = "الرقم التسلسلي أو الاسم...";
     }
 
-    public override void RefreshData() => Bind(AssetService.MyAssets(_search.Text));
+    public override void RefreshData() => Bind(AssetService.MyAssets(txtSearch.Text));
+
+    private void btnCard_Click(object? sender, EventArgs e) => Ui.Try(() =>
+    {
+        if (RequireSelection() is not { } r) return;
+        using var d = new AssetDialog((int)r["Id"], readOnly: true);
+        d.ShowDialog(FindForm());
+    });
+
+    private void btnStatement_Click(object? sender, EventArgs e) => Ui.Try(() =>
+    {
+        if (Session.Current?.PersonId is int id)
+            ReportPrinter.Preview(ReportCatalog.PersonStatement(new ReportFilterValues { PersonId = id }), FindForm());
+    });
 }

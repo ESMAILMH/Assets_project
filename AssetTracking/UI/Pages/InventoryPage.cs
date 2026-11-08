@@ -4,32 +4,16 @@ using AssetTracking.Forms;
 namespace AssetTracking.Pages;
 
 /// <summary>جلسات الجرد.</summary>
-public sealed class InventoryPage : PageBase
+public partial class InventoryPage : PageBase
 {
-    public InventoryPage() : base("الجرد")
+    public InventoryPage()
     {
-        AddAction("➕ جلسة جرد جديدة", Theme.Primary, NewSession);
-        AddAction("📋 فتح الجلسة", Theme.Info, OpenSelected);
-        AddAction("🖨 كشف الجرد", Theme.Neutral, () =>
-        {
-            if (RequireSelection() is { } r) ReportPrinter.Preview(ReportCatalog.InventoryResult((int)r["Id"]), FindForm());
-        });
-        Grid.CellDoubleClick += (_, e) => { if (e.RowIndex >= 0) Ui.Try(OpenSelected); };
+        InitializeComponent();
+        InitPage(grid, lblCount);
+        grid.CellDoubleClick += (_, e) => { if (e.RowIndex >= 0) btnOpen_Click(null, EventArgs.Empty); };
     }
 
     public override void RefreshData() => Bind(InventoryDal.Sessions());
-
-    private void NewSession()
-    {
-        using var d = new NewInventoryDialog();
-        if (d.ShowDialog(FindForm()) != DialogResult.OK) return;
-        Open(d.SessionId);
-    }
-
-    private void OpenSelected()
-    {
-        if (RequireSelection() is { } r) Open((int)r["Id"]);
-    }
 
     private void Open(int id)
     {
@@ -37,4 +21,17 @@ public sealed class InventoryPage : PageBase
         f.ShowDialog(FindForm());
         RefreshData();
     }
+
+    private void btnNew_Click(object? sender, EventArgs e) => Ui.Try(() =>
+    {
+        using var d = new NewInventoryDialog();
+        if (d.ShowDialog(FindForm()) == DialogResult.OK) Open(d.SessionId);
+    });
+
+    private void btnOpen_Click(object? sender, EventArgs e) => Ui.Try(() => { if (RequireSelection() is { } r) Open((int)r["Id"]); });
+
+    private void btnPrint_Click(object? sender, EventArgs e) => Ui.Try(() =>
+    {
+        if (RequireSelection() is { } r) ReportPrinter.Preview(ReportCatalog.InventoryResult((int)r["Id"]), FindForm());
+    });
 }

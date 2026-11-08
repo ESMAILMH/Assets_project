@@ -4,29 +4,28 @@ using AssetTracking.Forms;
 namespace AssetTracking.Pages;
 
 /// <summary>الأشخاص (أصحاب العهد).</summary>
-public sealed class PersonsPage : PageBase
+public partial class PersonsPage : PageBase
 {
-    private readonly TextBox _search;
-
-    public PersonsPage() : base("الأشخاص")
+    public PersonsPage()
     {
-        _search = AddSearchBox("الاسم، الرقم الوظيفي، القسم، الهاتف...");
-        AddAction("➕ إضافة", Theme.Primary, () => Edit(null));
-        AddAction("✏ تعديل", Theme.Info, () => { if (RequireSelection() is { } r) Edit((int)r["Id"]); });
-        AddAction("📑 كشف عهدته", Theme.Warning, () =>
-        {
-            if (RequireSelection() is { } r)
-                ReportPrinter.Preview(ReportCatalog.PersonStatement(new ReportFilterValues { PersonId = (int)r["Id"] }), FindForm());
-        });
-        AddPrintExport("الأشخاص");
-        Grid.CellDoubleClick += (_, e) => { if (e.RowIndex >= 0 && Selected is { } r) Ui.Try(() => Edit((int)r["Id"])); };
+        InitializeComponent();
+        InitPage(grid, lblCount, txtSearch);
+        txtSearch.PlaceholderText = "الاسم، الرقم الوظيفي، القسم، الهاتف...";
+        grid.CellDoubleClick += (_, e) => { if (e.RowIndex >= 0) btnEdit_Click(null, EventArgs.Empty); };
     }
 
-    public override void RefreshData() =>
-        Bind(MasterDataDal.Persons(string.IsNullOrWhiteSpace(_search.Text) ? null : _search.Text.Trim()));
+    public override void RefreshData() => Bind(MasterDataDal.Persons(Ui.NullIfEmpty(txtSearch.Text)));
 
-    private void Edit(int? id)
+    private void btnAdd_Click(object? sender, EventArgs e) => Ui.Try(() => OpenDialog(new PersonDialog(null)));
+    private void btnEdit_Click(object? sender, EventArgs e) =>
+        Ui.Try(() => { if (RequireSelection() is { } r) OpenDialog(new PersonDialog((int)r["Id"])); });
+
+    private void btnStatement_Click(object? sender, EventArgs e) => Ui.Try(() =>
     {
-        OpenDialog(new PersonDialog(id));
-    }
+        if (RequireSelection() is { } r)
+            ReportPrinter.Preview(ReportCatalog.PersonStatement(new ReportFilterValues { PersonId = (int)r["Id"] }), FindForm());
+    });
+
+    private void btnPrint_Click(object? sender, EventArgs e) => Ui.Try(() => PrintGrid("الأشخاص"));
+    private void btnExcel_Click(object? sender, EventArgs e) => Ui.Try(() => ExportGrid("الأشخاص"));
 }

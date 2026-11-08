@@ -173,25 +173,29 @@ public static partial class Ui
     // ------------------------------------------------------------------ جداول
     public static DataGridView MakeGrid()
     {
-        var g = new DataGridView
-        {
-            Dock = DockStyle.Fill,
-            ReadOnly = true,
-            AllowUserToAddRows = false,
-            AllowUserToDeleteRows = false,
-            AllowUserToResizeRows = false,
-            SelectionMode = DataGridViewSelectionMode.FullRowSelect,
-            MultiSelect = false,
-            AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill,
-            RowHeadersVisible = false,
-            BackgroundColor = Theme.Surface,
-            BorderStyle = BorderStyle.None,
-            GridColor = Theme.Border,
-            EnableHeadersVisualStyles = false,
-            ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing,
-            ColumnHeadersHeight = 38,
-            CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
-        };
+        var g = new DataGridView { Dock = DockStyle.Fill };
+        StyleGrid(g);
+        return g;
+    }
+
+    /// <summary>تنسيق موحد للجداول (يُطبَّق عند التشغيل على الجداول المصممة في المصمم).</summary>
+    public static void StyleGrid(DataGridView g)
+    {
+        g.ReadOnly = true;
+        g.AllowUserToAddRows = false;
+        g.AllowUserToDeleteRows = false;
+        g.AllowUserToResizeRows = false;
+        g.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+        g.MultiSelect = false;
+        g.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        g.RowHeadersVisible = false;
+        g.BackgroundColor = Theme.Surface;
+        g.BorderStyle = BorderStyle.None;
+        g.GridColor = Theme.Border;
+        g.EnableHeadersVisualStyles = false;
+        g.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+        g.ColumnHeadersHeight = 38;
+        g.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
         g.RowTemplate.Height = 32;
         g.ColumnHeadersDefaultCellStyle.BackColor = Theme.Primary;
         g.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
@@ -205,7 +209,6 @@ public static partial class Ui
         g.DataError += (_, e) => e.ThrowException = false;
         typeof(DataGridView).GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
             ?.SetValue(g, true); // رسم أنعم عند التمرير
-        return g;
     }
 
     [GeneratedRegex("^[A-Za-z0-9_]+$")]

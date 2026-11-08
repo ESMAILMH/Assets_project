@@ -4,18 +4,16 @@ using AssetTracking.Forms;
 namespace AssetTracking.Pages;
 
 /// <summary>التخريد: طلبات أمين المخزن واعتماد المدير.</summary>
-public sealed class DisposalPage : PageBase
+public partial class DisposalPage : PageBase
 {
-    private readonly ComboBox _status;
-
-    public DisposalPage() : base("التخريد")
+    public DisposalPage()
     {
-        _status = AddFilter("الحالة:", 130);
-        if (Session.IsManager)
-            AddAction("✔ اعتماد / رفض", Theme.Primary, Decide);
-        AddPrintExport("طلبات التخريد");
-        Grid.CellDoubleClick += (_, e) => { if (e.RowIndex >= 0 && Session.IsManager) Ui.Try(Decide); };
-        Ui.ColorBy(Grid, "Status", "الحالة", s => s switch
+        InitializeComponent();
+        InitPage(grid, lblCount);
+        btnDecide.Visible = Session.IsManager;
+        cmbStatus.SelectedIndexChanged += Filter_Changed;
+        grid.CellDoubleClick += (_, e) => { if (e.RowIndex >= 0 && Session.IsManager) btnDecide_Click(null, EventArgs.Empty); };
+        Ui.ColorBy(grid, "Status", "الحالة", s => s switch
         {
             "Proposed" => Theme.Warning, "Approved" => Theme.Danger, _ => Theme.MutedText
         });
@@ -23,18 +21,21 @@ public sealed class DisposalPage : PageBase
 
     public override void RefreshData()
     {
-        if (_status.DataSource == null)
+        if (cmbStatus.DataSource == null)
         {
-            Ui.BindCombo(_status, Labels.WithAll(Labels.DisposalStatuses));
-            _status.SelectedValue = "Proposed";
+            Ui.BindCombo(cmbStatus, Labels.WithAll(Labels.DisposalStatuses));
+            cmbStatus.SelectedValue = "Proposed";
         }
-        Bind(DisposalDal.Search(Ui.SelectedCode(_status), null, null));
+        Bind(DisposalDal.Search(Ui.SelectedCode(cmbStatus), null, null));
     }
 
-    private void Decide()
+    private void btnDecide_Click(object? sender, EventArgs e) => Ui.Try(() =>
     {
         if (RequireSelection() is not { } r) return;
         if ((string)r["Status"] != "Proposed") { Ui.Info("تم البت في هذا الطلب مسبقاً."); return; }
         OpenDialog(new DisposalDecisionDialog((int)r["Id"], $"{r["الرقم التسلسلي"]} - {r["الأصل"]}", (string)r["السبب"]));
-    }
+    });
+
+    private void btnPrint_Click(object? sender, EventArgs e) => Ui.Try(() => PrintGrid("طلبات التخريد"));
+    private void btnExcel_Click(object? sender, EventArgs e) => Ui.Try(() => ExportGrid("طلبات التخريد"));
 }

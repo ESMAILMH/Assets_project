@@ -1,22 +1,19 @@
+using AssetTracking.BLL;
+
 namespace AssetTracking.Forms;
 
-public sealed class ChangePasswordDialog : BaseDialog
+public partial class ChangePasswordDialog : DialogBase
 {
-    private readonly TextBox _current, _new, _confirm;
-
-    public ChangePasswordDialog() : base("تغيير كلمة المرور", 460)
+    public ChangePasswordDialog()
     {
-        _current = AddText("كلمة المرور الحالية");
-        _new = AddText("كلمة المرور الجديدة");
-        _confirm = AddText("تأكيد كلمة المرور");
-        _current.UseSystemPasswordChar = _new.UseSystemPasswordChar = _confirm.UseSystemPasswordChar = true;
+        InitializeComponent();
     }
 
-    protected override bool Save()
+    private void btnSave_Click(object? sender, EventArgs e) => TrySave(() =>
     {
-        if (_new.Text != _confirm.Text) throw new AppException("كلمة المرور الجديدة وتأكيدها غير متطابقين.");
-        BLL.UserService.ChangeOwnPassword(_current.Text, _new.Text);
+        if (txtNew.Text != txtConfirm.Text) throw new AppException("كلمة المرور الجديدة وتأكيدها غير متطابقين.");
+        UserService.ChangeOwnPassword(txtCurrent.Text, txtNew.Text);
         Ui.Info("تم تغيير كلمة المرور بنجاح.");
         return true;
-    }
+    });
 }

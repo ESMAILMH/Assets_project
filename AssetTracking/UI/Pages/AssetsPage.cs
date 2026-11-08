@@ -4,127 +4,46 @@ using AssetTracking.Forms;
 
 namespace AssetTracking.Pages;
 
-/// <summary>الأصول: بحث وتصفية، إضافة وتعديل وأرشفة، تسليم واستلام، صيانة، تخريد، واستيراد من Excel.</summary>
-public sealed class AssetsPage : PageBase
+/// <summary>الأصول: بحث وتصفية، إضافة وتعديل وأرشفة، تسليم واستلام، صيانة، تخريد، استيراد، وصورة الأصل.</summary>
+public partial class AssetsPage : PageBase
 {
-    private readonly TextBox _search;
-    private readonly ComboBox _category, _department, _location, _status;
-    private readonly PictureBox _photo = new()
-    {
-        Dock = DockStyle.Top, Height = 230, SizeMode = PictureBoxSizeMode.Zoom,
-        BackColor = Theme.Surface, BorderStyle = BorderStyle.FixedSingle, Cursor = Cursors.Hand
-    };
-    private readonly Label _photoTitle = new()
-    {
-        Dock = DockStyle.Top, Height = 52, Font = Theme.Bold, TextAlign = ContentAlignment.MiddleCenter
-    };
-    private readonly Label _noPhoto = new()
-    {
-        Dock = DockStyle.Fill, Text = "لا توجد صورة", ForeColor = Theme.MutedText, TextAlign = ContentAlignment.MiddleCenter
-    };
     private int? _photoAssetId;
 
-    public AssetsPage() : base("الأصول")
+    public AssetsPage()
     {
-        _search = AddSearchBox("الرقم التسلسلي، الاسم، الموديل، صاحب العهدة...");
-        _category = AddFilter("التصنيف:");
-        _department = AddFilter("القسم:");
-        _location = AddFilter("الموقع:", 170);
-        _status = AddFilter("الحالة:", 110);
-
-        AddAction("➕ إضافة", Theme.Primary, () => OpenCard(null));
-        AddAction("📥 استيراد Excel", Theme.Success, Import);
-        AddAction("📄 بطاقة / تعديل", Theme.Info, () => { if (RequireSelection() is { } r) OpenCard((int)r["Id"]); });
-        AddAction("📤 تسليم", Theme.Warning, Handover);
-        AddAction("↩ استلام", Theme.Warning, Receive);
-        AddAction("🔧 الصيانة", Theme.Neutral, Maintenance);
-        AddAction("🕘 الحركات", Theme.Neutral, History);
-        AddAction("♻ اقتراح تخريد", Theme.Danger, ProposeDisposal);
-        AddAction("🗄 أرشفة / استرجاع", Theme.Neutral, ToggleArchive);
-        AddPrintExport("سجل الأصول");
-        Grid.CellDoubleClick += (_, e) => { if (e.RowIndex >= 0 && Selected is { } r) Ui.Try(() => OpenCard((int)r["Id"])); };
-        Ui.ColorBy(Grid, "Status", "الحالة", Ui.AssetStatusColor);
-        BuildPhotoPanel();
-    }
-
-    // ------------------------------------------------------------ صورة الأصل
-    /// <summary>لوحة جانبية تعرض صورة الأصل المحدد، مع أزرار إضافة/تغيير وحذف الصورة.</summary>
-    private void BuildPhotoPanel()
-    {
-        var side = new Panel { Dock = DockStyle.Right, Width = 270, Padding = new Padding(12, 0, 0, 0) };
-        var buttons = new FlowLayoutPanel { Dock = DockStyle.Top, AutoSize = true, Padding = new Padding(0, 6, 0, 0) };
-        buttons.Controls.Add(Ui.MakeButton("🖼 إضافة / تغيير الصورة", Theme.Primary, (_, _) => Ui.Try(ChangePhoto)));
-        buttons.Controls.Add(Ui.MakeButton("حذف الصورة", Theme.Neutral, (_, _) => Ui.Try(RemovePhoto)));
-        _photo.Controls.Add(_noPhoto);
-        _photo.DoubleClick += (_, _) => { if (_photoAssetId is int id) Ui.Try(() => OpenCard(id)); };
-        _noPhoto.DoubleClick += (_, _) => { if (_photoAssetId is int id) Ui.Try(() => OpenCard(id)); };
-
-        side.Controls.Add(buttons);
-        side.Controls.Add(_photo);
-        side.Controls.Add(_photoTitle);
-        Controls.Add(side);
-        Controls.SetChildIndex(side, 1); // بجانب الجدول وتحت شريط الأدوات
-
-        Grid.SelectionChanged += (_, _) => ShowPhoto();
-        ShowPhoto();
-    }
-
-    private void ShowPhoto(bool reload = false)
-    {
-        var row = Selected;
-        int? id = row?["Id"] as int?;
-        if (id == _photoAssetId && !reload) return;
-        _photoAssetId = id;
-
-        _photo.Image?.Dispose();
-        _photo.Image = null;
-        _photoTitle.Text = row == null ? "اختر أصلاً لعرض صورته" : $"{row["الرقم التسلسلي"]}\n{row["الاسم"]}";
-        if (id is int assetId) Ui.Try(() => _photo.Image = Ui.ToImage(AssetDal.GetImage(assetId)));
-        _noPhoto.Visible = _photo.Image == null;
-    }
-
-    private void ChangePhoto()
-    {
-        if (RequireSelection() is not { } r) return;
-        using var dlg = new OpenFileDialog { Filter = "الصور|*.jpg;*.jpeg;*.png;*.bmp", Title = "اختر صورة الأصل" };
-        if (dlg.ShowDialog(FindForm()) != DialogResult.OK) return;
-        var bytes = File.ReadAllBytes(dlg.FileName);
-        using (var test = Ui.ToImage(bytes))
-            if (test == null) throw new AppException("الملف المختار ليس صورة صالحة.");
-        AssetService.SetImage((int)r["Id"], bytes);
-        ShowPhoto(reload: true);
-    }
-
-    private void RemovePhoto()
-    {
-        if (RequireSelection() is not { } r) return;
-        if (_photo.Image == null) { Ui.Info("لا توجد صورة لهذا الأصل."); return; }
-        if (!Ui.Confirm($"حذف صورة الأصل ({r["الرقم التسلسلي"]})؟")) return;
-        AssetService.SetImage((int)r["Id"], null);
-        ShowPhoto(reload: true);
+        InitializeComponent();
+        InitPage(grid, lblCount, txtSearch);
+        txtSearch.PlaceholderText = "الرقم التسلسلي، الاسم، الموديل، صاحب العهدة...";
+        foreach (var c in new[] { cmbCategory, cmbDepartment, cmbLocation, cmbStatus }) c.SelectedIndexChanged += Filter_Changed;
+        grid.CellDoubleClick += (_, e) => { if (e.RowIndex >= 0 && Selected is { } r) Ui.Try(() => OpenCard((int)r["Id"])); };
+        grid.SelectionChanged += (_, _) => ShowPhoto();
+        Ui.ColorBy(grid, "Status", "الحالة", Ui.AssetStatusColor);
     }
 
     public override void RefreshData()
     {
         bool ready = Ready;
         Ready = false;
-        Rebind(_category, () => Ui.BindCombo(_category, MasterDataDal.CategoryList(), "— الكل —"));
-        Rebind(_department, () => Ui.BindCombo(_department, MasterDataDal.DepartmentList(), "— الكل —"));
-        Rebind(_location, () => Ui.BindCombo(_location, MasterDataDal.LocationList(Ui.SelectedId(_department)), "— الكل —"));
-        if (_status.DataSource == null) Ui.BindCombo(_status, Labels.WithAll(Labels.AssetStatuses));
+        Rebind(cmbCategory, () => Ui.BindCombo(cmbCategory, MasterDataDal.CategoryList(), "— الكل —"));
+        Rebind(cmbDepartment, () => Ui.BindCombo(cmbDepartment, MasterDataDal.DepartmentList(), "— الكل —"));
+        Rebind(cmbLocation, () => Ui.BindCombo(cmbLocation, MasterDataDal.LocationList(Ui.SelectedId(cmbDepartment)), "— الكل —"));
+        if (cmbStatus.DataSource == null) Ui.BindCombo(cmbStatus, Labels.WithAll(Labels.AssetStatuses));
         Ready = ready;
-        Bind(AssetService.Search(_search.Text, Ui.SelectedId(_category), Ui.SelectedId(_department),
-            Ui.SelectedId(_location), Ui.SelectedCode(_status)));
-        if (_photoTitle.Parent != null) ShowPhoto(reload: true);
+        Bind(AssetService.Search(txtSearch.Text, Ui.SelectedId(cmbCategory), Ui.SelectedId(cmbDepartment),
+            Ui.SelectedId(cmbLocation), Ui.SelectedCode(cmbStatus)));
+        ShowPhoto(reload: true);
     }
 
-    private string Title(DataRowView r) => $"{r["الرقم التسلسلي"]} - {r["الاسم"]}";
+    private static string Title(DataRowView r) => $"{r["الرقم التسلسلي"]} - {r["الاسم"]}";
 
     private void OpenCard(int? id) => OpenDialog(new AssetDialog(id));
 
-    private void Import() => OpenDialog(new ImportDialog());
+    // ------------------------------------------------------------ أزرار العمليات
+    private void btnAdd_Click(object? sender, EventArgs e) => Ui.Try(() => OpenCard(null));
+    private void btnImport_Click(object? sender, EventArgs e) => Ui.Try(() => OpenDialog(new ImportDialog()));
+    private void btnCard_Click(object? sender, EventArgs e) => Ui.Try(() => { if (RequireSelection() is { } r) OpenCard((int)r["Id"]); });
 
-    private void Handover()
+    private void btnHandover_Click(object? sender, EventArgs e) => Ui.Try(() =>
     {
         var r = Selected;
         if (r != null && (string)r["Status"] != "Available")
@@ -133,37 +52,34 @@ public sealed class AssetsPage : PageBase
             return;
         }
         OpenDialog(new HandoverDialog(r?["Id"] as int?));
-    }
+    });
 
-    private void Receive()
+    private void btnReceive_Click(object? sender, EventArgs e) => Ui.Try(() =>
     {
         if (RequireSelection() is not { } r) return;
         if ((string)r["Status"] != "InCustody") { Ui.Info("هذا الأصل ليس في عهدة أحد."); return; }
         OpenDialog(new ReceiveDialog((int)r["Id"]));
-    }
+    });
 
-    private void Maintenance()
+    private void btnMaintenance_Click(object? sender, EventArgs e) => Ui.Try(() =>
     {
         if (RequireSelection() is not { } r) return;
         using var d = new MaintenanceListDialog((int)r["Id"], Title(r));
         d.ShowDialog(FindForm());
-    }
+    });
 
-    private void History()
+    private void btnHistory_Click(object? sender, EventArgs e) => Ui.Try(() =>
     {
         if (RequireSelection() is not { } r) return;
         int id = (int)r["Id"];
         using var d = new GridDialog("سجل حركات الأصل: " + Title(r), () => CustodyDal.Search(null, false, null, null, assetId: id));
         d.ShowDialog(FindForm());
-    }
+    });
 
-    private void ProposeDisposal()
-    {
-        if (RequireSelection() is not { } r) return;
-        OpenDialog(new ProposeDisposalDialog((int)r["Id"]));
-    }
+    private void btnDispose_Click(object? sender, EventArgs e) =>
+        Ui.Try(() => { if (RequireSelection() is { } r) OpenDialog(new ProposeDisposalDialog((int)r["Id"])); });
 
-    private void ToggleArchive()
+    private void btnArchive_Click(object? sender, EventArgs e) => Ui.Try(() =>
     {
         if (RequireSelection() is not { } r) return;
         int id = (int)r["Id"];
@@ -176,5 +92,49 @@ public sealed class AssetsPage : PageBase
             AssetService.Archive(id);
         }
         RefreshData();
+    });
+
+    private void btnPrint_Click(object? sender, EventArgs e) => Ui.Try(() => PrintGrid("سجل الأصول"));
+    private void btnExcel_Click(object? sender, EventArgs e) => Ui.Try(() => ExportGrid("سجل الأصول"));
+
+    // ------------------------------------------------------------ صورة الأصل المحدد
+    private void ShowPhoto(bool reload = false)
+    {
+        var row = Selected;
+        int? id = row?["Id"] as int?;
+        if (id == _photoAssetId && !reload) return;
+        _photoAssetId = id;
+
+        picPhoto.Image?.Dispose();
+        picPhoto.Image = null;
+        lblPhotoTitle.Text = row == null ? "اختر أصلاً لعرض صورته" : $"{row["الرقم التسلسلي"]}\n{row["الاسم"]}";
+        if (id is int assetId) Ui.Try(() => picPhoto.Image = Ui.ToImage(AssetDal.GetImage(assetId)));
+        lblNoPhoto.Visible = picPhoto.Image == null;
     }
+
+    private void picPhoto_DoubleClick(object? sender, EventArgs e)
+    {
+        if (_photoAssetId is int id) Ui.Try(() => OpenCard(id));
+    }
+
+    private void btnPhotoChange_Click(object? sender, EventArgs e) => Ui.Try(() =>
+    {
+        if (RequireSelection() is not { } r) return;
+        using var dlg = new OpenFileDialog { Filter = "الصور|*.jpg;*.jpeg;*.png;*.bmp", Title = "اختر صورة الأصل" };
+        if (dlg.ShowDialog(FindForm()) != DialogResult.OK) return;
+        var bytes = File.ReadAllBytes(dlg.FileName);
+        using (var test = Ui.ToImage(bytes))
+            if (test == null) throw new AppException("الملف المختار ليس صورة صالحة.");
+        AssetService.SetImage((int)r["Id"], bytes);
+        ShowPhoto(reload: true);
+    });
+
+    private void btnPhotoRemove_Click(object? sender, EventArgs e) => Ui.Try(() =>
+    {
+        if (RequireSelection() is not { } r) return;
+        if (picPhoto.Image == null) { Ui.Info("لا توجد صورة لهذا الأصل."); return; }
+        if (!Ui.Confirm($"حذف صورة الأصل ({r["الرقم التسلسلي"]})؟")) return;
+        AssetService.SetImage((int)r["Id"], null);
+        ShowPhoto(reload: true);
+    });
 }
