@@ -187,20 +187,25 @@ public static partial class Ui
         g.AllowUserToResizeRows = false;
         g.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         g.MultiSelect = false;
-        g.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        g.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None; // العرض حسب المحتوى (BindGrid) مع تمرير أفقي
+        g.ScrollBars = ScrollBars.Both;                                 // التحريك للأعلى والأسفل ولليمين واليسار
+        g.AllowUserToResizeColumns = true;                              // سحب حافة العنوان لتغيير عرض العمود
         g.RowHeadersVisible = false;
         g.BackgroundColor = Theme.Surface;
         g.BorderStyle = BorderStyle.None;
-        g.GridColor = Theme.Border;
         g.EnableHeadersVisualStyles = false;
         g.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-        g.ColumnHeadersHeight = 38;
-        g.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+        g.ColumnHeadersHeight = 44;
+        g.CellBorderStyle = DataGridViewCellBorderStyle.Single;                 // فواصل بين الأعمدة والصفوف
+        g.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;     // فواصل بين عناوين الأعمدة
+        g.GridColor = Color.FromArgb(200, 206, 214);
         g.RowTemplate.Height = 32;
         g.ColumnHeadersDefaultCellStyle.BackColor = Theme.Primary;
         g.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
         g.ColumnHeadersDefaultCellStyle.Font = Theme.Bold;
         g.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        g.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False; // العنوان في سطر واحد كامل
+        g.DefaultCellStyle.Padding = new Padding(6, 0, 6, 0);
         g.ColumnHeadersDefaultCellStyle.SelectionBackColor = Theme.Primary;
         g.DefaultCellStyle.SelectionBackColor = Color.FromArgb(207, 226, 243);
         g.DefaultCellStyle.SelectionForeColor = Theme.Text;
@@ -235,6 +240,29 @@ public static partial class Ui
             if (dc.DataType == typeof(DateTime)) col.DefaultCellStyle.Format = IsDateTimeColumn(dc) ? "yyyy/MM/dd HH:mm" : "yyyy/MM/dd";
             else if (dc.DataType == typeof(decimal)) col.DefaultCellStyle.Format = "N3";
         }
+        FitColumns(grid);
+    }
+
+    /// <summary>
+    /// عرض كل عمود يتسع لعنوانه ومحتواه (بحد أدنى وأقصى). إذا زاد مجموع الأعراض عن الشاشة يظهر شريط تمرير أفقي،
+    /// وإذا قلّ يمتد آخر عمود ليملأ المساحة. ويمكن للمستخدم سحب حافة أي عنوان لتغيير العرض.
+    /// </summary>
+    public static void FitColumns(DataGridView grid)
+    {
+        var visible = grid.Columns.Cast<DataGridViewColumn>().Where(c => c.Visible).OrderBy(c => c.DisplayIndex).ToList();
+        if (visible.Count == 0) return;
+        // للجداول الكبيرة نقيس الصفوف الظاهرة فقط حتى لا يبطؤ العرض
+        var mode = grid.RowCount > 1000 ? DataGridViewAutoSizeColumnMode.DisplayedCells : DataGridViewAutoSizeColumnMode.AllCells;
+        foreach (var col in visible)
+        {
+            col.AutoSizeMode = DataGridViewAutoSizeColumnMode.NotSet;
+            col.MinimumWidth = 80;
+            grid.AutoResizeColumn(col.Index, mode);
+            col.Width = Math.Min(col.Width + 24, 420);
+        }
+        var last = visible[^1];
+        last.MinimumWidth = last.Width;
+        last.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
     }
 
     /// <summary>تلوين عمود عربي حسب قيمة عمود تقني مخفي (مثل Status).</summary>
