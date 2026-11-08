@@ -17,6 +17,9 @@ public sealed class ReportResult(string title, IEnumerable<ReportSection> sectio
     public string? Subtitle { get; } = subtitle;
     public List<ReportSection> Sections { get; } = sections.ToList();
     public string[] Signatures { get; } = signatures ?? new[] { "أمين المخزن", "المدير" };
+
+    /// <summary>صورة اختيارية تُطبع في أعلى الصفحة الأولى (مثل صورة الأصل في بطاقته).</summary>
+    public Image? Picture { get; init; }
 }
 
 /// <summary>
@@ -119,6 +122,16 @@ public sealed class ReportPrinter
         _page++;
 
         float y = DrawPageHeader(g, b);
+
+        if (_page == 1 && _report.Picture is { } pic)
+        {
+            // الصورة في المنتصف بحجم أقصى 220 × 160 مع الحفاظ على النسبة
+            float scale = Math.Min(220f / pic.Width, 160f / pic.Height);
+            float w = pic.Width * scale, h = pic.Height * scale;
+            g.DrawImage(pic, b.Left + (b.Width - w) / 2, y, w, h);
+            g.DrawRectangle(Pens.Silver, b.Left + (b.Width - w) / 2, y, w, h);
+            y += h + 12;
+        }
 
         while (_section < _report.Sections.Count)
         {

@@ -255,6 +255,22 @@ public static partial class Ui
         _ => null
     };
 
+    /// <summary>تحويل بيانات الصورة المخزنة في القاعدة إلى صورة (أو null إذا لم توجد أو كانت تالفة).</summary>
+    public static Image? ToImage(byte[]? bytes)
+    {
+        if (bytes is not { Length: > 0 }) return null;
+        try
+        {
+            using var ms = new MemoryStream(bytes);
+            using var img = Image.FromStream(ms);
+            return new Bitmap(img); // نسخة مستقلة عن الـ Stream
+        }
+        catch (ArgumentException)
+        {
+            return null;
+        }
+    }
+
     public static DataRowView? CurrentRow(DataGridView grid) =>
         grid.CurrentRow?.DataBoundItem as DataRowView;
 

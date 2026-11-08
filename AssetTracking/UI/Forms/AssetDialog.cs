@@ -130,12 +130,8 @@ public sealed class AssetDialog : BaseDialog
         _picture.Image?.Dispose();
         _picture.Image = null;
         if (bytes == null) return;
-        try
-        {
-            using var ms = new MemoryStream(bytes);
-            _picture.Image = new Bitmap(Image.FromStream(ms));
-        }
-        catch (ArgumentException) { Ui.Warn("تعذر عرض الصورة."); }
+        _picture.Image = Ui.ToImage(bytes);
+        if (_picture.Image == null) Ui.Warn("تعذر عرض الصورة. تأكد أن الملف صورة صالحة.");
     }
 
     protected override void OnLoad(EventArgs e)

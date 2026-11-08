@@ -209,7 +209,7 @@ public static class ReportCatalog
             new ReportSection("البيانات", info, false),
             new ReportSection("سجل الحركات (التسليم والاستلام)", moves),
             new ReportSection("سجل الصيانة", maint),
-        }, null, StoreSign);
+        }, null, StoreSign) { Picture = Ui.ToImage(AssetDal.GetImage(assetId)) };
     }
 
     /// <summary>كشف الجرد ونتيجته.</summary>
