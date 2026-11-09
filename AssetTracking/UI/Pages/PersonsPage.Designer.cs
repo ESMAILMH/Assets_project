@@ -32,12 +32,17 @@
             this.btnStatement = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnExcel = new System.Windows.Forms.Button();
+            this.flpStatus = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnChipActive = new System.Windows.Forms.Button();
+            this.btnChipInactive = new System.Windows.Forms.Button();
+            this.btnChipAll = new System.Windows.Forms.Button();
             this.flpFilters = new System.Windows.Forms.FlowLayoutPanel();
             this.lblSearch = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.pnlGrid.SuspendLayout();
             this.flpActions.SuspendLayout();
+            this.flpStatus.SuspendLayout();
             this.flpFilters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.SuspendLayout();
@@ -154,6 +159,61 @@
             this.btnExcel.Name = "btnExcel";
             this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             // 
+            // flpStatus
+            // 
+            this.flpStatus.Controls.Add(this.btnChipActive);
+            this.flpStatus.Controls.Add(this.btnChipInactive);
+            this.flpStatus.Controls.Add(this.btnChipAll);
+            this.flpStatus.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flpStatus.AutoSize = true;
+            this.flpStatus.Padding = new System.Windows.Forms.Padding(0, 6, 0, 8);
+            this.flpStatus.Name = "flpStatus";
+            // 
+            // btnChipActive
+            // 
+            this.btnChipActive.BackColor = System.Drawing.Color.White;
+            this.btnChipActive.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnChipActive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChipActive.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(30, 77, 120);
+            this.btnChipActive.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
+            this.btnChipActive.ForeColor = System.Drawing.Color.FromArgb(30, 77, 120);
+            this.btnChipActive.Margin = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this.btnChipActive.Size = new System.Drawing.Size(130, 34);
+            this.btnChipActive.Tag = "active";
+            this.btnChipActive.Text = "فعّال";
+            this.btnChipActive.UseVisualStyleBackColor = false;
+            this.btnChipActive.Name = "btnChipActive";
+            // 
+            // btnChipInactive
+            // 
+            this.btnChipInactive.BackColor = System.Drawing.Color.White;
+            this.btnChipInactive.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnChipInactive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChipInactive.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(30, 77, 120);
+            this.btnChipInactive.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
+            this.btnChipInactive.ForeColor = System.Drawing.Color.FromArgb(30, 77, 120);
+            this.btnChipInactive.Margin = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this.btnChipInactive.Size = new System.Drawing.Size(130, 34);
+            this.btnChipInactive.Tag = "inactive";
+            this.btnChipInactive.Text = "معطّل";
+            this.btnChipInactive.UseVisualStyleBackColor = false;
+            this.btnChipInactive.Name = "btnChipInactive";
+            // 
+            // btnChipAll
+            // 
+            this.btnChipAll.BackColor = System.Drawing.Color.White;
+            this.btnChipAll.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnChipAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChipAll.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(30, 77, 120);
+            this.btnChipAll.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
+            this.btnChipAll.ForeColor = System.Drawing.Color.FromArgb(30, 77, 120);
+            this.btnChipAll.Margin = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this.btnChipAll.Size = new System.Drawing.Size(130, 34);
+            this.btnChipAll.Tag = "";
+            this.btnChipAll.Text = "الكل";
+            this.btnChipAll.UseVisualStyleBackColor = false;
+            this.btnChipAll.Name = "btnChipAll";
+            // 
             // flpFilters
             // 
             this.flpFilters.Controls.Add(this.lblSearch);
@@ -196,6 +256,7 @@
             this.Controls.Add(this.pnlGrid);
             this.Controls.Add(this.lblCount);
             this.Controls.Add(this.flpActions);
+            this.Controls.Add(this.flpStatus);
             this.Controls.Add(this.flpFilters);
             this.Controls.Add(this.lblTitle);
             this.Font = new System.Drawing.Font("Cairo", 10F);
@@ -204,6 +265,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.flpFilters.ResumeLayout(false);
             this.flpFilters.PerformLayout();
+            this.flpStatus.ResumeLayout(false);
+            this.flpStatus.PerformLayout();
             this.flpActions.ResumeLayout(false);
             this.flpActions.PerformLayout();
             this.pnlGrid.ResumeLayout(false);
@@ -223,6 +286,10 @@
         private System.Windows.Forms.Button btnStatement;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button btnExcel;
+        private System.Windows.Forms.FlowLayoutPanel flpStatus;
+        private System.Windows.Forms.Button btnChipActive;
+        private System.Windows.Forms.Button btnChipInactive;
+        private System.Windows.Forms.Button btnChipAll;
         private System.Windows.Forms.FlowLayoutPanel flpFilters;
         private System.Windows.Forms.Label lblSearch;
         private System.Windows.Forms.TextBox txtSearch;

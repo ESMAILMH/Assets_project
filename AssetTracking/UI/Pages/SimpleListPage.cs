@@ -21,7 +21,7 @@ public partial class SimpleListPage : PageBase
         Dock = DockStyle.Fill;
         Padding = new Padding(8);
         InitPage(grid, lblCount);
-        grid.CellDoubleClick += (_, e) => { if (e.RowIndex >= 0) btnEdit_Click(null, EventArgs.Empty); };
+        InitRowActions(btnEdit, btnEdit);
     }
 
     public override void RefreshData() => Bind(_load());

@@ -25,4 +25,9 @@ public static class DisposalDal
           AND (@from IS NULL OR x.ProposedDate >= @from) AND (@to IS NULL OR x.ProposedDate <= @to)
         ORDER BY x.DisposalId DESC",
         Db.P("@st", status), Db.P("@from", from?.Date), Db.P("@to", to?.Date));
+
+    /// <summary>عدد طلبات التخريد في كل حالة.</summary>
+    public static Dictionary<string, int> CountByStatus() =>
+        Db.Query("SELECT Status, COUNT(*) AS N FROM dbo.Disposal GROUP BY Status").AsEnumerable()
+          .ToDictionary(r => (string)r["Status"], r => (int)r["N"]);
 }

@@ -10,9 +10,7 @@ namespace AssetTracking.Pages;
 /// </summary>
 public partial class AssetsPage : PageBase
 {
-    private string? _status;          // الحالة المختارة من أزرار الحالات (null = الكل)
     private int? _detailsAssetId;
-    private Button[] _chips = Array.Empty<Button>();
 
     public AssetsPage()
     {
@@ -20,18 +18,11 @@ public partial class AssetsPage : PageBase
         InitPage(grid, lblCount, txtSearch);
         txtSearch.PlaceholderText = "الرقم التسلسلي، الاسم، الموديل، صاحب العهدة...";
         foreach (var c in new[] { cmbCategory, cmbDepartment, cmbLocation }) c.SelectedIndexChanged += Filter_Changed;
-        _chips = new[] { btnStatusAll, btnStatusAvailable, btnStatusInCustody, btnStatusDisposed, btnStatusArchived };
-
-        grid.CellDoubleClick += (_, e) => { if (e.RowIndex >= 0) btnCard_Click(null, EventArgs.Empty); };
-        grid.KeyDown += (_, e) => { if (e.KeyCode == Keys.Enter) { e.Handled = true; btnCard_Click(null, EventArgs.Empty); } };
+        InitChips(null, btnStatusAll, btnStatusAvailable, btnStatusInCustody, btnStatusDisposed, btnStatusArchived);
+        InitRowActions(btnCard, btnCard, btnHandover, btnReceive, btnMaintenance, btnHistory, btnDispose, btnArchive,
+                       btnPhotoChange, btnPhotoRemove);
         grid.SelectionChanged += (_, _) => ShowDetails();
-        grid.CellMouseDown += (_, e) =>   // الزر الأيمن يحدد الصف قبل فتح القائمة
-        {
-            if (e.Button == MouseButtons.Right && e.RowIndex >= 0) grid.CurrentCell = grid.Rows[e.RowIndex].Cells[grid.CurrentCell?.ColumnIndex ?? FirstVisibleColumn()];
-        };
-        grid.ContextMenuStrip = BuildContextMenu();
         Ui.ColorBy(grid, "Status", "الحالة", Ui.AssetStatusColor);
-        PaintChips();
     }
 
     public override void RefreshData()
@@ -45,35 +36,15 @@ public partial class AssetsPage : PageBase
 
         string? text = Ui.NullIfEmpty(txtSearch.Text);
         int? cat = Ui.SelectedId(cmbCategory), dep = Ui.SelectedId(cmbDepartment), loc = Ui.SelectedId(cmbLocation);
-        Bind(AssetService.Search(text, cat, dep, loc, _status));
+        Bind(AssetService.Search(text, cat, dep, loc, Chip));
         UpdateChipCounts(AssetDal.CountByStatus(text, cat, dep, loc));
         ShowDetails(reload: true);
     }
 
-    private int FirstVisibleColumn() => grid.Columns.Cast<DataGridViewColumn>().First(c => c.Visible).Index;
     private static string Title(DataRowView r) => $"{r["الرقم التسلسلي"]} - {r["الاسم"]}";
     private void OpenCard(int? id) => OpenDialog(new AssetDialog(id));
 
     // ------------------------------------------------------------ أزرار الحالات
-    private void StatusChip_Click(object? sender, EventArgs e)
-    {
-        if (sender is not Button b) return;
-        _status = Ui.NullIfEmpty((string)b.Tag!);
-        PaintChips();
-        Ui.Try(RefreshData);
-    }
-
-    /// <summary>الزر المختار ممتلئ بلون أساسي، والباقي بإطار فقط.</summary>
-    private void PaintChips()
-    {
-        foreach (var b in _chips)
-        {
-            bool selected = (Ui.NullIfEmpty((string)b.Tag!)) == _status;
-            b.BackColor = selected ? Theme.Primary : Theme.Surface;
-            b.ForeColor = selected ? Color.White : Theme.Primary;
-        }
-    }
-
     /// <summary>عدد الأصول على كل زر. "الكل" لا يشمل المؤرشف (كما في القائمة).</summary>
     private void UpdateChipCounts(Dictionary<string, int> counts)
     {
@@ -91,8 +62,7 @@ public partial class AssetsPage : PageBase
         txtSearch.Clear();
         cmbCategory.SelectedIndex = cmbDepartment.SelectedIndex = 0;
         Ui.BindCombo(cmbLocation, MasterDataDal.LocationList(), "— الكل —");
-        _status = null;
-        PaintChips();
+        SelectChip(null);
         Ready = true;
         RefreshData();
     });
@@ -102,7 +72,6 @@ public partial class AssetsPage : PageBase
     {
         var row = Selected;
         int? id = row?["Id"] as int?;
-        UpdateButtons(row);
         if (id == _detailsAssetId && !reload) return;
         _detailsAssetId = id;
 
@@ -134,41 +103,15 @@ public partial class AssetsPage : PageBase
         lblNoPhoto.Visible = picPhoto.Image == null;
     }
 
-    /// <summary>كل زر يعمل فقط عندما تسمح حالة الأصل المحدد بالعملية.</summary>
-    private void UpdateButtons(DataRowView? row)
+    /// <summary>كل زر يعمل فقط عندما تسمح حالة الأصل المحدد بالعملية (يُستدعى بعد تفعيل أزرار الصف).</summary>
+    protected override void OnRowSelected(DataRowView? row)
     {
         string? status = row?["Status"] as string;
-        bool any = row != null;
-        btnCard.Enabled = btnMaintenance.Enabled = btnHistory.Enabled = btnPhotoChange.Enabled = btnPhotoRemove.Enabled = any;
         btnHandover.Enabled = row == null || status == "Available";   // بدون تحديد: يفتح نافذة التسليم لاختيار أصل
         btnReceive.Enabled = status == "InCustody";
         btnDispose.Enabled = status == "Available";
         btnArchive.Enabled = status is "Available" or "Archived";
         btnArchive.Text = status == "Archived" ? "♻ استرجاع" : "🗄 أرشفة";
-    }
-
-    /// <summary>قائمة الزر الأيمن على الجدول: نفس أزرار العمليات وبنفس حالة التفعيل.</summary>
-    private ContextMenuStrip BuildContextMenu()
-    {
-        var menu = new ContextMenuStrip { RightToLeft = RightToLeft.Yes, Font = Theme.Base };
-        var pairs = new List<(ToolStripMenuItem Item, Button Button)>();
-        foreach (var b in new[] { btnCard, btnHandover, btnReceive, btnMaintenance, btnHistory, btnDispose, btnArchive })
-        {
-            var item = new ToolStripMenuItem(b.Text, null, (_, _) => b.PerformClick());
-            pairs.Add((item, b));
-            menu.Items.Add(item);
-            if (b == btnReceive || b == btnHistory) menu.Items.Add(new ToolStripSeparator());
-        }
-        menu.Opening += (_, e) =>
-        {
-            if (Selected == null) { e.Cancel = true; return; }
-            foreach (var (item, button) in pairs)
-            {
-                item.Text = button.Text;
-                item.Enabled = button.Enabled;
-            }
-        };
-        return menu;
     }
 
     // ------------------------------------------------------------ أزرار العمليات

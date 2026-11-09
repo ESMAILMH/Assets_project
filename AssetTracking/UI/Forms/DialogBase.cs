@@ -20,6 +20,16 @@ public class DialogBase : Form
         }
     }
 
+    /// <summary>عند فتح النافذة يوضع المؤشر في أول حقل قابل للكتابة (الأعلى في النافذة).</summary>
+    protected override void OnShown(EventArgs e)
+    {
+        base.OnShown(e);
+        Controls.Cast<Control>()
+            .Where(c => c is TextBox { ReadOnly: false } or ComboBox or NumericUpDown or DateTimePicker && c.Enabled && c.Visible)
+            .OrderBy(c => c.Top)
+            .FirstOrDefault()?.Focus();
+    }
+
     /// <summary>تغيير عنوان النافذة وشريط العنوان معاً.</summary>
     protected void SetTitle(Label header, string title) => Text = header.Text = title;
 }

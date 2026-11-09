@@ -10,7 +10,12 @@ public partial class UsersPage : PageBase
     {
         InitializeComponent();
         InitPage(grid, lblCount);
-        grid.CellDoubleClick += (_, e) => { if (e.RowIndex >= 0) btnEdit_Click(null, EventArgs.Empty); };
+        InitRowActions(btnEdit, btnEdit, btnReset);
+        grid.CellFormatting += (_, e) =>
+        {
+            if (e.RowIndex >= 0 && grid.Rows[e.RowIndex].DataBoundItem is DataRowView r && !(bool)r["IsActive"])
+                e.CellStyle!.ForeColor = Theme.MutedText;
+        };
     }
 
     public override void RefreshData() => Bind(UserService.GetAll());

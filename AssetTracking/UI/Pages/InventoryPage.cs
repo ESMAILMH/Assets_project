@@ -10,7 +10,8 @@ public partial class InventoryPage : PageBase
     {
         InitializeComponent();
         InitPage(grid, lblCount);
-        grid.CellDoubleClick += (_, e) => { if (e.RowIndex >= 0) btnOpen_Click(null, EventArgs.Empty); };
+        InitRowActions(btnOpen, btnOpen, btnPrint);
+        Ui.ColorBy(grid, "Status", "الحالة", s => s == "Open" ? Theme.Success : Theme.MutedText);
     }
 
     public override void RefreshData() => Bind(InventoryDal.Sessions());

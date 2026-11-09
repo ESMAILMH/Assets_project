@@ -32,6 +32,8 @@ public sealed class ReportDefinition(string title, ReportFilter filters, ReportF
                                      Func<ReportFilterValues, ReportResult> build, bool managerOnly = false)
 {
     public string Title { get; } = title;
+    /// <summary>المجموعة التي يظهر تحتها التقرير في قائمة التقارير.</summary>
+    public string Group { get; init; } = "";
     public ReportFilter Filters { get; } = filters;
     public ReportFilter Required { get; } = required;
     public Func<ReportFilterValues, ReportResult> Build { get; } = build;
@@ -47,54 +49,54 @@ public static class ReportCatalog
     public static readonly ReportDefinition[] All =
     {
         // ---- عامة
-        new("التقرير الإحصائي العام", ReportFilter.None, ReportFilter.None, GeneralStatistics),
+        new("التقرير الإحصائي العام", ReportFilter.None, ReportFilter.None, GeneralStatistics) { Group = "عامة" },
 
         new("سجل الأصول", ReportFilter.Department | ReportFilter.Category | ReportFilter.AssetStatus, ReportFilter.None,
-            f => Simple("سجل الأصول", AssetDal.Search(null, f.CategoryId, f.DepartmentId, null, f.AssetStatus), f, "التكلفة", "القيمة الدفترية")),
+            f => Simple("سجل الأصول", AssetDal.Search(null, f.CategoryId, f.DepartmentId, null, f.AssetStatus), f, "التكلفة", "القيمة الدفترية")) { Group = "عامة" },
 
         new("ملخص الأصول حسب التصنيف", ReportFilter.None, ReportFilter.None,
-            f => Simple("ملخص الأصول حسب التصنيف", WithTotal(ReportDal.Summary(byDepartment: false)), f)),
+            f => Simple("ملخص الأصول حسب التصنيف", WithTotal(ReportDal.Summary(byDepartment: false)), f)) { Group = "عامة" },
 
         new("ملخص الأصول حسب القسم", ReportFilter.None, ReportFilter.None,
-            f => Simple("ملخص الأصول حسب القسم", WithTotal(ReportDal.Summary(byDepartment: true)), f)),
+            f => Simple("ملخص الأصول حسب القسم", WithTotal(ReportDal.Summary(byDepartment: true)), f)) { Group = "عامة" },
 
-        new("الأصول حسب القسم أو الموقع", ReportFilter.Department | ReportFilter.Location, ReportFilter.None, ByLocation),
+        new("الأصول حسب القسم أو الموقع", ReportFilter.Department | ReportFilter.Location, ReportFilter.None, ByLocation) { Group = "عامة" },
 
         // ---- العهد
-        new("الأصول حسب الشخص (كشف عهدة)", ReportFilter.Person, ReportFilter.Person, PersonStatement),
+        new("الأصول حسب الشخص (كشف عهدة)", ReportFilter.Person, ReportFilter.Person, PersonStatement) { Group = "العهد" },
 
         new("العهد المفتوحة (الأصول المسلّمة حالياً)", ReportFilter.Person, ReportFilter.None,
             f => Simple("العهد المفتوحة", Drop(CustodyDal.Search(null, true, null, null, f.PersonId),
-                "تاريخ الاستلام", "الحالة عند الاستلام", "العهدة"), f)),
+                "تاريخ الاستلام", "الحالة عند الاستلام", "العهدة"), f)) { Group = "العهد" },
 
         new("حركة التسليم والاستلام خلال فترة", ReportFilter.DateRange | ReportFilter.Person, ReportFilter.None,
-            f => Simple("حركة التسليم والاستلام", CustodyDal.Search(null, false, f.From, f.To, f.PersonId), f)),
+            f => Simple("حركة التسليم والاستلام", CustodyDal.Search(null, false, f.From, f.To, f.PersonId), f)) { Group = "العهد" },
 
-        new("محضر تسليم / استلام", ReportFilter.Custody, ReportFilter.Custody, f => CustodyDocument(f.CustodyId!.Value)),
+        new("محضر تسليم / استلام", ReportFilter.Custody, ReportFilter.Custody, f => CustodyDocument(f.CustodyId!.Value)) { Group = "العهد" },
 
         new("سجل حركات أصل", ReportFilter.Asset, ReportFilter.Asset,
-            f => Simple("سجل حركات أصل", Drop(CustodyDal.Search(null, false, null, null, assetId: f.AssetId), "العهدة"), f)),
+            f => Simple("سجل حركات أصل", Drop(CustodyDal.Search(null, false, null, null, assetId: f.AssetId), "العهدة"), f)) { Group = "العهد" },
 
         // ---- الصيانة والقيمة
         new("سجل صيانة أصل", ReportFilter.Asset | ReportFilter.DateRange, ReportFilter.None,
-            f => Simple("سجل الصيانة", MaintenanceDal.Search(f.AssetId, f.From, f.To), f, "التكلفة")),
+            f => Simple("سجل الصيانة", MaintenanceDal.Search(f.AssetId, f.From, f.To), f, "التكلفة")) { Group = "القيمة والصيانة" },
 
         new("القيمة الدفترية", ReportFilter.Category | ReportFilter.Department, ReportFilter.None,
             f => Simple("القيمة الدفترية للأصول", ReportDal.BookValues(f.CategoryId, f.DepartmentId), f,
-                        "التكلفة", "الإهلاك المتراكم", "القيمة الدفترية")),
+                        "التكلفة", "الإهلاك المتراكم", "القيمة الدفترية")) { Group = "القيمة والصيانة" },
 
         new("الأصول المنتهية أو القريبة من الانتهاء", ReportFilter.Months, ReportFilter.None,
-            f => Simple("الأصول المنتهية أو القريبة من الانتهاء", ReportDal.EndOfLife(f.Months), f, "القيمة الدفترية")),
+            f => Simple("الأصول المنتهية أو القريبة من الانتهاء", ReportDal.EndOfLife(f.Months), f, "القيمة الدفترية")) { Group = "القيمة والصيانة" },
 
         // ---- التخريد والجرد والرقابة
         new("الأصول المُخرَّدة", ReportFilter.DateRange, ReportFilter.None,
-            f => Simple("الأصول المُخرَّدة", Drop(DisposalDal.Search("Approved", f.From, f.To), "الحالة"), f)),
+            f => Simple("الأصول المُخرَّدة", Drop(DisposalDal.Search("Approved", f.From, f.To), "الحالة"), f)) { Group = "التخريد والجرد والرقابة" },
 
         new("كشف الجرد ونتيجته", ReportFilter.InventorySession, ReportFilter.InventorySession,
-            f => InventoryResult(f.SessionId!.Value)),
+            f => InventoryResult(f.SessionId!.Value)) { Group = "التخريد والجرد والرقابة" },
 
         new("سجل العمليات", ReportFilter.User | ReportFilter.DateRange, ReportFilter.None,
-            f => Simple("سجل العمليات", AuditDal.Search(f.UserId, f.From, f.To), f, signatures: false), managerOnly: true),
+            f => Simple("سجل العمليات", AuditDal.Search(f.UserId, f.From, f.To), f, signatures: false), managerOnly: true) { Group = "التخريد والجرد والرقابة" },
     };
 
     // ------------------------------------------------------------ مساعدات

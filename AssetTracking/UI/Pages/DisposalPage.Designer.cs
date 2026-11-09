@@ -30,13 +30,15 @@
             this.btnDecide = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnExcel = new System.Windows.Forms.Button();
-            this.flpFilters = new System.Windows.Forms.FlowLayoutPanel();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.cmbStatus = new System.Windows.Forms.ComboBox();
+            this.flpStatus = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnChipProposed = new System.Windows.Forms.Button();
+            this.btnChipApproved = new System.Windows.Forms.Button();
+            this.btnChipRejected = new System.Windows.Forms.Button();
+            this.btnChipAll = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.pnlGrid.SuspendLayout();
             this.flpActions.SuspendLayout();
-            this.flpFilters.SuspendLayout();
+            this.flpStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -120,28 +122,76 @@
             this.btnExcel.Name = "btnExcel";
             this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             // 
-            // flpFilters
+            // flpStatus
             // 
-            this.flpFilters.Controls.Add(this.lblStatus);
-            this.flpFilters.Controls.Add(this.cmbStatus);
-            this.flpFilters.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flpFilters.AutoSize = true;
-            this.flpFilters.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.flpFilters.Name = "flpFilters";
+            this.flpStatus.Controls.Add(this.btnChipProposed);
+            this.flpStatus.Controls.Add(this.btnChipApproved);
+            this.flpStatus.Controls.Add(this.btnChipRejected);
+            this.flpStatus.Controls.Add(this.btnChipAll);
+            this.flpStatus.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flpStatus.AutoSize = true;
+            this.flpStatus.Padding = new System.Windows.Forms.Padding(0, 6, 0, 8);
+            this.flpStatus.Name = "flpStatus";
             // 
-            // lblStatus
+            // btnChipProposed
             // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Margin = new System.Windows.Forms.Padding(4, 10, 4, 4);
-            this.lblStatus.Text = "الحالة:";
-            this.lblStatus.Name = "lblStatus";
+            this.btnChipProposed.BackColor = System.Drawing.Color.White;
+            this.btnChipProposed.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnChipProposed.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChipProposed.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(30, 77, 120);
+            this.btnChipProposed.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
+            this.btnChipProposed.ForeColor = System.Drawing.Color.FromArgb(30, 77, 120);
+            this.btnChipProposed.Margin = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this.btnChipProposed.Size = new System.Drawing.Size(130, 34);
+            this.btnChipProposed.Tag = "Proposed";
+            this.btnChipProposed.Text = "بانتظار المدير";
+            this.btnChipProposed.UseVisualStyleBackColor = false;
+            this.btnChipProposed.Name = "btnChipProposed";
             // 
-            // cmbStatus
+            // btnChipApproved
             // 
-            this.cmbStatus.Margin = new System.Windows.Forms.Padding(4, 7, 4, 4);
-            this.cmbStatus.Size = new System.Drawing.Size(130, 28);
-            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbStatus.Name = "cmbStatus";
+            this.btnChipApproved.BackColor = System.Drawing.Color.White;
+            this.btnChipApproved.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnChipApproved.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChipApproved.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(30, 77, 120);
+            this.btnChipApproved.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
+            this.btnChipApproved.ForeColor = System.Drawing.Color.FromArgb(30, 77, 120);
+            this.btnChipApproved.Margin = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this.btnChipApproved.Size = new System.Drawing.Size(130, 34);
+            this.btnChipApproved.Tag = "Approved";
+            this.btnChipApproved.Text = "معتمد";
+            this.btnChipApproved.UseVisualStyleBackColor = false;
+            this.btnChipApproved.Name = "btnChipApproved";
+            // 
+            // btnChipRejected
+            // 
+            this.btnChipRejected.BackColor = System.Drawing.Color.White;
+            this.btnChipRejected.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnChipRejected.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChipRejected.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(30, 77, 120);
+            this.btnChipRejected.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
+            this.btnChipRejected.ForeColor = System.Drawing.Color.FromArgb(30, 77, 120);
+            this.btnChipRejected.Margin = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this.btnChipRejected.Size = new System.Drawing.Size(130, 34);
+            this.btnChipRejected.Tag = "Rejected";
+            this.btnChipRejected.Text = "مرفوض";
+            this.btnChipRejected.UseVisualStyleBackColor = false;
+            this.btnChipRejected.Name = "btnChipRejected";
+            // 
+            // btnChipAll
+            // 
+            this.btnChipAll.BackColor = System.Drawing.Color.White;
+            this.btnChipAll.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnChipAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChipAll.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(30, 77, 120);
+            this.btnChipAll.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
+            this.btnChipAll.ForeColor = System.Drawing.Color.FromArgb(30, 77, 120);
+            this.btnChipAll.Margin = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this.btnChipAll.Size = new System.Drawing.Size(130, 34);
+            this.btnChipAll.Tag = "";
+            this.btnChipAll.Text = "الكل";
+            this.btnChipAll.UseVisualStyleBackColor = false;
+            this.btnChipAll.Name = "btnChipAll";
             // 
             // lblTitle
             // 
@@ -163,14 +213,14 @@
             this.Controls.Add(this.pnlGrid);
             this.Controls.Add(this.lblCount);
             this.Controls.Add(this.flpActions);
-            this.Controls.Add(this.flpFilters);
+            this.Controls.Add(this.flpStatus);
             this.Controls.Add(this.lblTitle);
             this.Font = new System.Drawing.Font("Cairo", 10F);
             this.Name = "DisposalPage";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
-            this.flpFilters.ResumeLayout(false);
-            this.flpFilters.PerformLayout();
+            this.flpStatus.ResumeLayout(false);
+            this.flpStatus.PerformLayout();
             this.flpActions.ResumeLayout(false);
             this.flpActions.PerformLayout();
             this.pnlGrid.ResumeLayout(false);
@@ -188,9 +238,11 @@
         private System.Windows.Forms.Button btnDecide;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button btnExcel;
-        private System.Windows.Forms.FlowLayoutPanel flpFilters;
-        private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.ComboBox cmbStatus;
+        private System.Windows.Forms.FlowLayoutPanel flpStatus;
+        private System.Windows.Forms.Button btnChipProposed;
+        private System.Windows.Forms.Button btnChipApproved;
+        private System.Windows.Forms.Button btnChipRejected;
+        private System.Windows.Forms.Button btnChipAll;
         private System.Windows.Forms.Label lblTitle;
     }
 }

@@ -579,7 +579,6 @@
             this.btnStatusAll.Text = "الكل";
             this.btnStatusAll.UseVisualStyleBackColor = false;
             this.btnStatusAll.Name = "btnStatusAll";
-            this.btnStatusAll.Click += new System.EventHandler(this.StatusChip_Click);
             // 
             // btnStatusAvailable
             // 
@@ -595,7 +594,6 @@
             this.btnStatusAvailable.Text = "متاح";
             this.btnStatusAvailable.UseVisualStyleBackColor = false;
             this.btnStatusAvailable.Name = "btnStatusAvailable";
-            this.btnStatusAvailable.Click += new System.EventHandler(this.StatusChip_Click);
             // 
             // btnStatusInCustody
             // 
@@ -611,7 +609,6 @@
             this.btnStatusInCustody.Text = "في عهدة";
             this.btnStatusInCustody.UseVisualStyleBackColor = false;
             this.btnStatusInCustody.Name = "btnStatusInCustody";
-            this.btnStatusInCustody.Click += new System.EventHandler(this.StatusChip_Click);
             // 
             // btnStatusDisposed
             // 
@@ -627,7 +624,6 @@
             this.btnStatusDisposed.Text = "مُخرَّد";
             this.btnStatusDisposed.UseVisualStyleBackColor = false;
             this.btnStatusDisposed.Name = "btnStatusDisposed";
-            this.btnStatusDisposed.Click += new System.EventHandler(this.StatusChip_Click);
             // 
             // btnStatusArchived
             // 
@@ -643,7 +639,6 @@
             this.btnStatusArchived.Text = "مؤرشف";
             this.btnStatusArchived.UseVisualStyleBackColor = false;
             this.btnStatusArchived.Name = "btnStatusArchived";
-            this.btnStatusArchived.Click += new System.EventHandler(this.StatusChip_Click);
             // 
             // flpFilters
             // 

@@ -30,7 +30,12 @@ public partial class ReportsPage : UserControl, IPage
         dtpFrom.Value = new DateTime(DateTime.Today.Year, 1, 1);
         dtpTo.Value = DateTime.Today;
         lstReports.DrawItem += DrawReportItem;
-        lstReports.Items.AddRange(ReportCatalog.All.Where(r => !r.ManagerOnly || Session.IsManager).Cast<object>().ToArray());
+        // التقارير مجمّعة: عنوان المجموعة (نص) ثم تقاريرها
+        foreach (var group in ReportCatalog.All.Where(r => !r.ManagerOnly || Session.IsManager).GroupBy(r => r.Group))
+        {
+            lstReports.Items.Add(group.Key);
+            foreach (var r in group) lstReports.Items.Add(r);
+        }
         cmbDepartment.SelectedIndexChanged += (_, _) =>
         {
             if (_loaded) Ui.Try(() => Ui.BindCombo(cmbLocation, MasterDataDal.LocationList(Ui.SelectedId(cmbDepartment)), "— الكل —"));
@@ -65,6 +70,12 @@ public partial class ReportsPage : UserControl, IPage
     /// <summary>إظهار مرشحات التقرير المختار فقط.</summary>
     private void lstReports_SelectedIndexChanged(object? sender, EventArgs e)
     {
+        // عنوان المجموعة لا يُختار: ننتقل إلى أول تقرير تحته
+        if (lstReports.SelectedItem is string && lstReports.SelectedIndex + 1 < lstReports.Items.Count)
+        {
+            lstReports.SelectedIndex++;
+            return;
+        }
         if (Current is not { } def) return;
         foreach (var (flag, controls) in _filters)
             foreach (var c in controls) c.Visible = def.Filters.HasFlag(flag);
@@ -151,10 +162,19 @@ public partial class ReportsPage : UserControl, IPage
     private void DrawReportItem(object? sender, DrawItemEventArgs e)
     {
         if (e.Index < 0) return;
+        if (lstReports.Items[e.Index] is string group)   // عنوان مجموعة
+        {
+            using var gb = new SolidBrush(Theme.Background);
+            e.Graphics.FillRectangle(gb, e.Bounds);
+            using var gf = new Font(Theme.FontName, 9F, FontStyle.Bold);
+            TextRenderer.DrawText(e.Graphics, group, gf, Rectangle.Inflate(e.Bounds, -10, 0), Theme.MutedText,
+                TextFormatFlags.Right | TextFormatFlags.Bottom | TextFormatFlags.RightToLeft);
+            return;
+        }
         bool selected = (e.State & DrawItemState.Selected) != 0;
         using var back = new SolidBrush(selected ? Theme.Primary : Theme.Surface);
         e.Graphics.FillRectangle(back, e.Bounds);
-        TextRenderer.DrawText(e.Graphics, lstReports.Items[e.Index].ToString(), e.Font, Rectangle.Inflate(e.Bounds, -10, 0),
+        TextRenderer.DrawText(e.Graphics, "📄  " + lstReports.Items[e.Index], e.Font, Rectangle.Inflate(e.Bounds, -10, 0),
             selected ? Color.White : Theme.Text,
             TextFormatFlags.Right | TextFormatFlags.VerticalCenter | TextFormatFlags.RightToLeft | TextFormatFlags.EndEllipsis);
     }

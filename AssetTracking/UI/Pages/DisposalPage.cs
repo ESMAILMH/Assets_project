@@ -11,8 +11,8 @@ public partial class DisposalPage : PageBase
         InitializeComponent();
         InitPage(grid, lblCount);
         btnDecide.Visible = Session.IsManager;
-        cmbStatus.SelectedIndexChanged += Filter_Changed;
-        grid.CellDoubleClick += (_, e) => { if (e.RowIndex >= 0 && Session.IsManager) btnDecide_Click(null, EventArgs.Empty); };
+        InitChips("Proposed", btnChipProposed, btnChipApproved, btnChipRejected, btnChipAll);
+        InitRowActions(btnDecide, btnDecide);
         Ui.ColorBy(grid, "Status", "الحالة", s => s switch
         {
             "Proposed" => Theme.Warning, "Approved" => Theme.Danger, _ => Theme.MutedText
@@ -21,18 +21,22 @@ public partial class DisposalPage : PageBase
 
     public override void RefreshData()
     {
-        if (cmbStatus.DataSource == null)
-        {
-            Ui.BindCombo(cmbStatus, Labels.WithAll(Labels.DisposalStatuses));
-            cmbStatus.SelectedValue = "Proposed";
-        }
-        Bind(DisposalDal.Search(Ui.SelectedCode(cmbStatus), null, null));
+        var counts = DisposalDal.CountByStatus();
+        int N(string s) => counts.GetValueOrDefault(s);
+        ChipText(btnChipProposed, "بانتظار المدير", N("Proposed"));
+        ChipText(btnChipApproved, "معتمد", N("Approved"));
+        ChipText(btnChipRejected, "مرفوض", N("Rejected"));
+        ChipText(btnChipAll, "الكل", counts.Values.Sum());
+        Bind(DisposalDal.Search(Chip, null, null));
     }
+
+    /// <summary>القرار للطلبات المنتظرة فقط.</summary>
+    protected override void OnRowSelected(DataRowView? row) =>
+        btnDecide.Enabled = row != null && (string)row["Status"] == "Proposed";
 
     private void btnDecide_Click(object? sender, EventArgs e) => Ui.Try(() =>
     {
         if (RequireSelection() is not { } r) return;
-        if ((string)r["Status"] != "Proposed") { Ui.Info("تم البت في هذا الطلب مسبقاً."); return; }
         OpenDialog(new DisposalDecisionDialog((int)r["Id"], $"{r["الرقم التسلسلي"]} - {r["الأصل"]}", (string)r["السبب"]));
     });
 

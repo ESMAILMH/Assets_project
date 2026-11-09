@@ -32,11 +32,12 @@
             this.btnDocument = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnExcel = new System.Windows.Forms.Button();
+            this.flpStatus = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnChipOpen = new System.Windows.Forms.Button();
+            this.btnChipAll = new System.Windows.Forms.Button();
             this.flpFilters = new System.Windows.Forms.FlowLayoutPanel();
             this.lblSearch = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.lblView = new System.Windows.Forms.Label();
-            this.cmbView = new System.Windows.Forms.ComboBox();
             this.lblFrom = new System.Windows.Forms.Label();
             this.dtpFrom = new System.Windows.Forms.DateTimePicker();
             this.lblTo = new System.Windows.Forms.Label();
@@ -44,6 +45,7 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.pnlGrid.SuspendLayout();
             this.flpActions.SuspendLayout();
+            this.flpStatus.SuspendLayout();
             this.flpFilters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.SuspendLayout();
@@ -160,12 +162,49 @@
             this.btnExcel.Name = "btnExcel";
             this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             // 
+            // flpStatus
+            // 
+            this.flpStatus.Controls.Add(this.btnChipOpen);
+            this.flpStatus.Controls.Add(this.btnChipAll);
+            this.flpStatus.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flpStatus.AutoSize = true;
+            this.flpStatus.Padding = new System.Windows.Forms.Padding(0, 6, 0, 8);
+            this.flpStatus.Name = "flpStatus";
+            // 
+            // btnChipOpen
+            // 
+            this.btnChipOpen.BackColor = System.Drawing.Color.White;
+            this.btnChipOpen.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnChipOpen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChipOpen.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(30, 77, 120);
+            this.btnChipOpen.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
+            this.btnChipOpen.ForeColor = System.Drawing.Color.FromArgb(30, 77, 120);
+            this.btnChipOpen.Margin = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this.btnChipOpen.Size = new System.Drawing.Size(130, 34);
+            this.btnChipOpen.Tag = "open";
+            this.btnChipOpen.Text = "العهد المفتوحة";
+            this.btnChipOpen.UseVisualStyleBackColor = false;
+            this.btnChipOpen.Name = "btnChipOpen";
+            // 
+            // btnChipAll
+            // 
+            this.btnChipAll.BackColor = System.Drawing.Color.White;
+            this.btnChipAll.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnChipAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChipAll.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(30, 77, 120);
+            this.btnChipAll.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
+            this.btnChipAll.ForeColor = System.Drawing.Color.FromArgb(30, 77, 120);
+            this.btnChipAll.Margin = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this.btnChipAll.Size = new System.Drawing.Size(130, 34);
+            this.btnChipAll.Tag = "all";
+            this.btnChipAll.Text = "كل الحركات";
+            this.btnChipAll.UseVisualStyleBackColor = false;
+            this.btnChipAll.Name = "btnChipAll";
+            // 
             // flpFilters
             // 
             this.flpFilters.Controls.Add(this.lblSearch);
             this.flpFilters.Controls.Add(this.txtSearch);
-            this.flpFilters.Controls.Add(this.lblView);
-            this.flpFilters.Controls.Add(this.cmbView);
             this.flpFilters.Controls.Add(this.lblFrom);
             this.flpFilters.Controls.Add(this.dtpFrom);
             this.flpFilters.Controls.Add(this.lblTo);
@@ -187,20 +226,6 @@
             this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 7, 4, 4);
             this.txtSearch.Size = new System.Drawing.Size(240, 27);
             this.txtSearch.Name = "txtSearch";
-            // 
-            // lblView
-            // 
-            this.lblView.AutoSize = true;
-            this.lblView.Margin = new System.Windows.Forms.Padding(4, 10, 4, 4);
-            this.lblView.Text = "عرض:";
-            this.lblView.Name = "lblView";
-            // 
-            // cmbView
-            // 
-            this.cmbView.Margin = new System.Windows.Forms.Padding(4, 7, 4, 4);
-            this.cmbView.Size = new System.Drawing.Size(160, 28);
-            this.cmbView.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbView.Name = "cmbView";
             // 
             // lblFrom
             // 
@@ -252,6 +277,7 @@
             this.Controls.Add(this.pnlGrid);
             this.Controls.Add(this.lblCount);
             this.Controls.Add(this.flpActions);
+            this.Controls.Add(this.flpStatus);
             this.Controls.Add(this.flpFilters);
             this.Controls.Add(this.lblTitle);
             this.Font = new System.Drawing.Font("Cairo", 10F);
@@ -260,6 +286,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.flpFilters.ResumeLayout(false);
             this.flpFilters.PerformLayout();
+            this.flpStatus.ResumeLayout(false);
+            this.flpStatus.PerformLayout();
             this.flpActions.ResumeLayout(false);
             this.flpActions.PerformLayout();
             this.pnlGrid.ResumeLayout(false);
@@ -279,11 +307,12 @@
         private System.Windows.Forms.Button btnDocument;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button btnExcel;
+        private System.Windows.Forms.FlowLayoutPanel flpStatus;
+        private System.Windows.Forms.Button btnChipOpen;
+        private System.Windows.Forms.Button btnChipAll;
         private System.Windows.Forms.FlowLayoutPanel flpFilters;
         private System.Windows.Forms.Label lblSearch;
         private System.Windows.Forms.TextBox txtSearch;
-        private System.Windows.Forms.Label lblView;
-        private System.Windows.Forms.ComboBox cmbView;
         private System.Windows.Forms.Label lblFrom;
         private System.Windows.Forms.DateTimePicker dtpFrom;
         private System.Windows.Forms.Label lblTo;

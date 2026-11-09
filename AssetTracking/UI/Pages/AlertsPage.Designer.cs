@@ -31,9 +31,11 @@
             this.btnDispose = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnExcel = new System.Windows.Forms.Button();
+            this.flpStatus = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnChipAll = new System.Windows.Forms.Button();
+            this.btnChipExpired = new System.Windows.Forms.Button();
+            this.btnChipLastYear = new System.Windows.Forms.Button();
             this.flpFilters = new System.Windows.Forms.FlowLayoutPanel();
-            this.lblType = new System.Windows.Forms.Label();
-            this.cmbType = new System.Windows.Forms.ComboBox();
             this.lblDepartment = new System.Windows.Forms.Label();
             this.cmbDepartment = new System.Windows.Forms.ComboBox();
             this.lblCategory = new System.Windows.Forms.Label();
@@ -42,6 +44,7 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.pnlGrid.SuspendLayout();
             this.flpActions.SuspendLayout();
+            this.flpStatus.SuspendLayout();
             this.flpFilters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
             this.SuspendLayout();
@@ -142,10 +145,63 @@
             this.btnExcel.Name = "btnExcel";
             this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             // 
+            // flpStatus
+            // 
+            this.flpStatus.Controls.Add(this.btnChipAll);
+            this.flpStatus.Controls.Add(this.btnChipExpired);
+            this.flpStatus.Controls.Add(this.btnChipLastYear);
+            this.flpStatus.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flpStatus.AutoSize = true;
+            this.flpStatus.Padding = new System.Windows.Forms.Padding(0, 6, 0, 8);
+            this.flpStatus.Name = "flpStatus";
+            // 
+            // btnChipAll
+            // 
+            this.btnChipAll.BackColor = System.Drawing.Color.White;
+            this.btnChipAll.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnChipAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChipAll.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(30, 77, 120);
+            this.btnChipAll.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
+            this.btnChipAll.ForeColor = System.Drawing.Color.FromArgb(30, 77, 120);
+            this.btnChipAll.Margin = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this.btnChipAll.Size = new System.Drawing.Size(130, 34);
+            this.btnChipAll.Tag = "";
+            this.btnChipAll.Text = "الكل";
+            this.btnChipAll.UseVisualStyleBackColor = false;
+            this.btnChipAll.Name = "btnChipAll";
+            // 
+            // btnChipExpired
+            // 
+            this.btnChipExpired.BackColor = System.Drawing.Color.White;
+            this.btnChipExpired.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnChipExpired.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChipExpired.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(30, 77, 120);
+            this.btnChipExpired.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
+            this.btnChipExpired.ForeColor = System.Drawing.Color.FromArgb(30, 77, 120);
+            this.btnChipExpired.Margin = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this.btnChipExpired.Size = new System.Drawing.Size(130, 34);
+            this.btnChipExpired.Tag = "Expired";
+            this.btnChipExpired.Text = "انتهى عمره";
+            this.btnChipExpired.UseVisualStyleBackColor = false;
+            this.btnChipExpired.Name = "btnChipExpired";
+            // 
+            // btnChipLastYear
+            // 
+            this.btnChipLastYear.BackColor = System.Drawing.Color.White;
+            this.btnChipLastYear.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnChipLastYear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChipLastYear.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(30, 77, 120);
+            this.btnChipLastYear.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
+            this.btnChipLastYear.ForeColor = System.Drawing.Color.FromArgb(30, 77, 120);
+            this.btnChipLastYear.Margin = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this.btnChipLastYear.Size = new System.Drawing.Size(130, 34);
+            this.btnChipLastYear.Tag = "LastYear";
+            this.btnChipLastYear.Text = "في آخر سنة";
+            this.btnChipLastYear.UseVisualStyleBackColor = false;
+            this.btnChipLastYear.Name = "btnChipLastYear";
+            // 
             // flpFilters
             // 
-            this.flpFilters.Controls.Add(this.lblType);
-            this.flpFilters.Controls.Add(this.cmbType);
             this.flpFilters.Controls.Add(this.lblDepartment);
             this.flpFilters.Controls.Add(this.cmbDepartment);
             this.flpFilters.Controls.Add(this.lblCategory);
@@ -155,20 +211,6 @@
             this.flpFilters.AutoSize = true;
             this.flpFilters.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
             this.flpFilters.Name = "flpFilters";
-            // 
-            // lblType
-            // 
-            this.lblType.AutoSize = true;
-            this.lblType.Margin = new System.Windows.Forms.Padding(4, 10, 4, 4);
-            this.lblType.Text = "التنبيه:";
-            this.lblType.Name = "lblType";
-            // 
-            // cmbType
-            // 
-            this.cmbType.Margin = new System.Windows.Forms.Padding(4, 7, 4, 4);
-            this.cmbType.Size = new System.Drawing.Size(170, 28);
-            this.cmbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbType.Name = "cmbType";
             // 
             // lblDepartment
             // 
@@ -226,6 +268,7 @@
             this.Controls.Add(this.pnlGrid);
             this.Controls.Add(this.lblCount);
             this.Controls.Add(this.flpActions);
+            this.Controls.Add(this.flpStatus);
             this.Controls.Add(this.flpFilters);
             this.Controls.Add(this.lblTitle);
             this.Font = new System.Drawing.Font("Cairo", 10F);
@@ -234,6 +277,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
             this.flpFilters.ResumeLayout(false);
             this.flpFilters.PerformLayout();
+            this.flpStatus.ResumeLayout(false);
+            this.flpStatus.PerformLayout();
             this.flpActions.ResumeLayout(false);
             this.flpActions.PerformLayout();
             this.pnlGrid.ResumeLayout(false);
@@ -252,9 +297,11 @@
         private System.Windows.Forms.Button btnDispose;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button btnExcel;
+        private System.Windows.Forms.FlowLayoutPanel flpStatus;
+        private System.Windows.Forms.Button btnChipAll;
+        private System.Windows.Forms.Button btnChipExpired;
+        private System.Windows.Forms.Button btnChipLastYear;
         private System.Windows.Forms.FlowLayoutPanel flpFilters;
-        private System.Windows.Forms.Label lblType;
-        private System.Windows.Forms.ComboBox cmbType;
         private System.Windows.Forms.Label lblDepartment;
         private System.Windows.Forms.ComboBox cmbDepartment;
         private System.Windows.Forms.Label lblCategory;

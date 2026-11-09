@@ -11,6 +11,7 @@ public partial class MyAssetsPage : PageBase
         InitializeComponent();
         InitPage(grid, lblCount, txtSearch);
         txtSearch.PlaceholderText = "الرقم التسلسلي أو الاسم...";
+        InitRowActions(btnCard, btnCard);
     }
 
     public override void RefreshData() => Bind(AssetService.MyAssets(txtSearch.Text));
