@@ -26,29 +26,40 @@
             this.pnlContent = new System.Windows.Forms.Panel();
             this.pnlSidebar = new System.Windows.Forms.Panel();
             this.flpMenu = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblSecMain = new System.Windows.Forms.Label();
             this.btnDashboard = new System.Windows.Forms.Button();
+            this.btnMyAssets = new System.Windows.Forms.Button();
+            this.lblSecOps = new System.Windows.Forms.Label();
             this.btnAssets = new System.Windows.Forms.Button();
             this.btnCustody = new System.Windows.Forms.Button();
             this.btnAlerts = new System.Windows.Forms.Button();
             this.btnDisposal = new System.Windows.Forms.Button();
             this.btnInventory = new System.Windows.Forms.Button();
+            this.lblSecData = new System.Windows.Forms.Label();
             this.btnPersons = new System.Windows.Forms.Button();
             this.btnMasterData = new System.Windows.Forms.Button();
+            this.lblSecAdmin = new System.Windows.Forms.Label();
             this.btnReports = new System.Windows.Forms.Button();
-            this.btnMyAssets = new System.Windows.Forms.Button();
             this.btnUsers = new System.Windows.Forms.Button();
             this.btnAudit = new System.Windows.Forms.Button();
             this.lblFooter = new System.Windows.Forms.Label();
+            this.pnlUser = new System.Windows.Forms.Panel();
+            this.lblAvatar = new System.Windows.Forms.Label();
+            this.lblUserName = new System.Windows.Forms.Label();
+            this.lblUserRole = new System.Windows.Forms.Label();
+            this.pnlBrand = new System.Windows.Forms.Panel();
             this.lblLogo = new System.Windows.Forms.Label();
+            this.btnToggle = new System.Windows.Forms.Button();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.flpUser = new System.Windows.Forms.FlowLayoutPanel();
             this.btnLogout = new System.Windows.Forms.Button();
             this.btnChangePassword = new System.Windows.Forms.Button();
-            this.lblCurrentUser = new System.Windows.Forms.Label();
-            this.lblAppTitle = new System.Windows.Forms.Label();
+            this.lblPageTitle = new System.Windows.Forms.Label();
             this.pnlContent.SuspendLayout();
             this.pnlSidebar.SuspendLayout();
             this.flpMenu.SuspendLayout();
+            this.pnlUser.SuspendLayout();
+            this.pnlBrand.SuspendLayout();
             this.pnlHeader.SuspendLayout();
             this.flpUser.SuspendLayout();
             this.SuspendLayout();
@@ -63,7 +74,8 @@
             // 
             this.pnlSidebar.Controls.Add(this.flpMenu);
             this.pnlSidebar.Controls.Add(this.lblFooter);
-            this.pnlSidebar.Controls.Add(this.lblLogo);
+            this.pnlSidebar.Controls.Add(this.pnlUser);
+            this.pnlSidebar.Controls.Add(this.pnlBrand);
             this.pnlSidebar.BackColor = System.Drawing.Color.FromArgb(23, 37, 56);
             this.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlSidebar.Size = new System.Drawing.Size(240, 700);
@@ -71,24 +83,39 @@
             // 
             // flpMenu
             // 
+            this.flpMenu.Controls.Add(this.lblSecMain);
             this.flpMenu.Controls.Add(this.btnDashboard);
+            this.flpMenu.Controls.Add(this.btnMyAssets);
+            this.flpMenu.Controls.Add(this.lblSecOps);
             this.flpMenu.Controls.Add(this.btnAssets);
             this.flpMenu.Controls.Add(this.btnCustody);
             this.flpMenu.Controls.Add(this.btnAlerts);
             this.flpMenu.Controls.Add(this.btnDisposal);
             this.flpMenu.Controls.Add(this.btnInventory);
+            this.flpMenu.Controls.Add(this.lblSecData);
             this.flpMenu.Controls.Add(this.btnPersons);
             this.flpMenu.Controls.Add(this.btnMasterData);
+            this.flpMenu.Controls.Add(this.lblSecAdmin);
             this.flpMenu.Controls.Add(this.btnReports);
-            this.flpMenu.Controls.Add(this.btnMyAssets);
             this.flpMenu.Controls.Add(this.btnUsers);
             this.flpMenu.Controls.Add(this.btnAudit);
             this.flpMenu.AutoScroll = true;
             this.flpMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpMenu.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flpMenu.Padding = new System.Windows.Forms.Padding(0, 6, 0, 0);
+            this.flpMenu.Padding = new System.Windows.Forms.Padding(0, 4, 0, 8);
             this.flpMenu.WrapContents = false;
             this.flpMenu.Name = "flpMenu";
+            // 
+            // lblSecMain
+            // 
+            this.lblSecMain.Font = new System.Drawing.Font("Cairo", 9F, System.Drawing.FontStyle.Bold);
+            this.lblSecMain.ForeColor = System.Drawing.Color.FromArgb(120, 138, 160);
+            this.lblSecMain.Margin = new System.Windows.Forms.Padding(8, 12, 8, 2);
+            this.lblSecMain.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
+            this.lblSecMain.Size = new System.Drawing.Size(224, 26);
+            this.lblSecMain.Text = "الرئيسية";
+            this.lblSecMain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblSecMain.Name = "lblSecMain";
             // 
             // btnDashboard
             // 
@@ -98,16 +125,46 @@
             this.btnDashboard.FlatAppearance.BorderSize = 0;
             this.btnDashboard.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(38, 58, 84);
             this.btnDashboard.Font = new System.Drawing.Font("Cairo", 10.5F);
-            this.btnDashboard.ForeColor = System.Drawing.Color.White;
-            this.btnDashboard.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            this.btnDashboard.Padding = new System.Windows.Forms.Padding(18, 0, 0, 0);
-            this.btnDashboard.Size = new System.Drawing.Size(240, 46);
+            this.btnDashboard.ForeColor = System.Drawing.Color.FromArgb(203, 213, 225);
+            this.btnDashboard.Margin = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.btnDashboard.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
+            this.btnDashboard.Size = new System.Drawing.Size(224, 42);
             this.btnDashboard.Tag = "Dashboard";
             this.btnDashboard.Text = "🏠   الشاشة الرئيسية";
             this.btnDashboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDashboard.UseVisualStyleBackColor = false;
             this.btnDashboard.Name = "btnDashboard";
             this.btnDashboard.Click += new System.EventHandler(this.Menu_Click);
+            // 
+            // btnMyAssets
+            // 
+            this.btnMyAssets.BackColor = System.Drawing.Color.FromArgb(23, 37, 56);
+            this.btnMyAssets.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMyAssets.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMyAssets.FlatAppearance.BorderSize = 0;
+            this.btnMyAssets.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(38, 58, 84);
+            this.btnMyAssets.Font = new System.Drawing.Font("Cairo", 10.5F);
+            this.btnMyAssets.ForeColor = System.Drawing.Color.FromArgb(203, 213, 225);
+            this.btnMyAssets.Margin = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.btnMyAssets.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
+            this.btnMyAssets.Size = new System.Drawing.Size(224, 42);
+            this.btnMyAssets.Tag = "MyAssets";
+            this.btnMyAssets.Text = "🧾   أصولي";
+            this.btnMyAssets.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMyAssets.UseVisualStyleBackColor = false;
+            this.btnMyAssets.Name = "btnMyAssets";
+            this.btnMyAssets.Click += new System.EventHandler(this.Menu_Click);
+            // 
+            // lblSecOps
+            // 
+            this.lblSecOps.Font = new System.Drawing.Font("Cairo", 9F, System.Drawing.FontStyle.Bold);
+            this.lblSecOps.ForeColor = System.Drawing.Color.FromArgb(120, 138, 160);
+            this.lblSecOps.Margin = new System.Windows.Forms.Padding(8, 12, 8, 2);
+            this.lblSecOps.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
+            this.lblSecOps.Size = new System.Drawing.Size(224, 26);
+            this.lblSecOps.Text = "العمليات";
+            this.lblSecOps.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblSecOps.Name = "lblSecOps";
             // 
             // btnAssets
             // 
@@ -117,10 +174,10 @@
             this.btnAssets.FlatAppearance.BorderSize = 0;
             this.btnAssets.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(38, 58, 84);
             this.btnAssets.Font = new System.Drawing.Font("Cairo", 10.5F);
-            this.btnAssets.ForeColor = System.Drawing.Color.White;
-            this.btnAssets.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            this.btnAssets.Padding = new System.Windows.Forms.Padding(18, 0, 0, 0);
-            this.btnAssets.Size = new System.Drawing.Size(240, 46);
+            this.btnAssets.ForeColor = System.Drawing.Color.FromArgb(203, 213, 225);
+            this.btnAssets.Margin = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.btnAssets.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
+            this.btnAssets.Size = new System.Drawing.Size(224, 42);
             this.btnAssets.Tag = "Assets";
             this.btnAssets.Text = "📦   الأصول";
             this.btnAssets.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -136,10 +193,10 @@
             this.btnCustody.FlatAppearance.BorderSize = 0;
             this.btnCustody.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(38, 58, 84);
             this.btnCustody.Font = new System.Drawing.Font("Cairo", 10.5F);
-            this.btnCustody.ForeColor = System.Drawing.Color.White;
-            this.btnCustody.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            this.btnCustody.Padding = new System.Windows.Forms.Padding(18, 0, 0, 0);
-            this.btnCustody.Size = new System.Drawing.Size(240, 46);
+            this.btnCustody.ForeColor = System.Drawing.Color.FromArgb(203, 213, 225);
+            this.btnCustody.Margin = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.btnCustody.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
+            this.btnCustody.Size = new System.Drawing.Size(224, 42);
             this.btnCustody.Tag = "Custody";
             this.btnCustody.Text = "🔁   التسليم والاستلام";
             this.btnCustody.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -155,10 +212,10 @@
             this.btnAlerts.FlatAppearance.BorderSize = 0;
             this.btnAlerts.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(38, 58, 84);
             this.btnAlerts.Font = new System.Drawing.Font("Cairo", 10.5F);
-            this.btnAlerts.ForeColor = System.Drawing.Color.White;
-            this.btnAlerts.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            this.btnAlerts.Padding = new System.Windows.Forms.Padding(18, 0, 0, 0);
-            this.btnAlerts.Size = new System.Drawing.Size(240, 46);
+            this.btnAlerts.ForeColor = System.Drawing.Color.FromArgb(203, 213, 225);
+            this.btnAlerts.Margin = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.btnAlerts.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
+            this.btnAlerts.Size = new System.Drawing.Size(224, 42);
             this.btnAlerts.Tag = "Alerts";
             this.btnAlerts.Text = "⏰   التنبيهات";
             this.btnAlerts.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -174,10 +231,10 @@
             this.btnDisposal.FlatAppearance.BorderSize = 0;
             this.btnDisposal.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(38, 58, 84);
             this.btnDisposal.Font = new System.Drawing.Font("Cairo", 10.5F);
-            this.btnDisposal.ForeColor = System.Drawing.Color.White;
-            this.btnDisposal.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            this.btnDisposal.Padding = new System.Windows.Forms.Padding(18, 0, 0, 0);
-            this.btnDisposal.Size = new System.Drawing.Size(240, 46);
+            this.btnDisposal.ForeColor = System.Drawing.Color.FromArgb(203, 213, 225);
+            this.btnDisposal.Margin = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.btnDisposal.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
+            this.btnDisposal.Size = new System.Drawing.Size(224, 42);
             this.btnDisposal.Tag = "Disposal";
             this.btnDisposal.Text = "♻   التخريد";
             this.btnDisposal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -193,16 +250,27 @@
             this.btnInventory.FlatAppearance.BorderSize = 0;
             this.btnInventory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(38, 58, 84);
             this.btnInventory.Font = new System.Drawing.Font("Cairo", 10.5F);
-            this.btnInventory.ForeColor = System.Drawing.Color.White;
-            this.btnInventory.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            this.btnInventory.Padding = new System.Windows.Forms.Padding(18, 0, 0, 0);
-            this.btnInventory.Size = new System.Drawing.Size(240, 46);
+            this.btnInventory.ForeColor = System.Drawing.Color.FromArgb(203, 213, 225);
+            this.btnInventory.Margin = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.btnInventory.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
+            this.btnInventory.Size = new System.Drawing.Size(224, 42);
             this.btnInventory.Tag = "Inventory";
             this.btnInventory.Text = "📋   الجرد";
             this.btnInventory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInventory.UseVisualStyleBackColor = false;
             this.btnInventory.Name = "btnInventory";
             this.btnInventory.Click += new System.EventHandler(this.Menu_Click);
+            // 
+            // lblSecData
+            // 
+            this.lblSecData.Font = new System.Drawing.Font("Cairo", 9F, System.Drawing.FontStyle.Bold);
+            this.lblSecData.ForeColor = System.Drawing.Color.FromArgb(120, 138, 160);
+            this.lblSecData.Margin = new System.Windows.Forms.Padding(8, 12, 8, 2);
+            this.lblSecData.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
+            this.lblSecData.Size = new System.Drawing.Size(224, 26);
+            this.lblSecData.Text = "البيانات الأساسية";
+            this.lblSecData.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblSecData.Name = "lblSecData";
             // 
             // btnPersons
             // 
@@ -212,10 +280,10 @@
             this.btnPersons.FlatAppearance.BorderSize = 0;
             this.btnPersons.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(38, 58, 84);
             this.btnPersons.Font = new System.Drawing.Font("Cairo", 10.5F);
-            this.btnPersons.ForeColor = System.Drawing.Color.White;
-            this.btnPersons.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            this.btnPersons.Padding = new System.Windows.Forms.Padding(18, 0, 0, 0);
-            this.btnPersons.Size = new System.Drawing.Size(240, 46);
+            this.btnPersons.ForeColor = System.Drawing.Color.FromArgb(203, 213, 225);
+            this.btnPersons.Margin = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.btnPersons.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
+            this.btnPersons.Size = new System.Drawing.Size(224, 42);
             this.btnPersons.Tag = "Persons";
             this.btnPersons.Text = "👥   الأشخاص";
             this.btnPersons.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -231,16 +299,27 @@
             this.btnMasterData.FlatAppearance.BorderSize = 0;
             this.btnMasterData.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(38, 58, 84);
             this.btnMasterData.Font = new System.Drawing.Font("Cairo", 10.5F);
-            this.btnMasterData.ForeColor = System.Drawing.Color.White;
-            this.btnMasterData.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            this.btnMasterData.Padding = new System.Windows.Forms.Padding(18, 0, 0, 0);
-            this.btnMasterData.Size = new System.Drawing.Size(240, 46);
+            this.btnMasterData.ForeColor = System.Drawing.Color.FromArgb(203, 213, 225);
+            this.btnMasterData.Margin = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.btnMasterData.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
+            this.btnMasterData.Size = new System.Drawing.Size(224, 42);
             this.btnMasterData.Tag = "MasterData";
-            this.btnMasterData.Text = "🗂   الأقسام والمواقع والتصنيفات";
+            this.btnMasterData.Text = "🗂   الأقسام والمواقع";
             this.btnMasterData.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMasterData.UseVisualStyleBackColor = false;
             this.btnMasterData.Name = "btnMasterData";
             this.btnMasterData.Click += new System.EventHandler(this.Menu_Click);
+            // 
+            // lblSecAdmin
+            // 
+            this.lblSecAdmin.Font = new System.Drawing.Font("Cairo", 9F, System.Drawing.FontStyle.Bold);
+            this.lblSecAdmin.ForeColor = System.Drawing.Color.FromArgb(120, 138, 160);
+            this.lblSecAdmin.Margin = new System.Windows.Forms.Padding(8, 12, 8, 2);
+            this.lblSecAdmin.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
+            this.lblSecAdmin.Size = new System.Drawing.Size(224, 26);
+            this.lblSecAdmin.Text = "التقارير والإدارة";
+            this.lblSecAdmin.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblSecAdmin.Name = "lblSecAdmin";
             // 
             // btnReports
             // 
@@ -250,35 +329,16 @@
             this.btnReports.FlatAppearance.BorderSize = 0;
             this.btnReports.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(38, 58, 84);
             this.btnReports.Font = new System.Drawing.Font("Cairo", 10.5F);
-            this.btnReports.ForeColor = System.Drawing.Color.White;
-            this.btnReports.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            this.btnReports.Padding = new System.Windows.Forms.Padding(18, 0, 0, 0);
-            this.btnReports.Size = new System.Drawing.Size(240, 46);
+            this.btnReports.ForeColor = System.Drawing.Color.FromArgb(203, 213, 225);
+            this.btnReports.Margin = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.btnReports.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
+            this.btnReports.Size = new System.Drawing.Size(224, 42);
             this.btnReports.Tag = "Reports";
             this.btnReports.Text = "📊   التقارير";
             this.btnReports.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReports.UseVisualStyleBackColor = false;
             this.btnReports.Name = "btnReports";
             this.btnReports.Click += new System.EventHandler(this.Menu_Click);
-            // 
-            // btnMyAssets
-            // 
-            this.btnMyAssets.BackColor = System.Drawing.Color.FromArgb(23, 37, 56);
-            this.btnMyAssets.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMyAssets.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMyAssets.FlatAppearance.BorderSize = 0;
-            this.btnMyAssets.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(38, 58, 84);
-            this.btnMyAssets.Font = new System.Drawing.Font("Cairo", 10.5F);
-            this.btnMyAssets.ForeColor = System.Drawing.Color.White;
-            this.btnMyAssets.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            this.btnMyAssets.Padding = new System.Windows.Forms.Padding(18, 0, 0, 0);
-            this.btnMyAssets.Size = new System.Drawing.Size(240, 46);
-            this.btnMyAssets.Tag = "MyAssets";
-            this.btnMyAssets.Text = "🧾   أصولي";
-            this.btnMyAssets.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMyAssets.UseVisualStyleBackColor = false;
-            this.btnMyAssets.Name = "btnMyAssets";
-            this.btnMyAssets.Click += new System.EventHandler(this.Menu_Click);
             // 
             // btnUsers
             // 
@@ -288,10 +348,10 @@
             this.btnUsers.FlatAppearance.BorderSize = 0;
             this.btnUsers.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(38, 58, 84);
             this.btnUsers.Font = new System.Drawing.Font("Cairo", 10.5F);
-            this.btnUsers.ForeColor = System.Drawing.Color.White;
-            this.btnUsers.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            this.btnUsers.Padding = new System.Windows.Forms.Padding(18, 0, 0, 0);
-            this.btnUsers.Size = new System.Drawing.Size(240, 46);
+            this.btnUsers.ForeColor = System.Drawing.Color.FromArgb(203, 213, 225);
+            this.btnUsers.Margin = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.btnUsers.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
+            this.btnUsers.Size = new System.Drawing.Size(224, 42);
             this.btnUsers.Tag = "Users";
             this.btnUsers.Text = "🔐   المستخدمون";
             this.btnUsers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -307,10 +367,10 @@
             this.btnAudit.FlatAppearance.BorderSize = 0;
             this.btnAudit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(38, 58, 84);
             this.btnAudit.Font = new System.Drawing.Font("Cairo", 10.5F);
-            this.btnAudit.ForeColor = System.Drawing.Color.White;
-            this.btnAudit.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            this.btnAudit.Padding = new System.Windows.Forms.Padding(18, 0, 0, 0);
-            this.btnAudit.Size = new System.Drawing.Size(240, 46);
+            this.btnAudit.ForeColor = System.Drawing.Color.FromArgb(203, 213, 225);
+            this.btnAudit.Margin = new System.Windows.Forms.Padding(8, 1, 8, 1);
+            this.btnAudit.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
+            this.btnAudit.Size = new System.Drawing.Size(224, 42);
             this.btnAudit.Tag = "Audit";
             this.btnAudit.Text = "📜   سجل العمليات";
             this.btnAudit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -321,27 +381,92 @@
             // lblFooter
             // 
             this.lblFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblFooter.Font = new System.Drawing.Font("Cairo", 9F);
-            this.lblFooter.ForeColor = System.Drawing.Color.FromArgb(150, 165, 185);
+            this.lblFooter.Font = new System.Drawing.Font("Cairo", 8.5F);
+            this.lblFooter.ForeColor = System.Drawing.Color.FromArgb(120, 138, 160);
             this.lblFooter.Size = new System.Drawing.Size(240, 44);
             this.lblFooter.Text = "كلية التقنيات الهندسية – يفرن";
             this.lblFooter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblFooter.Name = "lblFooter";
             // 
+            // pnlUser
+            // 
+            this.pnlUser.Controls.Add(this.lblAvatar);
+            this.pnlUser.Controls.Add(this.lblUserName);
+            this.pnlUser.Controls.Add(this.lblUserRole);
+            this.pnlUser.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlUser.Size = new System.Drawing.Size(240, 70);
+            this.pnlUser.BackColor = System.Drawing.Color.FromArgb(30, 46, 68);
+            this.pnlUser.Name = "pnlUser";
+            // 
+            // lblAvatar
+            // 
+            this.lblAvatar.BackColor = System.Drawing.Color.FromArgb(30, 77, 120);
+            this.lblAvatar.Font = new System.Drawing.Font("Cairo", 14F, System.Drawing.FontStyle.Bold);
+            this.lblAvatar.ForeColor = System.Drawing.Color.White;
+            this.lblAvatar.Location = new System.Drawing.Point(14, 14);
+            this.lblAvatar.Size = new System.Drawing.Size(42, 42);
+            this.lblAvatar.Text = "م";
+            this.lblAvatar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblAvatar.Name = "lblAvatar";
+            // 
+            // lblUserName
+            // 
+            this.lblUserName.AutoEllipsis = true;
+            this.lblUserName.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
+            this.lblUserName.ForeColor = System.Drawing.Color.White;
+            this.lblUserName.Location = new System.Drawing.Point(64, 12);
+            this.lblUserName.Size = new System.Drawing.Size(166, 26);
+            this.lblUserName.Text = "اسم المستخدم";
+            this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblUserName.Name = "lblUserName";
+            // 
+            // lblUserRole
+            // 
+            this.lblUserRole.Font = new System.Drawing.Font("Cairo", 9F);
+            this.lblUserRole.ForeColor = System.Drawing.Color.FromArgb(120, 138, 160);
+            this.lblUserRole.Location = new System.Drawing.Point(64, 38);
+            this.lblUserRole.Size = new System.Drawing.Size(166, 22);
+            this.lblUserRole.Text = "الدور";
+            this.lblUserRole.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblUserRole.Name = "lblUserRole";
+            // 
+            // pnlBrand
+            // 
+            this.pnlBrand.Controls.Add(this.lblLogo);
+            this.pnlBrand.Controls.Add(this.btnToggle);
+            this.pnlBrand.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlBrand.Size = new System.Drawing.Size(240, 60);
+            this.pnlBrand.Name = "pnlBrand";
+            // 
             // lblLogo
             // 
-            this.lblLogo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblLogo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblLogo.Font = new System.Drawing.Font("Cairo", 13F, System.Drawing.FontStyle.Bold);
             this.lblLogo.ForeColor = System.Drawing.Color.White;
-            this.lblLogo.Size = new System.Drawing.Size(240, 64);
-            this.lblLogo.Text = "حصر الأصول";
-            this.lblLogo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblLogo.Padding = new System.Windows.Forms.Padding(16, 0, 0, 0);
+            this.lblLogo.Text = "📦  حصر الأصول";
+            this.lblLogo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblLogo.Name = "lblLogo";
+            // 
+            // btnToggle
+            // 
+            this.btnToggle.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnToggle.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnToggle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnToggle.FlatAppearance.BorderSize = 0;
+            this.btnToggle.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(38, 58, 84);
+            this.btnToggle.Font = new System.Drawing.Font("Cairo", 14F);
+            this.btnToggle.ForeColor = System.Drawing.Color.White;
+            this.btnToggle.Size = new System.Drawing.Size(52, 60);
+            this.btnToggle.Text = "☰";
+            this.btnToggle.UseVisualStyleBackColor = false;
+            this.btnToggle.Name = "btnToggle";
+            this.btnToggle.Click += new System.EventHandler(this.btnToggle_Click);
             // 
             // pnlHeader
             // 
             this.pnlHeader.Controls.Add(this.flpUser);
-            this.pnlHeader.Controls.Add(this.lblAppTitle);
+            this.pnlHeader.Controls.Add(this.lblPageTitle);
             this.pnlHeader.BackColor = System.Drawing.Color.White;
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Size = new System.Drawing.Size(1200, 58);
@@ -351,7 +476,6 @@
             // 
             this.flpUser.Controls.Add(this.btnLogout);
             this.flpUser.Controls.Add(this.btnChangePassword);
-            this.flpUser.Controls.Add(this.lblCurrentUser);
             this.flpUser.AutoSize = true;
             this.flpUser.Dock = System.Windows.Forms.DockStyle.Right;
             this.flpUser.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
@@ -389,24 +513,16 @@
             this.btnChangePassword.Name = "btnChangePassword";
             this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
             // 
-            // lblCurrentUser
+            // lblPageTitle
             // 
-            this.lblCurrentUser.AutoSize = true;
-            this.lblCurrentUser.Margin = new System.Windows.Forms.Padding(4, 10, 4, 4);
-            this.lblCurrentUser.Text = "👤 المستخدم";
-            this.lblCurrentUser.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.lblCurrentUser.Name = "lblCurrentUser";
-            // 
-            // lblAppTitle
-            // 
-            this.lblAppTitle.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblAppTitle.Font = new System.Drawing.Font("Cairo", 12F, System.Drawing.FontStyle.Bold);
-            this.lblAppTitle.ForeColor = System.Drawing.Color.FromArgb(30, 77, 120);
-            this.lblAppTitle.Padding = new System.Windows.Forms.Padding(16, 0, 0, 0);
-            this.lblAppTitle.Size = new System.Drawing.Size(420, 58);
-            this.lblAppTitle.Text = "نظام حصر الأصول وتتبع العهد";
-            this.lblAppTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblAppTitle.Name = "lblAppTitle";
+            this.lblPageTitle.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblPageTitle.Font = new System.Drawing.Font("Cairo", 13F, System.Drawing.FontStyle.Bold);
+            this.lblPageTitle.ForeColor = System.Drawing.Color.FromArgb(30, 77, 120);
+            this.lblPageTitle.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.lblPageTitle.Size = new System.Drawing.Size(520, 58);
+            this.lblPageTitle.Text = "الشاشة الرئيسية";
+            this.lblPageTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblPageTitle.Name = "lblPageTitle";
             // 
             // MainForm
             // 
@@ -429,6 +545,10 @@
             this.flpUser.PerformLayout();
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
+            this.pnlBrand.ResumeLayout(false);
+            this.pnlBrand.PerformLayout();
+            this.pnlUser.ResumeLayout(false);
+            this.pnlUser.PerformLayout();
             this.flpMenu.ResumeLayout(false);
             this.flpMenu.PerformLayout();
             this.pnlSidebar.ResumeLayout(false);
@@ -444,25 +564,34 @@
         private System.Windows.Forms.Panel pnlContent;
         private System.Windows.Forms.Panel pnlSidebar;
         private System.Windows.Forms.FlowLayoutPanel flpMenu;
+        private System.Windows.Forms.Label lblSecMain;
         private System.Windows.Forms.Button btnDashboard;
+        private System.Windows.Forms.Button btnMyAssets;
+        private System.Windows.Forms.Label lblSecOps;
         private System.Windows.Forms.Button btnAssets;
         private System.Windows.Forms.Button btnCustody;
         private System.Windows.Forms.Button btnAlerts;
         private System.Windows.Forms.Button btnDisposal;
         private System.Windows.Forms.Button btnInventory;
+        private System.Windows.Forms.Label lblSecData;
         private System.Windows.Forms.Button btnPersons;
         private System.Windows.Forms.Button btnMasterData;
+        private System.Windows.Forms.Label lblSecAdmin;
         private System.Windows.Forms.Button btnReports;
-        private System.Windows.Forms.Button btnMyAssets;
         private System.Windows.Forms.Button btnUsers;
         private System.Windows.Forms.Button btnAudit;
         private System.Windows.Forms.Label lblFooter;
+        private System.Windows.Forms.Panel pnlUser;
+        private System.Windows.Forms.Label lblAvatar;
+        private System.Windows.Forms.Label lblUserName;
+        private System.Windows.Forms.Label lblUserRole;
+        private System.Windows.Forms.Panel pnlBrand;
         private System.Windows.Forms.Label lblLogo;
+        private System.Windows.Forms.Button btnToggle;
         private System.Windows.Forms.Panel pnlHeader;
         private System.Windows.Forms.FlowLayoutPanel flpUser;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button btnChangePassword;
-        private System.Windows.Forms.Label lblCurrentUser;
-        private System.Windows.Forms.Label lblAppTitle;
+        private System.Windows.Forms.Label lblPageTitle;
     }
 }

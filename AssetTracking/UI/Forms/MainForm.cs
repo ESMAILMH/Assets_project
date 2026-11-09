@@ -1,3 +1,4 @@
+using System.Drawing.Drawing2D;
 using AssetTracking.BLL;
 using AssetTracking.DAL;
 using AssetTracking.Pages;
@@ -5,17 +6,27 @@ using AssetTracking.Pages;
 namespace AssetTracking.Forms;
 
 /// <summary>
-/// النافذة الرئيسية: قائمة جانبية بالصفحات ومنطقة عرض الصفحة.
-/// أزرار القائمة مصممة في المصمم، ويُخفى منها ما لا يسمح به دور المستخدم.
-/// كل زر يحمل في خاصية Tag اسم الصفحة التي يفتحها.
+/// النافذة الرئيسية: قائمة جانبية مقسمة إلى مجموعات + شريط علوي باسم الصفحة الحالية + منطقة عرض الصفحة.
+/// أزرار القائمة وعناوين المجموعات مصممة في المصمم؛ كل زر يحمل في Tag اسم الصفحة التي يفتحها،
+/// ونصه بالشكل "رمز   الاسم". ما لا يسمح به دور المستخدم يُخفى عند التشغيل.
 /// </summary>
 public partial class MainForm : Form
 {
+    private const int ExpandedWidth = 240, CollapsedWidth = 64;
+    private static readonly Color ActiveBack = Color.FromArgb(30, 77, 120);
+    private static readonly Color ActiveStripe = Color.FromArgb(96, 175, 255);
+    private static readonly Color MenuText = Color.FromArgb(203, 213, 225);
     private static readonly Font MenuFont = new(Theme.FontName, 10.5F);
     private static readonly Font MenuFontActive = new(Theme.FontName, 10.5F, FontStyle.Bold);
+
     private readonly Dictionary<string, Control> _pages = new();
+    private readonly Dictionary<Button, (string Icon, string Name)> _items = new();
+    private readonly HashSet<Control> _allowed = new();        // ما يسمح به الدور من أزرار وعناوين
+    private readonly ToolTip _tip = new();
     private readonly System.Windows.Forms.Timer _alertTimer = new() { Interval = 5 * 60 * 1000 };
     private Button? _active;
+    private bool _collapsed;
+    private int _alerts;
 
     public bool LogoutRequested { get; private set; }
 
@@ -25,7 +36,25 @@ public partial class MainForm : Form
         var user = Session.Current ?? throw new InvalidOperationException("لا يوجد مستخدم مسجل.");
         Text = "نظام حصر الأصول وتتبع العهد - " + AppSettings.OrganizationName;
         lblFooter.Text = AppSettings.OrganizationName;
-        lblCurrentUser.Text = $"👤 {user.DisplayName}  ({Labels.Of(Labels.Roles, user.Role.ToString())})";
+
+        // بطاقة المستخدم: أول حرف من الاسم داخل دائرة
+        lblUserName.Text = user.DisplayName;
+        lblUserRole.Text = Labels.Of(Labels.Roles, user.Role.ToString());
+        lblAvatar.Text = user.DisplayName.Trim().FirstOrDefault().ToString();
+        using (var circle = new GraphicsPath())
+        {
+            circle.AddEllipse(0, 0, lblAvatar.Width, lblAvatar.Height);
+            lblAvatar.Region = new Region(circle);
+        }
+
+        foreach (var b in flpMenu.Controls.OfType<Button>())
+        {
+            var parts = b.Text.Split("   ", 2);
+            _items[b] = (parts[0], parts.Length > 1 ? parts[1] : b.Text);
+            b.Paint += MenuButton_Paint;
+            b.SizeChanged += (_, _) => RoundCorners(b);
+            RoundCorners(b);
+        }
         ApplyRole(user);
 
         KeyDown += (_, e) =>   // F5 = تحديث الصفحة الحالية
@@ -36,26 +65,93 @@ public partial class MainForm : Form
         };
         _alertTimer.Tick += (_, _) => UpdateAlertCount();
         _alertTimer.Start();
-        Shown += (_, _) => flpMenu.Controls.Cast<Button>().First(b => b.Visible).PerformClick();
+        Shown += (_, _) => _items.Keys.First(b => b.Visible).PerformClick();
     }
 
-    /// <summary>إظهار أزرار القائمة حسب الدور (الصلاحية تُفحص أيضاً داخل كل عملية في طبقة المنطق).</summary>
+    // ------------------------------------------------------------ الصلاحيات
+    /// <summary>
+    /// يظهر من القائمة ما يسمح به دور المستخدم فقط (والصلاحية تُفحص أيضاً داخل كل عملية في طبقة المنطق).
+    /// عنوان المجموعة يُخفى إذا لم يبقَ تحته أي زر ظاهر.
+    /// </summary>
     private void ApplyRole(AppUser user)
     {
         bool employee = user.Role == UserRole.Employee, manager = user.Role == UserRole.Manager;
-        foreach (Button b in flpMenu.Controls)
+        Label? section = null;
+        foreach (Control c in flpMenu.Controls)
         {
-            string page = (string)b.Tag!;
-            b.Visible = page switch
+            if (c is Label l) { section = l; continue; }
+            bool ok = (string)c.Tag! switch
             {
                 "MyAssets" => employee || user.PersonId != null,
                 "Users" or "Audit" => manager,
                 _ => !employee
             };
+            if (!ok) continue;
+            _allowed.Add(c);
+            if (section != null) _allowed.Add(section);
         }
-        UpdateAlertCount();
+        RenderMenu();
     }
 
+    // ------------------------------------------------------------ شكل القائمة
+    /// <summary>يرسم القائمة حسب الحالة: موسعة (رمز + اسم) أو مطوية (رمز فقط).</summary>
+    private void RenderMenu()
+    {
+        pnlSidebar.Width = _collapsed ? CollapsedWidth : ExpandedWidth;
+        lblLogo.Visible = lblUserName.Visible = lblUserRole.Visible = lblFooter.Visible = !_collapsed;
+        lblAvatar.Left = _collapsed ? (CollapsedWidth - lblAvatar.Width) / 2 : 14;
+
+        foreach (Control c in flpMenu.Controls)
+        {
+            if (c is Label) { c.Visible = !_collapsed && _allowed.Contains(c); continue; }
+            var b = (Button)c;
+            b.Visible = _allowed.Contains(b);
+            b.Width = _collapsed ? CollapsedWidth - 16 : ExpandedWidth - 16;
+            b.TextAlign = _collapsed ? ContentAlignment.MiddleCenter : ContentAlignment.MiddleLeft;
+            b.Padding = _collapsed ? Padding.Empty : new Padding(14, 0, 0, 0);
+            b.Text = ButtonText(b);
+            _tip.SetToolTip(b, _collapsed ? _items[b].Name : null);   // اسم الصفحة عند المرور فوق الرمز
+        }
+        btnToggle.Text = _collapsed ? "☰" : "✕";
+        _tip.SetToolTip(btnToggle, _collapsed ? "توسيع القائمة" : "طي القائمة");
+    }
+
+    private string ButtonText(Button b)
+    {
+        var (icon, name) = _items[b];
+        if (_collapsed) return icon;
+        return b == btnAlerts && _alerts > 0 ? $"{icon}   {name}  ({_alerts})" : $"{icon}   {name}";
+    }
+
+    /// <summary>زوايا دائرية للأزرار.</summary>
+    private static void RoundCorners(Button b)
+    {
+        using var path = new GraphicsPath();
+        const int r = 10;
+        var rect = new Rectangle(0, 0, b.Width, b.Height);
+        path.AddArc(rect.X, rect.Y, r, r, 180, 90);
+        path.AddArc(rect.Right - r, rect.Y, r, r, 270, 90);
+        path.AddArc(rect.Right - r, rect.Bottom - r, r, r, 0, 90);
+        path.AddArc(rect.X, rect.Bottom - r, r, r, 90, 90);
+        path.CloseFigure();
+        b.Region = new Region(path);
+    }
+
+    /// <summary>شريط ملوّن على جانب الزر النشط.</summary>
+    private void MenuButton_Paint(object? sender, PaintEventArgs e)
+    {
+        if (sender != _active) return;
+        using var brush = new SolidBrush(ActiveStripe);
+        e.Graphics.FillRectangle(brush, 0, 8, 4, ((Control)sender!).Height - 16); // في الواجهة العربية يظهر على اليمين
+    }
+
+    private void btnToggle_Click(object? sender, EventArgs e)
+    {
+        _collapsed = !_collapsed;
+        RenderMenu();
+    }
+
+    // ------------------------------------------------------------ التنقل بين الصفحات
     /// <summary>الصفحة التي يفتحها كل زر (حسب Tag).</summary>
     private static Control CreatePage(string key) => key switch
     {
@@ -91,10 +187,19 @@ public partial class MainForm : Form
             pnlContent.Controls.Add(page!);
             if (!isNew && page is IPage p) p.RefreshData();
 
-            if (_active != null) { _active.BackColor = Theme.Sidebar; _active.Font = MenuFont; }
+            var previous = _active;
             _active = button;
-            button.BackColor = Theme.SidebarActive;
+            if (previous != null)
+            {
+                previous.BackColor = Theme.Sidebar;
+                previous.ForeColor = MenuText;
+                previous.Font = MenuFont;
+                previous.Invalidate();
+            }
+            button.BackColor = ActiveBack;
+            button.ForeColor = Color.White;
             button.Font = MenuFontActive;
+            lblPageTitle.Text = $"{_items[button].Icon}  {_items[button].Name}";
             UpdateAlertCount();
         });
     }
@@ -102,16 +207,17 @@ public partial class MainForm : Form
     /// <summary>عدّاد التنبيهات على زر التنبيهات (FR-20).</summary>
     private void UpdateAlertCount()
     {
-        if (!btnAlerts.Visible) return;
+        if (!_allowed.Contains(btnAlerts)) return;
         try
         {
-            int n = AssetDal.AlertCount();
-            btnAlerts.Text = n > 0 ? $"⏰   التنبيهات  ({n})" : "⏰   التنبيهات";
-            btnAlerts.ForeColor = n > 0 ? Color.FromArgb(255, 196, 92) : Color.White;
+            _alerts = AssetDal.AlertCount();
+            btnAlerts.Text = ButtonText(btnAlerts);
+            if (btnAlerts != _active) btnAlerts.ForeColor = _alerts > 0 ? Color.FromArgb(255, 196, 92) : MenuText;
         }
         catch (Exception) { /* لا نوقف الواجهة بسبب العدّاد */ }
     }
 
+    // ------------------------------------------------------------ الشريط العلوي
     private void btnChangePassword_Click(object? sender, EventArgs e)
     {
         using var d = new ChangePasswordDialog();
@@ -129,6 +235,7 @@ public partial class MainForm : Form
     protected override void OnFormClosed(FormClosedEventArgs e)
     {
         _alertTimer.Dispose();
+        _tip.Dispose();
         foreach (var p in _pages.Values) p.Dispose();
         base.OnFormClosed(e);
     }
