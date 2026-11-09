@@ -181,6 +181,8 @@ public partial class MainForm : Form
             {
                 page = CreatePage(key);
                 page.Dock = DockStyle.Fill;
+                // بطاقات وأزرار الشاشة الرئيسية تفتح صفحات أخرى
+                if (page is DashboardPage dashboard) dashboard.Navigate += OpenPage;
                 _pages[key] = page;
             }
             pnlContent.Controls.Clear();
@@ -203,6 +205,10 @@ public partial class MainForm : Form
             UpdateAlertCount();
         });
     }
+
+    /// <summary>فتح صفحة باسمها (كما في Tag الزر)، إذا كان الدور يسمح بها.</summary>
+    private void OpenPage(string key) =>
+        _items.Keys.FirstOrDefault(b => (string)b.Tag! == key && _allowed.Contains(b))?.PerformClick();
 
     /// <summary>عدّاد التنبيهات على زر التنبيهات (FR-20).</summary>
     private void UpdateAlertCount()
