@@ -50,6 +50,23 @@ public static class AssetDal
         Db.P("@s", text), Db.P("@cat", categoryId), Db.P("@dep", departmentId), Db.P("@loc", locationId),
         Db.P("@st", status), Db.P("@holder", holderId));
 
+    /// <summary>عدد الأصول في كل حالة بنفس شروط البحث (لعرض العدد على أزرار الحالات).</summary>
+    public static Dictionary<string, int> CountByStatus(string? text, int? categoryId, int? departmentId, int? locationId) =>
+        Db.Query(@"
+            SELECT a.Status, COUNT(*) AS N
+            FROM dbo.Asset a
+            LEFT JOIN dbo.Location l ON l.LocationId = a.LocationId
+            LEFT JOIN dbo.AssetCustody c ON c.AssetId = a.AssetId AND c.ReturnDate IS NULL
+            LEFT JOIN dbo.Person p ON p.PersonId = c.PersonId
+            WHERE (@s IS NULL OR a.SerialNo LIKE N'%' + @s + N'%' OR a.Name LIKE N'%' + @s + N'%'
+                   OR a.Model LIKE N'%' + @s + N'%' OR p.FullName LIKE N'%' + @s + N'%')
+              AND (@cat IS NULL OR a.CategoryId = @cat)
+              AND (@dep IS NULL OR l.DepartmentId = @dep)
+              AND (@loc IS NULL OR a.LocationId = @loc)
+            GROUP BY a.Status",
+            Db.P("@s", text), Db.P("@cat", categoryId), Db.P("@dep", departmentId), Db.P("@loc", locationId))
+        .AsEnumerable().ToDictionary(r => (string)r["Status"], r => (int)r["N"]);
+
     public static DataRow? Get(int id) => Db.Row(@"
         SELECT a.AssetId, a.SerialNo, a.Name, a.CategoryId, a.Model, a.PurchaseDate, a.InServiceDate, a.Cost,
                a.LifeYears, a.SalvageValue, a.LocationId, l.DepartmentId, a.Status, a.CreatedAt,
