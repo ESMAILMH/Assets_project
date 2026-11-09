@@ -71,7 +71,7 @@ public sealed class ReportPrinter
                 Document = doc,
                 Text = "معاينة الطباعة - " + _report.Title,
                 WindowState = FormWindowState.Maximized,
-                ShowIcon = false,
+                Icon = Ui.AppIcon,
                 UseAntiAlias = true
             };
             dlg.ShowDialog(owner);

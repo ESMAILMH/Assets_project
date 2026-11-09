@@ -6,6 +6,11 @@ namespace AssetTracking.Forms;
 /// </summary>
 public class DialogBase : Form
 {
+    public DialogBase()
+    {
+        Ui.ApplyIcon(this);
+    }
+
     protected void TrySave(Func<bool> save)
     {
         try

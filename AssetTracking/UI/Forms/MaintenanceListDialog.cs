@@ -11,6 +11,7 @@ public partial class MaintenanceListDialog : Form
     public MaintenanceListDialog(int assetId, string assetTitle)
     {
         InitializeComponent();
+        Ui.ApplyIcon(this);
         Ui.StyleGrid(grid);
         _assetId = assetId;
         _title = assetTitle;

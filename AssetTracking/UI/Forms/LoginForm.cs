@@ -8,6 +8,7 @@ public partial class LoginForm : Form
     public LoginForm()
     {
         InitializeComponent();
+        Ui.ApplyIcon(this);
         lblOrg.Text = AppSettings.OrganizationName;
         txtUser.PlaceholderText = "اسم المستخدم";
         txtPass.PlaceholderText = "كلمة المرور";

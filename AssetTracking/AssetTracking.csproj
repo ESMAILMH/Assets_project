@@ -13,6 +13,8 @@
     <Version>1.0.0</Version>
     <!-- يسمح ببناء المشروع من أي نظام، والتشغيل يكون على Windows 10 أو أحدث -->
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <!-- أيقونة البرنامج: ملف exe وشريط المهام -->
+    <ApplicationIcon>app.ico</ApplicationIcon>
     <!-- ملفات المصمم (Designer) تُنشئ الحقول داخل InitializeComponent -->
     <NoWarn>$(NoWarn);CS8618;CS8625;CS8669</NoWarn>
   </PropertyGroup>
@@ -27,6 +29,9 @@
   <ItemGroup>
     <!-- خط Cairo: يُنسخ مع البرنامج ويُثبَّت تلقائياً للمستخدم عند أول تشغيل -->
     <None Update="Fonts\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="app.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="appsettings.json">

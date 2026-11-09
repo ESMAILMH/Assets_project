@@ -33,6 +33,7 @@ public partial class MainForm : Form
     public MainForm()
     {
         InitializeComponent();
+        Ui.ApplyIcon(this);
         var user = Session.Current ?? throw new InvalidOperationException("لا يوجد مستخدم مسجل.");
         Text = "نظام حصر الأصول وتتبع العهد - " + AppSettings.OrganizationName;
         lblFooter.Text = AppSettings.OrganizationName;

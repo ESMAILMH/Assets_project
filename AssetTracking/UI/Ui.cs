@@ -65,6 +65,30 @@ public static partial class Ui
         }
     }
 
+    // ------------------------------------------------------------------ أيقونة البرنامج
+    private static Icon? _appIcon;
+
+    /// <summary>أيقونة البرنامج (app.ico) لشريط العنوان وشريط المهام.</summary>
+    public static Icon? AppIcon
+    {
+        get
+        {
+            if (_appIcon != null) return _appIcon;
+            try
+            {
+                string path = Path.Combine(AppContext.BaseDirectory, "app.ico");
+                _appIcon = File.Exists(path) ? new Icon(path) : Icon.ExtractAssociatedIcon(Application.ExecutablePath);
+            }
+            catch (Exception) { /* بدون أيقونة لا يتوقف البرنامج */ }
+            return _appIcon;
+        }
+    }
+
+    public static void ApplyIcon(Form form)
+    {
+        if (AppIcon is { } icon) form.Icon = icon;
+    }
+
     // ------------------------------------------------------------------ نماذج
     public static void ApplyRtl(Control c)
     {

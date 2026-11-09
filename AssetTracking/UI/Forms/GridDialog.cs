@@ -8,6 +8,7 @@ public partial class GridDialog : Form
     public GridDialog(string title, Func<DataTable> load)
     {
         InitializeComponent();
+        Ui.ApplyIcon(this);
         Ui.StyleGrid(grid);
         Text = title;
         _load = load;

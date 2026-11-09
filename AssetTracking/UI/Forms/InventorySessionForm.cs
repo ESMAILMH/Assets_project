@@ -14,6 +14,7 @@ public partial class InventorySessionForm : Form
     public InventorySessionForm(int sessionId)
     {
         InitializeComponent();
+        Ui.ApplyIcon(this);
         Ui.StyleGrid(grid);
         _sessionId = sessionId;
         Text = "جلسة جرد رقم " + sessionId;
