@@ -27,23 +27,6 @@
             this.grid = new System.Windows.Forms.DataGridView();
             this.pnlDetailsGap = new System.Windows.Forms.Panel();
             this.pnlDetails = new System.Windows.Forms.Panel();
-            this.pnlInfo = new System.Windows.Forms.Panel();
-            this.lblInfo1 = new System.Windows.Forms.Label();
-            this.lblValSerial = new System.Windows.Forms.Label();
-            this.lblInfo2 = new System.Windows.Forms.Label();
-            this.lblValCategory = new System.Windows.Forms.Label();
-            this.lblInfo3 = new System.Windows.Forms.Label();
-            this.lblValLocation = new System.Windows.Forms.Label();
-            this.lblInfo4 = new System.Windows.Forms.Label();
-            this.lblValStatus = new System.Windows.Forms.Label();
-            this.lblInfo5 = new System.Windows.Forms.Label();
-            this.lblValHolder = new System.Windows.Forms.Label();
-            this.lblInfo6 = new System.Windows.Forms.Label();
-            this.lblValCost = new System.Windows.Forms.Label();
-            this.lblInfo7 = new System.Windows.Forms.Label();
-            this.lblValBook = new System.Windows.Forms.Label();
-            this.lblInfo8 = new System.Windows.Forms.Label();
-            this.lblValRemaining = new System.Windows.Forms.Label();
             this.flpPhotoButtons = new System.Windows.Forms.FlowLayoutPanel();
             this.btnPhotoChange = new System.Windows.Forms.Button();
             this.btnPhotoRemove = new System.Windows.Forms.Button();
@@ -82,7 +65,6 @@
             this.pnlGrid.SuspendLayout();
             this.pnlDetailsGap.SuspendLayout();
             this.pnlDetails.SuspendLayout();
-            this.pnlInfo.SuspendLayout();
             this.flpPhotoButtons.SuspendLayout();
             this.flpActions.SuspendLayout();
             this.flpStatus.SuspendLayout();
@@ -115,9 +97,8 @@
             // 
             // pnlDetails
             // 
-            this.pnlDetails.Controls.Add(this.pnlInfo);
-            this.pnlDetails.Controls.Add(this.flpPhotoButtons);
             this.pnlDetails.Controls.Add(this.picPhoto);
+            this.pnlDetails.Controls.Add(this.flpPhotoButtons);
             this.pnlDetails.Controls.Add(this.lblDetailsTitle);
             this.pnlDetails.BackColor = System.Drawing.Color.White;
             this.pnlDetails.Dock = System.Windows.Forms.DockStyle.Right;
@@ -125,193 +106,11 @@
             this.pnlDetails.Size = new System.Drawing.Size(300, 560);
             this.pnlDetails.Name = "pnlDetails";
             // 
-            // pnlInfo
-            // 
-            this.pnlInfo.Controls.Add(this.lblInfo1);
-            this.pnlInfo.Controls.Add(this.lblValSerial);
-            this.pnlInfo.Controls.Add(this.lblInfo2);
-            this.pnlInfo.Controls.Add(this.lblValCategory);
-            this.pnlInfo.Controls.Add(this.lblInfo3);
-            this.pnlInfo.Controls.Add(this.lblValLocation);
-            this.pnlInfo.Controls.Add(this.lblInfo4);
-            this.pnlInfo.Controls.Add(this.lblValStatus);
-            this.pnlInfo.Controls.Add(this.lblInfo5);
-            this.pnlInfo.Controls.Add(this.lblValHolder);
-            this.pnlInfo.Controls.Add(this.lblInfo6);
-            this.pnlInfo.Controls.Add(this.lblValCost);
-            this.pnlInfo.Controls.Add(this.lblInfo7);
-            this.pnlInfo.Controls.Add(this.lblValBook);
-            this.pnlInfo.Controls.Add(this.lblInfo8);
-            this.pnlInfo.Controls.Add(this.lblValRemaining);
-            this.pnlInfo.AutoScroll = true;
-            this.pnlInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlInfo.Name = "pnlInfo";
-            // 
-            // lblInfo1
-            // 
-            this.lblInfo1.AutoSize = false;
-            this.lblInfo1.Location = new System.Drawing.Point(0, 4);
-            this.lblInfo1.Size = new System.Drawing.Size(112, 28);
-            this.lblInfo1.Text = "الرقم التسلسلي";
-            this.lblInfo1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblInfo1.ForeColor = System.Drawing.Color.FromArgb(108, 117, 125);
-            this.lblInfo1.Name = "lblInfo1";
-            // 
-            // lblValSerial
-            // 
-            this.lblValSerial.AutoSize = false;
-            this.lblValSerial.Location = new System.Drawing.Point(112, 4);
-            this.lblValSerial.Size = new System.Drawing.Size(160, 28);
-            this.lblValSerial.Text = "—";
-            this.lblValSerial.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblValSerial.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.lblValSerial.Name = "lblValSerial";
-            // 
-            // lblInfo2
-            // 
-            this.lblInfo2.AutoSize = false;
-            this.lblInfo2.Location = new System.Drawing.Point(0, 36);
-            this.lblInfo2.Size = new System.Drawing.Size(112, 28);
-            this.lblInfo2.Text = "التصنيف";
-            this.lblInfo2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblInfo2.ForeColor = System.Drawing.Color.FromArgb(108, 117, 125);
-            this.lblInfo2.Name = "lblInfo2";
-            // 
-            // lblValCategory
-            // 
-            this.lblValCategory.AutoSize = false;
-            this.lblValCategory.Location = new System.Drawing.Point(112, 36);
-            this.lblValCategory.Size = new System.Drawing.Size(160, 28);
-            this.lblValCategory.Text = "—";
-            this.lblValCategory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblValCategory.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.lblValCategory.Name = "lblValCategory";
-            // 
-            // lblInfo3
-            // 
-            this.lblInfo3.AutoSize = false;
-            this.lblInfo3.Location = new System.Drawing.Point(0, 68);
-            this.lblInfo3.Size = new System.Drawing.Size(112, 28);
-            this.lblInfo3.Text = "الموقع";
-            this.lblInfo3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblInfo3.ForeColor = System.Drawing.Color.FromArgb(108, 117, 125);
-            this.lblInfo3.Name = "lblInfo3";
-            // 
-            // lblValLocation
-            // 
-            this.lblValLocation.AutoSize = false;
-            this.lblValLocation.Location = new System.Drawing.Point(112, 68);
-            this.lblValLocation.Size = new System.Drawing.Size(160, 28);
-            this.lblValLocation.Text = "—";
-            this.lblValLocation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblValLocation.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.lblValLocation.Name = "lblValLocation";
-            // 
-            // lblInfo4
-            // 
-            this.lblInfo4.AutoSize = false;
-            this.lblInfo4.Location = new System.Drawing.Point(0, 100);
-            this.lblInfo4.Size = new System.Drawing.Size(112, 28);
-            this.lblInfo4.Text = "الحالة";
-            this.lblInfo4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblInfo4.ForeColor = System.Drawing.Color.FromArgb(108, 117, 125);
-            this.lblInfo4.Name = "lblInfo4";
-            // 
-            // lblValStatus
-            // 
-            this.lblValStatus.AutoSize = false;
-            this.lblValStatus.Location = new System.Drawing.Point(112, 100);
-            this.lblValStatus.Size = new System.Drawing.Size(160, 28);
-            this.lblValStatus.Text = "—";
-            this.lblValStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblValStatus.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.lblValStatus.Name = "lblValStatus";
-            // 
-            // lblInfo5
-            // 
-            this.lblInfo5.AutoSize = false;
-            this.lblInfo5.Location = new System.Drawing.Point(0, 132);
-            this.lblInfo5.Size = new System.Drawing.Size(112, 28);
-            this.lblInfo5.Text = "صاحب العهدة";
-            this.lblInfo5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblInfo5.ForeColor = System.Drawing.Color.FromArgb(108, 117, 125);
-            this.lblInfo5.Name = "lblInfo5";
-            // 
-            // lblValHolder
-            // 
-            this.lblValHolder.AutoSize = false;
-            this.lblValHolder.Location = new System.Drawing.Point(112, 132);
-            this.lblValHolder.Size = new System.Drawing.Size(160, 28);
-            this.lblValHolder.Text = "—";
-            this.lblValHolder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblValHolder.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.lblValHolder.Name = "lblValHolder";
-            // 
-            // lblInfo6
-            // 
-            this.lblInfo6.AutoSize = false;
-            this.lblInfo6.Location = new System.Drawing.Point(0, 164);
-            this.lblInfo6.Size = new System.Drawing.Size(112, 28);
-            this.lblInfo6.Text = "التكلفة";
-            this.lblInfo6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblInfo6.ForeColor = System.Drawing.Color.FromArgb(108, 117, 125);
-            this.lblInfo6.Name = "lblInfo6";
-            // 
-            // lblValCost
-            // 
-            this.lblValCost.AutoSize = false;
-            this.lblValCost.Location = new System.Drawing.Point(112, 164);
-            this.lblValCost.Size = new System.Drawing.Size(160, 28);
-            this.lblValCost.Text = "—";
-            this.lblValCost.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblValCost.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.lblValCost.Name = "lblValCost";
-            // 
-            // lblInfo7
-            // 
-            this.lblInfo7.AutoSize = false;
-            this.lblInfo7.Location = new System.Drawing.Point(0, 196);
-            this.lblInfo7.Size = new System.Drawing.Size(112, 28);
-            this.lblInfo7.Text = "القيمة الدفترية";
-            this.lblInfo7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblInfo7.ForeColor = System.Drawing.Color.FromArgb(108, 117, 125);
-            this.lblInfo7.Name = "lblInfo7";
-            // 
-            // lblValBook
-            // 
-            this.lblValBook.AutoSize = false;
-            this.lblValBook.Location = new System.Drawing.Point(112, 196);
-            this.lblValBook.Size = new System.Drawing.Size(160, 28);
-            this.lblValBook.Text = "—";
-            this.lblValBook.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblValBook.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.lblValBook.Name = "lblValBook";
-            // 
-            // lblInfo8
-            // 
-            this.lblInfo8.AutoSize = false;
-            this.lblInfo8.Location = new System.Drawing.Point(0, 228);
-            this.lblInfo8.Size = new System.Drawing.Size(112, 28);
-            this.lblInfo8.Text = "المتبقي من العمر";
-            this.lblInfo8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblInfo8.ForeColor = System.Drawing.Color.FromArgb(108, 117, 125);
-            this.lblInfo8.Name = "lblInfo8";
-            // 
-            // lblValRemaining
-            // 
-            this.lblValRemaining.AutoSize = false;
-            this.lblValRemaining.Location = new System.Drawing.Point(112, 228);
-            this.lblValRemaining.Size = new System.Drawing.Size(160, 28);
-            this.lblValRemaining.Text = "—";
-            this.lblValRemaining.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblValRemaining.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.lblValRemaining.Name = "lblValRemaining";
-            // 
             // flpPhotoButtons
             // 
             this.flpPhotoButtons.Controls.Add(this.btnPhotoChange);
             this.flpPhotoButtons.Controls.Add(this.btnPhotoRemove);
-            this.flpPhotoButtons.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flpPhotoButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flpPhotoButtons.AutoSize = true;
             this.flpPhotoButtons.Padding = new System.Windows.Forms.Padding(0, 6, 0, 6);
             this.flpPhotoButtons.Name = "flpPhotoButtons";
@@ -351,7 +150,7 @@
             this.picPhoto.Controls.Add(this.lblNoPhoto);
             this.picPhoto.BackColor = System.Drawing.Color.FromArgb(243, 245, 248);
             this.picPhoto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picPhoto.Dock = System.Windows.Forms.DockStyle.Top;
+            this.picPhoto.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picPhoto.Size = new System.Drawing.Size(276, 190);
             this.picPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picPhoto.Name = "picPhoto";
@@ -764,8 +563,6 @@
             this.flpActions.PerformLayout();
             this.flpPhotoButtons.ResumeLayout(false);
             this.flpPhotoButtons.PerformLayout();
-            this.pnlInfo.ResumeLayout(false);
-            this.pnlInfo.PerformLayout();
             this.pnlDetails.ResumeLayout(false);
             this.pnlDetails.PerformLayout();
             this.pnlDetailsGap.ResumeLayout(false);
@@ -782,23 +579,6 @@
         private System.Windows.Forms.DataGridView grid;
         private System.Windows.Forms.Panel pnlDetailsGap;
         private System.Windows.Forms.Panel pnlDetails;
-        private System.Windows.Forms.Panel pnlInfo;
-        private System.Windows.Forms.Label lblInfo1;
-        private System.Windows.Forms.Label lblValSerial;
-        private System.Windows.Forms.Label lblInfo2;
-        private System.Windows.Forms.Label lblValCategory;
-        private System.Windows.Forms.Label lblInfo3;
-        private System.Windows.Forms.Label lblValLocation;
-        private System.Windows.Forms.Label lblInfo4;
-        private System.Windows.Forms.Label lblValStatus;
-        private System.Windows.Forms.Label lblInfo5;
-        private System.Windows.Forms.Label lblValHolder;
-        private System.Windows.Forms.Label lblInfo6;
-        private System.Windows.Forms.Label lblValCost;
-        private System.Windows.Forms.Label lblInfo7;
-        private System.Windows.Forms.Label lblValBook;
-        private System.Windows.Forms.Label lblInfo8;
-        private System.Windows.Forms.Label lblValRemaining;
         private System.Windows.Forms.FlowLayoutPanel flpPhotoButtons;
         private System.Windows.Forms.Button btnPhotoChange;
         private System.Windows.Forms.Button btnPhotoRemove;

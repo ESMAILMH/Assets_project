@@ -80,24 +80,11 @@ public partial class AssetsPage : PageBase
         if (row == null)
         {
             lblDetailsTitle.Text = "اختر أصلاً من الجدول";
-            foreach (var l in new[] { lblValSerial, lblValCategory, lblValLocation, lblValStatus, lblValHolder, lblValCost, lblValBook, lblValRemaining })
-                l.Text = "—";
             lblNoPhoto.Visible = true;
             return;
         }
 
         lblDetailsTitle.Text = (string)row["الاسم"];
-        lblValSerial.Text = (string)row["الرقم التسلسلي"];
-        lblValCategory.Text = Ui.Format(row["التصنيف"]);
-        lblValLocation.Text = row["الموقع"] is string loc ? $"{row["القسم"]} / {loc}" : "—";
-        lblValStatus.Text = Ui.Format(row["الحالة"]);
-        lblValStatus.ForeColor = Ui.AssetStatusColor((string)row["Status"]) ?? Theme.Text;
-        lblValHolder.Text = row["صاحب العهدة"] is string h ? h : "—";
-        lblValCost.Text = Ui.Money((decimal)row["التكلفة"]);
-        lblValBook.Text = Ui.Money((decimal)row["القيمة الدفترية"]);
-        int remaining = Convert.ToInt32(row["المتبقي من العمر (شهر)"]);
-        lblValRemaining.Text = remaining == 0 ? "انتهى عمره" : $"{remaining} شهر";
-        lblValRemaining.ForeColor = remaining == 0 ? Theme.Danger : remaining <= 12 ? Theme.Warning : Theme.Text;
 
         Ui.Try(() => picPhoto.Image = Ui.ToImage(AssetDal.GetImage(id!.Value)));
         lblNoPhoto.Visible = picPhoto.Image == null;
