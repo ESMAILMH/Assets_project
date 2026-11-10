@@ -6,7 +6,7 @@ namespace AssetTracking.Pages;
 
 /// <summary>
 /// الشاشة الرئيسية (لوحة بسيطة): ترحيب، أزرار سريعة، بطاقات إحصائية (كل بطاقة تفتح صفحتها)،
-/// ورسم بياني لتوزيع الأصول حسب التصنيف.
+/// ورسمان بيانيان: توزيع الأصول حسب الحالة وحسب التصنيف.
 /// </summary>
 public partial class DashboardPage : PageBase
 {
@@ -24,9 +24,12 @@ public partial class DashboardPage : PageBase
         InitializeComponent();
         lblTitle.Text = $"مرحباً، {Session.Current?.DisplayName} 👋";
         lblDate.Text = DateTime.Today.ToString("dddd، d MMMM yyyy", new CultureInfo("ar-LY"));
-        tblChart.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 180));  // اسم التصنيف
-        tblChart.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));   // الشريط
-        tblChart.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 44));   // العدد
+        foreach (var t in new[] { tblStatus, tblChart })
+        {
+            t.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150));  // الاسم
+            t.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));   // الشريط
+            t.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 90));   // العدد والنسبة
+        }
         Resize += (_, _) => FitCards();
     }
 
@@ -51,6 +54,7 @@ public partial class DashboardPage : PageBase
         AddCard("🗑", "مُخرَّدة", s["Disposed"], "خرجت من الخدمة", Theme.Neutral, "Disposal");
         flpCards.ResumeLayout();
         FitCards();
+        LoadStatusChart();
         LoadChart();
     }
 
@@ -81,36 +85,63 @@ public partial class DashboardPage : PageBase
         flpCards.Height = (int)Math.Ceiling(flpCards.Controls.Count / (double)perRow) * 124 + 8;
     }
 
-    // ------------------------------------------------------------ الرسم البياني البسيط
-    /// <summary>أشرطة أفقية: عدد الأصول القائمة في كل تصنيف.</summary>
+    // ------------------------------------------------------------ الرسوم البيانية البسيطة
+    /// <summary>عدد الأصول في كل حالة (متاح، في عهدة، مُخرَّد، مؤرشف) مع نسبتها من الإجمالي.</summary>
+    private void LoadStatusChart()
+    {
+        var counts = AssetDal.CountByStatus(null, null, null, null);
+        var data = Labels.AssetStatuses
+            .Select(s => (s.Text, counts.GetValueOrDefault(s.Value), StatusColor(s.Value)))
+            .ToList();
+        FillBars(tblStatus, data, showPercent: true);
+    }
+
+    private static Color StatusColor(string status) => status switch
+    {
+        "Available" => Theme.Success,
+        "InCustody" => Theme.Info,
+        "Disposed" => Theme.Danger,
+        _ => Theme.Neutral
+    };
+
+    /// <summary>عدد الأصول القائمة في كل تصنيف.</summary>
     private void LoadChart()
     {
         var data = ReportDal.Summary(byDepartment: false).AsEnumerable()
             .Select(r => (Name: r.Field<string>(0)!, Count: Convert.ToInt32(r["عدد الأصول"])))
-            .OrderByDescending(x => x.Count).ToList();
-        int max = Math.Max(1, data.Count == 0 ? 1 : data.Max(x => x.Count));
+            .OrderByDescending(x => x.Count)
+            .Select((x, i) => (x.Name, x.Count, ChartColors[i % ChartColors.Length]))
+            .ToList();
+        FillBars(tblChart, data, showPercent: false);
+    }
 
-        tblChart.SuspendLayout();
-        tblChart.Controls.Clear();
-        tblChart.RowStyles.Clear();
-        tblChart.RowCount = 0;
+    /// <summary>يرسم أشرطة أفقية في الجدول: الاسم، الشريط (طوله نسبة إلى الأكبر)، ثم العدد.</summary>
+    private static void FillBars(TableLayoutPanel tbl, List<(string Name, int Count, Color Color)> data, bool showPercent)
+    {
+        int max = Math.Max(1, data.Count == 0 ? 1 : data.Max(x => x.Count));
+        int total = data.Sum(x => x.Count);
+
+        tbl.SuspendLayout();
+        tbl.Controls.Clear();
+        tbl.RowStyles.Clear();
         for (int i = 0; i < data.Count; i++)
         {
-            var (name, count) = data[i];
-            tblChart.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
+            var (name, count, color) = data[i];
+            tbl.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
             var host = new Panel { Dock = DockStyle.Fill, Padding = new Padding(0, 8, 0, 8) };
-            var bar = new Panel { Dock = DockStyle.Left, BackColor = ChartColors[i % ChartColors.Length] };
+            var bar = new Panel { Dock = DockStyle.Left, BackColor = color };
             double ratio = count / (double)max;
-            host.Resize += (_, _) => bar.Width = Math.Max(4, (int)(host.ClientSize.Width * ratio));
+            host.Resize += (_, _) => bar.Width = count == 0 ? 0 : Math.Max(4, (int)(host.ClientSize.Width * ratio));
             host.Controls.Add(bar);
-            tblChart.Controls.Add(new Label { Text = name, Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleLeft, AutoEllipsis = true }, 0, i);
-            tblChart.Controls.Add(host, 1, i);
-            tblChart.Controls.Add(new Label { Text = count.ToString(), Dock = DockStyle.Fill, Font = Theme.Bold, TextAlign = ContentAlignment.MiddleCenter }, 2, i);
+            string value = showPercent && total > 0 ? $"{count}  ({count * 100 / total}%)" : count.ToString();
+            tbl.Controls.Add(new Label { Text = name, Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleLeft, AutoEllipsis = true }, 0, i);
+            tbl.Controls.Add(host, 1, i);
+            tbl.Controls.Add(new Label { Text = value, Dock = DockStyle.Fill, Font = Theme.Bold, ForeColor = color, TextAlign = ContentAlignment.MiddleCenter }, 2, i);
         }
-        tblChart.RowStyles.Add(new RowStyle(SizeType.Percent, 100));   // صف فارغ يأخذ باقي المساحة حتى لا يتمدد آخر شريط
-        tblChart.RowCount = data.Count + 1;
-        tblChart.ResumeLayout();
-        if (data.Count == 0) tblChart.Controls.Add(new Label { Text = "لا توجد أصول بعد", AutoSize = true, ForeColor = Theme.MutedText }, 0, 0);
+        tbl.RowStyles.Add(new RowStyle(SizeType.Percent, 100));   // صف فارغ يأخذ باقي المساحة حتى لا يتمدد آخر شريط
+        tbl.RowCount = data.Count + 1;
+        if (data.Count == 0) tbl.Controls.Add(new Label { Text = "لا توجد أصول بعد", AutoSize = true, ForeColor = Theme.MutedText }, 0, 0);
+        tbl.ResumeLayout();
     }
 
     // ------------------------------------------------------------ الأزرار

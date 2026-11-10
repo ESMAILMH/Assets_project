@@ -24,6 +24,10 @@
         private void InitializeComponent()
         {
             this.pnlBody = new System.Windows.Forms.Panel();
+            this.tblBody = new System.Windows.Forms.TableLayoutPanel();
+            this.pnlStatus = new System.Windows.Forms.Panel();
+            this.tblStatus = new System.Windows.Forms.TableLayoutPanel();
+            this.lblStatus = new System.Windows.Forms.Label();
             this.pnlChart = new System.Windows.Forms.Panel();
             this.tblChart = new System.Windows.Forms.TableLayoutPanel();
             this.lblChart = new System.Windows.Forms.Label();
@@ -36,6 +40,8 @@
             this.lblDate = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.pnlBody.SuspendLayout();
+            this.tblBody.SuspendLayout();
+            this.pnlStatus.SuspendLayout();
             this.pnlChart.SuspendLayout();
             this.flpCards.SuspendLayout();
             this.flpQuick.SuspendLayout();
@@ -43,10 +49,52 @@
             // 
             // pnlBody
             // 
-            this.pnlBody.Controls.Add(this.pnlChart);
+            this.pnlBody.Controls.Add(this.tblBody);
             this.pnlBody.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlBody.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
             this.pnlBody.Name = "pnlBody";
+            // 
+            // tblBody
+            // 
+            this.tblBody.ColumnCount = 2;
+            this.tblBody.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblBody.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tblBody.Controls.Add(this.pnlStatus, 0, 0);
+            this.tblBody.Controls.Add(this.pnlChart, 1, 0);
+            this.tblBody.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tblBody.RowCount = 1;
+            this.tblBody.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblBody.Size = new System.Drawing.Size(1060, 300);
+            this.tblBody.Name = "tblBody";
+            // 
+            // pnlStatus
+            // 
+            this.pnlStatus.Controls.Add(this.tblStatus);
+            this.pnlStatus.Controls.Add(this.lblStatus);
+            this.pnlStatus.BackColor = System.Drawing.Color.White;
+            this.pnlStatus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlStatus.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.pnlStatus.Padding = new System.Windows.Forms.Padding(20, 12, 20, 16);
+            this.pnlStatus.Size = new System.Drawing.Size(400, 270);
+            this.pnlStatus.Name = "pnlStatus";
+            // 
+            // tblStatus
+            // 
+            this.tblStatus.AutoScroll = true;
+            this.tblStatus.ColumnCount = 3;
+            this.tblStatus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tblStatus.Size = new System.Drawing.Size(360, 200);
+            this.tblStatus.Name = "tblStatus";
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblStatus.Font = new System.Drawing.Font("Cairo", 11F, System.Drawing.FontStyle.Bold);
+            this.lblStatus.ForeColor = System.Drawing.Color.FromArgb(33, 37, 41);
+            this.lblStatus.Size = new System.Drawing.Size(380, 34);
+            this.lblStatus.Text = "📈  الأصول حسب الحالة";
+            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblStatus.Name = "lblStatus";
             // 
             // pnlChart
             // 
@@ -54,6 +102,7 @@
             this.pnlChart.Controls.Add(this.lblChart);
             this.pnlChart.BackColor = System.Drawing.Color.White;
             this.pnlChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlChart.Margin = new System.Windows.Forms.Padding(14, 0, 0, 0);
             this.pnlChart.Padding = new System.Windows.Forms.Padding(20, 12, 20, 16);
             this.pnlChart.Size = new System.Drawing.Size(400, 270);
             this.pnlChart.Name = "pnlChart";
@@ -194,6 +243,10 @@
             this.flpCards.PerformLayout();
             this.pnlChart.ResumeLayout(false);
             this.pnlChart.PerformLayout();
+            this.pnlStatus.ResumeLayout(false);
+            this.pnlStatus.PerformLayout();
+            this.tblBody.ResumeLayout(false);
+            this.tblBody.PerformLayout();
             this.pnlBody.ResumeLayout(false);
             this.pnlBody.PerformLayout();
             this.ResumeLayout(false);
@@ -203,6 +256,10 @@
         #endregion
 
         private System.Windows.Forms.Panel pnlBody;
+        private System.Windows.Forms.TableLayoutPanel tblBody;
+        private System.Windows.Forms.Panel pnlStatus;
+        private System.Windows.Forms.TableLayoutPanel tblStatus;
+        private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Panel pnlChart;
         private System.Windows.Forms.TableLayoutPanel tblChart;
         private System.Windows.Forms.Label lblChart;
