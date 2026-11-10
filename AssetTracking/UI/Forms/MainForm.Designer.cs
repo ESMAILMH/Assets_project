@@ -49,7 +49,6 @@
             this.lblUserRole = new System.Windows.Forms.Label();
             this.pnlBrand = new System.Windows.Forms.Panel();
             this.lblLogo = new System.Windows.Forms.Label();
-            this.btnToggle = new System.Windows.Forms.Button();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.flpUser = new System.Windows.Forms.FlowLayoutPanel();
             this.btnLogout = new System.Windows.Forms.Button();
@@ -99,7 +98,7 @@
             this.flpMenu.Controls.Add(this.btnReports);
             this.flpMenu.Controls.Add(this.btnUsers);
             this.flpMenu.Controls.Add(this.btnAudit);
-            this.flpMenu.AutoScroll = true;
+            this.flpMenu.AutoScroll = false;
             this.flpMenu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpMenu.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flpMenu.Padding = new System.Windows.Forms.Padding(0, 4, 0, 8);
@@ -110,9 +109,9 @@
             // 
             this.lblSecMain.Font = new System.Drawing.Font("Cairo", 9F, System.Drawing.FontStyle.Bold);
             this.lblSecMain.ForeColor = System.Drawing.Color.FromArgb(120, 138, 160);
-            this.lblSecMain.Margin = new System.Windows.Forms.Padding(8, 12, 8, 2);
+            this.lblSecMain.Margin = new System.Windows.Forms.Padding(8, 8, 8, 0);
             this.lblSecMain.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
-            this.lblSecMain.Size = new System.Drawing.Size(224, 26);
+            this.lblSecMain.Size = new System.Drawing.Size(224, 24);
             this.lblSecMain.Text = "الرئيسية";
             this.lblSecMain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblSecMain.Name = "lblSecMain";
@@ -128,7 +127,7 @@
             this.btnDashboard.ForeColor = System.Drawing.Color.FromArgb(203, 213, 225);
             this.btnDashboard.Margin = new System.Windows.Forms.Padding(8, 1, 8, 1);
             this.btnDashboard.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
-            this.btnDashboard.Size = new System.Drawing.Size(224, 42);
+            this.btnDashboard.Size = new System.Drawing.Size(224, 38);
             this.btnDashboard.Tag = "Dashboard";
             this.btnDashboard.Text = "🏠   الشاشة الرئيسية";
             this.btnDashboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -147,7 +146,7 @@
             this.btnMyAssets.ForeColor = System.Drawing.Color.FromArgb(203, 213, 225);
             this.btnMyAssets.Margin = new System.Windows.Forms.Padding(8, 1, 8, 1);
             this.btnMyAssets.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
-            this.btnMyAssets.Size = new System.Drawing.Size(224, 42);
+            this.btnMyAssets.Size = new System.Drawing.Size(224, 38);
             this.btnMyAssets.Tag = "MyAssets";
             this.btnMyAssets.Text = "🧾   أصولي";
             this.btnMyAssets.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -159,9 +158,9 @@
             // 
             this.lblSecOps.Font = new System.Drawing.Font("Cairo", 9F, System.Drawing.FontStyle.Bold);
             this.lblSecOps.ForeColor = System.Drawing.Color.FromArgb(120, 138, 160);
-            this.lblSecOps.Margin = new System.Windows.Forms.Padding(8, 12, 8, 2);
+            this.lblSecOps.Margin = new System.Windows.Forms.Padding(8, 8, 8, 0);
             this.lblSecOps.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
-            this.lblSecOps.Size = new System.Drawing.Size(224, 26);
+            this.lblSecOps.Size = new System.Drawing.Size(224, 24);
             this.lblSecOps.Text = "العمليات";
             this.lblSecOps.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblSecOps.Name = "lblSecOps";
@@ -177,7 +176,7 @@
             this.btnAssets.ForeColor = System.Drawing.Color.FromArgb(203, 213, 225);
             this.btnAssets.Margin = new System.Windows.Forms.Padding(8, 1, 8, 1);
             this.btnAssets.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
-            this.btnAssets.Size = new System.Drawing.Size(224, 42);
+            this.btnAssets.Size = new System.Drawing.Size(224, 38);
             this.btnAssets.Tag = "Assets";
             this.btnAssets.Text = "📦   الأصول";
             this.btnAssets.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -196,7 +195,7 @@
             this.btnCustody.ForeColor = System.Drawing.Color.FromArgb(203, 213, 225);
             this.btnCustody.Margin = new System.Windows.Forms.Padding(8, 1, 8, 1);
             this.btnCustody.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
-            this.btnCustody.Size = new System.Drawing.Size(224, 42);
+            this.btnCustody.Size = new System.Drawing.Size(224, 38);
             this.btnCustody.Tag = "Custody";
             this.btnCustody.Text = "🔁   التسليم والاستلام";
             this.btnCustody.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -215,7 +214,7 @@
             this.btnAlerts.ForeColor = System.Drawing.Color.FromArgb(203, 213, 225);
             this.btnAlerts.Margin = new System.Windows.Forms.Padding(8, 1, 8, 1);
             this.btnAlerts.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
-            this.btnAlerts.Size = new System.Drawing.Size(224, 42);
+            this.btnAlerts.Size = new System.Drawing.Size(224, 38);
             this.btnAlerts.Tag = "Alerts";
             this.btnAlerts.Text = "⏰   التنبيهات";
             this.btnAlerts.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -234,7 +233,7 @@
             this.btnDisposal.ForeColor = System.Drawing.Color.FromArgb(203, 213, 225);
             this.btnDisposal.Margin = new System.Windows.Forms.Padding(8, 1, 8, 1);
             this.btnDisposal.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
-            this.btnDisposal.Size = new System.Drawing.Size(224, 42);
+            this.btnDisposal.Size = new System.Drawing.Size(224, 38);
             this.btnDisposal.Tag = "Disposal";
             this.btnDisposal.Text = "♻   التخريد";
             this.btnDisposal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -253,7 +252,7 @@
             this.btnInventory.ForeColor = System.Drawing.Color.FromArgb(203, 213, 225);
             this.btnInventory.Margin = new System.Windows.Forms.Padding(8, 1, 8, 1);
             this.btnInventory.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
-            this.btnInventory.Size = new System.Drawing.Size(224, 42);
+            this.btnInventory.Size = new System.Drawing.Size(224, 38);
             this.btnInventory.Tag = "Inventory";
             this.btnInventory.Text = "📋   الجرد";
             this.btnInventory.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -265,9 +264,9 @@
             // 
             this.lblSecData.Font = new System.Drawing.Font("Cairo", 9F, System.Drawing.FontStyle.Bold);
             this.lblSecData.ForeColor = System.Drawing.Color.FromArgb(120, 138, 160);
-            this.lblSecData.Margin = new System.Windows.Forms.Padding(8, 12, 8, 2);
+            this.lblSecData.Margin = new System.Windows.Forms.Padding(8, 8, 8, 0);
             this.lblSecData.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
-            this.lblSecData.Size = new System.Drawing.Size(224, 26);
+            this.lblSecData.Size = new System.Drawing.Size(224, 24);
             this.lblSecData.Text = "البيانات الأساسية";
             this.lblSecData.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblSecData.Name = "lblSecData";
@@ -283,7 +282,7 @@
             this.btnPersons.ForeColor = System.Drawing.Color.FromArgb(203, 213, 225);
             this.btnPersons.Margin = new System.Windows.Forms.Padding(8, 1, 8, 1);
             this.btnPersons.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
-            this.btnPersons.Size = new System.Drawing.Size(224, 42);
+            this.btnPersons.Size = new System.Drawing.Size(224, 38);
             this.btnPersons.Tag = "Persons";
             this.btnPersons.Text = "👥   الأشخاص";
             this.btnPersons.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -302,7 +301,7 @@
             this.btnMasterData.ForeColor = System.Drawing.Color.FromArgb(203, 213, 225);
             this.btnMasterData.Margin = new System.Windows.Forms.Padding(8, 1, 8, 1);
             this.btnMasterData.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
-            this.btnMasterData.Size = new System.Drawing.Size(224, 42);
+            this.btnMasterData.Size = new System.Drawing.Size(224, 38);
             this.btnMasterData.Tag = "MasterData";
             this.btnMasterData.Text = "🗂   الأقسام والمواقع";
             this.btnMasterData.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -314,9 +313,9 @@
             // 
             this.lblSecAdmin.Font = new System.Drawing.Font("Cairo", 9F, System.Drawing.FontStyle.Bold);
             this.lblSecAdmin.ForeColor = System.Drawing.Color.FromArgb(120, 138, 160);
-            this.lblSecAdmin.Margin = new System.Windows.Forms.Padding(8, 12, 8, 2);
+            this.lblSecAdmin.Margin = new System.Windows.Forms.Padding(8, 8, 8, 0);
             this.lblSecAdmin.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
-            this.lblSecAdmin.Size = new System.Drawing.Size(224, 26);
+            this.lblSecAdmin.Size = new System.Drawing.Size(224, 24);
             this.lblSecAdmin.Text = "التقارير والإدارة";
             this.lblSecAdmin.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblSecAdmin.Name = "lblSecAdmin";
@@ -332,7 +331,7 @@
             this.btnReports.ForeColor = System.Drawing.Color.FromArgb(203, 213, 225);
             this.btnReports.Margin = new System.Windows.Forms.Padding(8, 1, 8, 1);
             this.btnReports.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
-            this.btnReports.Size = new System.Drawing.Size(224, 42);
+            this.btnReports.Size = new System.Drawing.Size(224, 38);
             this.btnReports.Tag = "Reports";
             this.btnReports.Text = "📊   التقارير";
             this.btnReports.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -351,7 +350,7 @@
             this.btnUsers.ForeColor = System.Drawing.Color.FromArgb(203, 213, 225);
             this.btnUsers.Margin = new System.Windows.Forms.Padding(8, 1, 8, 1);
             this.btnUsers.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
-            this.btnUsers.Size = new System.Drawing.Size(224, 42);
+            this.btnUsers.Size = new System.Drawing.Size(224, 38);
             this.btnUsers.Tag = "Users";
             this.btnUsers.Text = "🔐   المستخدمون";
             this.btnUsers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -370,7 +369,7 @@
             this.btnAudit.ForeColor = System.Drawing.Color.FromArgb(203, 213, 225);
             this.btnAudit.Margin = new System.Windows.Forms.Padding(8, 1, 8, 1);
             this.btnAudit.Padding = new System.Windows.Forms.Padding(14, 0, 0, 0);
-            this.btnAudit.Size = new System.Drawing.Size(224, 42);
+            this.btnAudit.Size = new System.Drawing.Size(224, 38);
             this.btnAudit.Tag = "Audit";
             this.btnAudit.Text = "📜   سجل العمليات";
             this.btnAudit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -383,7 +382,7 @@
             this.lblFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblFooter.Font = new System.Drawing.Font("Cairo", 8.5F);
             this.lblFooter.ForeColor = System.Drawing.Color.FromArgb(120, 138, 160);
-            this.lblFooter.Size = new System.Drawing.Size(240, 44);
+            this.lblFooter.Size = new System.Drawing.Size(240, 34);
             this.lblFooter.Text = "كلية التقنيات الهندسية – يفرن";
             this.lblFooter.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblFooter.Name = "lblFooter";
@@ -394,7 +393,7 @@
             this.pnlUser.Controls.Add(this.lblUserName);
             this.pnlUser.Controls.Add(this.lblUserRole);
             this.pnlUser.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlUser.Size = new System.Drawing.Size(240, 70);
+            this.pnlUser.Size = new System.Drawing.Size(240, 64);
             this.pnlUser.BackColor = System.Drawing.Color.FromArgb(30, 46, 68);
             this.pnlUser.Name = "pnlUser";
             // 
@@ -403,7 +402,7 @@
             this.lblAvatar.BackColor = System.Drawing.Color.FromArgb(30, 77, 120);
             this.lblAvatar.Font = new System.Drawing.Font("Cairo", 14F, System.Drawing.FontStyle.Bold);
             this.lblAvatar.ForeColor = System.Drawing.Color.White;
-            this.lblAvatar.Location = new System.Drawing.Point(14, 14);
+            this.lblAvatar.Location = new System.Drawing.Point(14, 11);
             this.lblAvatar.Size = new System.Drawing.Size(42, 42);
             this.lblAvatar.Text = "م";
             this.lblAvatar.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -414,7 +413,7 @@
             this.lblUserName.AutoEllipsis = true;
             this.lblUserName.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
             this.lblUserName.ForeColor = System.Drawing.Color.White;
-            this.lblUserName.Location = new System.Drawing.Point(64, 12);
+            this.lblUserName.Location = new System.Drawing.Point(64, 8);
             this.lblUserName.Size = new System.Drawing.Size(166, 26);
             this.lblUserName.Text = "اسم المستخدم";
             this.lblUserName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -424,7 +423,7 @@
             // 
             this.lblUserRole.Font = new System.Drawing.Font("Cairo", 9F);
             this.lblUserRole.ForeColor = System.Drawing.Color.FromArgb(120, 138, 160);
-            this.lblUserRole.Location = new System.Drawing.Point(64, 38);
+            this.lblUserRole.Location = new System.Drawing.Point(64, 34);
             this.lblUserRole.Size = new System.Drawing.Size(166, 22);
             this.lblUserRole.Text = "الدور";
             this.lblUserRole.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -433,9 +432,8 @@
             // pnlBrand
             // 
             this.pnlBrand.Controls.Add(this.lblLogo);
-            this.pnlBrand.Controls.Add(this.btnToggle);
             this.pnlBrand.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlBrand.Size = new System.Drawing.Size(240, 60);
+            this.pnlBrand.Size = new System.Drawing.Size(240, 56);
             this.pnlBrand.Name = "pnlBrand";
             // 
             // lblLogo
@@ -447,21 +445,6 @@
             this.lblLogo.Text = "📦  حصر الأصول";
             this.lblLogo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblLogo.Name = "lblLogo";
-            // 
-            // btnToggle
-            // 
-            this.btnToggle.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnToggle.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnToggle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnToggle.FlatAppearance.BorderSize = 0;
-            this.btnToggle.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(38, 58, 84);
-            this.btnToggle.Font = new System.Drawing.Font("Cairo", 14F);
-            this.btnToggle.ForeColor = System.Drawing.Color.White;
-            this.btnToggle.Size = new System.Drawing.Size(52, 60);
-            this.btnToggle.Text = "☰";
-            this.btnToggle.UseVisualStyleBackColor = false;
-            this.btnToggle.Name = "btnToggle";
-            this.btnToggle.Click += new System.EventHandler(this.btnToggle_Click);
             // 
             // pnlHeader
             // 
@@ -587,7 +570,6 @@
         private System.Windows.Forms.Label lblUserRole;
         private System.Windows.Forms.Panel pnlBrand;
         private System.Windows.Forms.Label lblLogo;
-        private System.Windows.Forms.Button btnToggle;
         private System.Windows.Forms.Panel pnlHeader;
         private System.Windows.Forms.FlowLayoutPanel flpUser;
         private System.Windows.Forms.Button btnLogout;

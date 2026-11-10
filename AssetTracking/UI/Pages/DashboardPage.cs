@@ -5,8 +5,8 @@ using AssetTracking.Forms;
 namespace AssetTracking.Pages;
 
 /// <summary>
-/// الشاشة الرئيسية: ترحيب، أزرار سريعة، بطاقات إحصائية (كل بطاقة تفتح صفحتها)،
-/// آخر العمليات، توزيع الأصول حسب التصنيف، والأصول التي انتهى عمرها.
+/// الشاشة الرئيسية (لوحة بسيطة): ترحيب، أزرار سريعة، بطاقات إحصائية (كل بطاقة تفتح صفحتها)،
+/// ورسم بياني لتوزيع الأصول حسب التصنيف.
 /// </summary>
 public partial class DashboardPage : PageBase
 {
@@ -22,18 +22,18 @@ public partial class DashboardPage : PageBase
     public DashboardPage()
     {
         InitializeComponent();
-        InitPage(grid, lblCount);
-        Ui.StyleGrid(gridUrgent);
         lblTitle.Text = $"مرحباً، {Session.Current?.DisplayName} 👋";
         lblDate.Text = DateTime.Today.ToString("dddd، d MMMM yyyy", new CultureInfo("ar-LY"));
-        tblChart.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 130));  // اسم التصنيف
+        tblChart.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 180));  // اسم التصنيف
         tblChart.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));   // الشريط
         tblChart.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 44));   // العدد
-        gridUrgent.CellDoubleClick += (_, e) =>
-        {
-            if (e.RowIndex >= 0 && Ui.CurrentRow(gridUrgent) is { } r) Ui.Try(() => OpenDialog(new AssetDialog((int)r["Id"])));
-        };
         Resize += (_, _) => FitCards();
+    }
+
+    protected override void OnLoad(EventArgs e)
+    {
+        base.OnLoad(e);
+        if (!DesignMode) Ui.Try(RefreshData);
     }
 
     public override void RefreshData()
@@ -51,10 +51,7 @@ public partial class DashboardPage : PageBase
         AddCard("🗑", "مُخرَّدة", s["Disposed"], "خرجت من الخدمة", Theme.Neutral, "Disposal");
         flpCards.ResumeLayout();
         FitCards();
-
-        Bind(AuditDal.Recent(15));
         LoadChart();
-        LoadUrgent();
     }
 
     // ------------------------------------------------------------ البطاقات
@@ -100,7 +97,7 @@ public partial class DashboardPage : PageBase
         for (int i = 0; i < data.Count; i++)
         {
             var (name, count) = data[i];
-            tblChart.RowStyles.Add(new RowStyle(SizeType.Absolute, 34));
+            tblChart.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
             var host = new Panel { Dock = DockStyle.Fill, Padding = new Padding(0, 8, 0, 8) };
             var bar = new Panel { Dock = DockStyle.Left, BackColor = ChartColors[i % ChartColors.Length] };
             double ratio = count / (double)max;
@@ -110,24 +107,13 @@ public partial class DashboardPage : PageBase
             tblChart.Controls.Add(host, 1, i);
             tblChart.Controls.Add(new Label { Text = count.ToString(), Dock = DockStyle.Fill, Font = Theme.Bold, TextAlign = ContentAlignment.MiddleCenter }, 2, i);
         }
-        tblChart.RowCount = data.Count;
+        tblChart.RowStyles.Add(new RowStyle(SizeType.Percent, 100));   // صف فارغ يأخذ باقي المساحة حتى لا يتمدد آخر شريط
+        tblChart.RowCount = data.Count + 1;
         tblChart.ResumeLayout();
         if (data.Count == 0) tblChart.Controls.Add(new Label { Text = "لا توجد أصول بعد", AutoSize = true, ForeColor = Theme.MutedText }, 0, 0);
     }
 
-    // ------------------------------------------------------------ أصول انتهى عمرها
-    private void LoadUrgent()
-    {
-        var t = AssetDal.Alerts("Expired", null, null);
-        foreach (var c in new[] { "التصنيف", "القسم", "القيمة الدفترية", "التنبيه" })
-            if (t.Columns.Contains(c)) t.Columns.Remove(c);
-        Ui.BindGrid(gridUrgent, t);
-        lblUrgent.Text = t.Rows.Count == 0 ? "✅  لا توجد أصول انتهى عمرها" : $"⚠  أصول انتهى عمرها ({t.Rows.Count})";
-        lblUrgent.ForeColor = t.Rows.Count == 0 ? Theme.Success : Theme.Danger;
-    }
-
     // ------------------------------------------------------------ الأزرار
-    private void btnRefresh_Click(object? sender, EventArgs e) => Ui.Try(RefreshData);
     private void btnQuickAdd_Click(object? sender, EventArgs e) => Ui.Try(() => OpenDialog(new AssetDialog(null)));
     private void btnQuickHandover_Click(object? sender, EventArgs e) => Ui.Try(() => OpenDialog(new HandoverDialog()));
     private void btnQuickReceive_Click(object? sender, EventArgs e) => Navigate?.Invoke("Custody");

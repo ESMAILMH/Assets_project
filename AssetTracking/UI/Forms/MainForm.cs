@@ -12,7 +12,6 @@ namespace AssetTracking.Forms;
 /// </summary>
 public partial class MainForm : Form
 {
-    private const int ExpandedWidth = 240, CollapsedWidth = 64;
     private static readonly Color ActiveBack = Color.FromArgb(30, 77, 120);
     private static readonly Color ActiveStripe = Color.FromArgb(96, 175, 255);
     private static readonly Color MenuText = Color.FromArgb(203, 213, 225);
@@ -22,10 +21,8 @@ public partial class MainForm : Form
     private readonly Dictionary<string, Control> _pages = new();
     private readonly Dictionary<Button, (string Icon, string Name)> _items = new();
     private readonly HashSet<Control> _allowed = new();        // ما يسمح به الدور من أزرار وعناوين
-    private readonly ToolTip _tip = new();
     private readonly System.Windows.Forms.Timer _alertTimer = new() { Interval = 5 * 60 * 1000 };
     private Button? _active;
-    private bool _collapsed;
     private int _alerts;
 
     public bool LogoutRequested { get; private set; }
@@ -95,32 +92,15 @@ public partial class MainForm : Form
     }
 
     // ------------------------------------------------------------ شكل القائمة
-    /// <summary>يرسم القائمة حسب الحالة: موسعة (رمز + اسم) أو مطوية (رمز فقط).</summary>
+    /// <summary>القائمة ثابتة: تظهر الأزرار والعناوين المسموح بها فقط.</summary>
     private void RenderMenu()
     {
-        pnlSidebar.Width = _collapsed ? CollapsedWidth : ExpandedWidth;
-        lblLogo.Visible = lblUserName.Visible = lblUserRole.Visible = lblFooter.Visible = !_collapsed;
-        lblAvatar.Left = _collapsed ? (CollapsedWidth - lblAvatar.Width) / 2 : 14;
-
-        foreach (Control c in flpMenu.Controls)
-        {
-            if (c is Label) { c.Visible = !_collapsed && _allowed.Contains(c); continue; }
-            var b = (Button)c;
-            b.Visible = _allowed.Contains(b);
-            b.Width = _collapsed ? CollapsedWidth - 16 : ExpandedWidth - 16;
-            b.TextAlign = _collapsed ? ContentAlignment.MiddleCenter : ContentAlignment.MiddleLeft;
-            b.Padding = _collapsed ? Padding.Empty : new Padding(14, 0, 0, 0);
-            b.Text = ButtonText(b);
-            _tip.SetToolTip(b, _collapsed ? _items[b].Name : null);   // اسم الصفحة عند المرور فوق الرمز
-        }
-        btnToggle.Text = _collapsed ? "☰" : "✕";
-        _tip.SetToolTip(btnToggle, _collapsed ? "توسيع القائمة" : "طي القائمة");
+        foreach (Control c in flpMenu.Controls) c.Visible = _allowed.Contains(c);
     }
 
     private string ButtonText(Button b)
     {
         var (icon, name) = _items[b];
-        if (_collapsed) return icon;
         return b == btnAlerts && _alerts > 0 ? $"{icon}   {name}  ({_alerts})" : $"{icon}   {name}";
     }
 
@@ -144,12 +124,6 @@ public partial class MainForm : Form
         if (sender != _active) return;
         using var brush = new SolidBrush(ActiveStripe);
         e.Graphics.FillRectangle(brush, 0, 8, 4, ((Control)sender!).Height - 16); // في الواجهة العربية يظهر على اليمين
-    }
-
-    private void btnToggle_Click(object? sender, EventArgs e)
-    {
-        _collapsed = !_collapsed;
-        RenderMenu();
     }
 
     // ------------------------------------------------------------ التنقل بين الصفحات
@@ -242,7 +216,6 @@ public partial class MainForm : Form
     protected override void OnFormClosed(FormClosedEventArgs e)
     {
         _alertTimer.Dispose();
-        _tip.Dispose();
         foreach (var p in _pages.Values) p.Dispose();
         base.OnFormClosed(e);
     }

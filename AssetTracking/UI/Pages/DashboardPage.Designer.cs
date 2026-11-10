@@ -24,17 +24,6 @@
         private void InitializeComponent()
         {
             this.pnlBody = new System.Windows.Forms.Panel();
-            this.pnlRecent = new System.Windows.Forms.Panel();
-            this.grid = new System.Windows.Forms.DataGridView();
-            this.lblCount = new System.Windows.Forms.Label();
-            this.flpRecentHeader = new System.Windows.Forms.FlowLayoutPanel();
-            this.lblRecent = new System.Windows.Forms.Label();
-            this.btnRefresh = new System.Windows.Forms.Button();
-            this.pnlSide = new System.Windows.Forms.Panel();
-            this.pnlUrgent = new System.Windows.Forms.Panel();
-            this.gridUrgent = new System.Windows.Forms.DataGridView();
-            this.lblUrgent = new System.Windows.Forms.Label();
-            this.pnlGap = new System.Windows.Forms.Panel();
             this.pnlChart = new System.Windows.Forms.Panel();
             this.tblChart = new System.Windows.Forms.TableLayoutPanel();
             this.lblChart = new System.Windows.Forms.Label();
@@ -47,137 +36,25 @@
             this.lblDate = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.pnlBody.SuspendLayout();
-            this.pnlRecent.SuspendLayout();
-            this.flpRecentHeader.SuspendLayout();
-            this.pnlSide.SuspendLayout();
-            this.pnlUrgent.SuspendLayout();
-            this.pnlGap.SuspendLayout();
             this.pnlChart.SuspendLayout();
             this.flpCards.SuspendLayout();
             this.flpQuick.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridUrgent)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlBody
             // 
-            this.pnlBody.Controls.Add(this.pnlRecent);
-            this.pnlBody.Controls.Add(this.pnlSide);
+            this.pnlBody.Controls.Add(this.pnlChart);
             this.pnlBody.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlBody.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
             this.pnlBody.Name = "pnlBody";
-            // 
-            // pnlRecent
-            // 
-            this.pnlRecent.Controls.Add(this.grid);
-            this.pnlRecent.Controls.Add(this.lblCount);
-            this.pnlRecent.Controls.Add(this.flpRecentHeader);
-            this.pnlRecent.BackColor = System.Drawing.Color.White;
-            this.pnlRecent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlRecent.Padding = new System.Windows.Forms.Padding(12, 8, 12, 12);
-            this.pnlRecent.Size = new System.Drawing.Size(400, 260);
-            this.pnlRecent.Name = "pnlRecent";
-            // 
-            // grid
-            // 
-            this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grid.BackgroundColor = System.Drawing.Color.White;
-            this.grid.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.grid.Name = "grid";
-            // 
-            // lblCount
-            // 
-            this.lblCount.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblCount.ForeColor = System.Drawing.Color.FromArgb(108, 117, 125);
-            this.lblCount.Size = new System.Drawing.Size(500, 26);
-            this.lblCount.Text = "";
-            this.lblCount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblCount.Name = "lblCount";
-            // 
-            // flpRecentHeader
-            // 
-            this.flpRecentHeader.Controls.Add(this.lblRecent);
-            this.flpRecentHeader.Controls.Add(this.btnRefresh);
-            this.flpRecentHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flpRecentHeader.AutoSize = true;
-            this.flpRecentHeader.Padding = new System.Windows.Forms.Padding(0, 0, 0, 6);
-            this.flpRecentHeader.Name = "flpRecentHeader";
-            // 
-            // lblRecent
-            // 
-            this.lblRecent.AutoSize = true;
-            this.lblRecent.Margin = new System.Windows.Forms.Padding(4, 10, 4, 4);
-            this.lblRecent.Text = "🕘  آخر العمليات";
-            this.lblRecent.Font = new System.Drawing.Font("Cairo", 11F, System.Drawing.FontStyle.Bold);
-            this.lblRecent.Name = "lblRecent";
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(13, 110, 153);
-            this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefresh.FlatAppearance.BorderSize = 0;
-            this.btnRefresh.Font = new System.Drawing.Font("Cairo", 10F, System.Drawing.FontStyle.Bold);
-            this.btnRefresh.ForeColor = System.Drawing.Color.White;
-            this.btnRefresh.Size = new System.Drawing.Size(90, 36);
-            this.btnRefresh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnRefresh.Text = "تحديث";
-            this.btnRefresh.UseVisualStyleBackColor = false;
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
-            // pnlSide
-            // 
-            this.pnlSide.Controls.Add(this.pnlUrgent);
-            this.pnlSide.Controls.Add(this.pnlGap);
-            this.pnlSide.Controls.Add(this.pnlChart);
-            this.pnlSide.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlSide.Padding = new System.Windows.Forms.Padding(16, 0, 0, 0);
-            this.pnlSide.Size = new System.Drawing.Size(420, 400);
-            this.pnlSide.Name = "pnlSide";
-            // 
-            // pnlUrgent
-            // 
-            this.pnlUrgent.Controls.Add(this.gridUrgent);
-            this.pnlUrgent.Controls.Add(this.lblUrgent);
-            this.pnlUrgent.BackColor = System.Drawing.Color.White;
-            this.pnlUrgent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlUrgent.Padding = new System.Windows.Forms.Padding(12, 8, 12, 12);
-            this.pnlUrgent.Size = new System.Drawing.Size(400, 260);
-            this.pnlUrgent.Name = "pnlUrgent";
-            // 
-            // gridUrgent
-            // 
-            this.gridUrgent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridUrgent.BackgroundColor = System.Drawing.Color.White;
-            this.gridUrgent.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.gridUrgent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.gridUrgent.Name = "gridUrgent";
-            // 
-            // lblUrgent
-            // 
-            this.lblUrgent.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblUrgent.Font = new System.Drawing.Font("Cairo", 11F, System.Drawing.FontStyle.Bold);
-            this.lblUrgent.ForeColor = System.Drawing.Color.FromArgb(33, 37, 41);
-            this.lblUrgent.Size = new System.Drawing.Size(380, 34);
-            this.lblUrgent.Text = "⚠  أصول انتهى عمرها";
-            this.lblUrgent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblUrgent.Name = "lblUrgent";
-            // 
-            // pnlGap
-            // 
-            this.pnlGap.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlGap.Size = new System.Drawing.Size(400, 14);
-            this.pnlGap.Name = "pnlGap";
             // 
             // pnlChart
             // 
             this.pnlChart.Controls.Add(this.tblChart);
             this.pnlChart.Controls.Add(this.lblChart);
             this.pnlChart.BackColor = System.Drawing.Color.White;
-            this.pnlChart.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlChart.Padding = new System.Windows.Forms.Padding(12, 8, 12, 12);
+            this.pnlChart.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlChart.Padding = new System.Windows.Forms.Padding(20, 12, 20, 16);
             this.pnlChart.Size = new System.Drawing.Size(400, 270);
             this.pnlChart.Name = "pnlChart";
             // 
@@ -311,24 +188,12 @@
             this.Font = new System.Drawing.Font("Cairo", 10F);
             this.Name = "DashboardPage";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridUrgent)).EndInit();
             this.flpQuick.ResumeLayout(false);
             this.flpQuick.PerformLayout();
             this.flpCards.ResumeLayout(false);
             this.flpCards.PerformLayout();
             this.pnlChart.ResumeLayout(false);
             this.pnlChart.PerformLayout();
-            this.pnlGap.ResumeLayout(false);
-            this.pnlGap.PerformLayout();
-            this.pnlUrgent.ResumeLayout(false);
-            this.pnlUrgent.PerformLayout();
-            this.pnlSide.ResumeLayout(false);
-            this.pnlSide.PerformLayout();
-            this.flpRecentHeader.ResumeLayout(false);
-            this.flpRecentHeader.PerformLayout();
-            this.pnlRecent.ResumeLayout(false);
-            this.pnlRecent.PerformLayout();
             this.pnlBody.ResumeLayout(false);
             this.pnlBody.PerformLayout();
             this.ResumeLayout(false);
@@ -338,17 +203,6 @@
         #endregion
 
         private System.Windows.Forms.Panel pnlBody;
-        private System.Windows.Forms.Panel pnlRecent;
-        private System.Windows.Forms.DataGridView grid;
-        private System.Windows.Forms.Label lblCount;
-        private System.Windows.Forms.FlowLayoutPanel flpRecentHeader;
-        private System.Windows.Forms.Label lblRecent;
-        private System.Windows.Forms.Button btnRefresh;
-        private System.Windows.Forms.Panel pnlSide;
-        private System.Windows.Forms.Panel pnlUrgent;
-        private System.Windows.Forms.DataGridView gridUrgent;
-        private System.Windows.Forms.Label lblUrgent;
-        private System.Windows.Forms.Panel pnlGap;
         private System.Windows.Forms.Panel pnlChart;
         private System.Windows.Forms.TableLayoutPanel tblChart;
         private System.Windows.Forms.Label lblChart;
