@@ -54,6 +54,7 @@ public partial class MainForm : Form
             RoundCorners(b);
         }
         ApplyRole(user);
+        flpMenu.Resize += (_, _) => FitMenu();   // يعيد الحساب عند تغيير حجم النافذة
 
         KeyDown += (_, e) =>   // F5 = تحديث الصفحة الحالية
         {
@@ -96,6 +97,34 @@ public partial class MainForm : Form
     private void RenderMenu()
     {
         foreach (Control c in flpMenu.Controls) c.Visible = _allowed.Contains(c);
+        FitMenu();
+    }
+
+    private int _buttonHeight, _labelHeight;   // الأحجام الأصلية من المصمم (بعد تكبير الشاشة)
+
+    /// <summary>
+    /// تجعل القائمة تتسع لكل الأزرار في الشاشات الصغيرة: تصغّر الأزرار قليلاً إن لزم،
+    /// وإن بقيت لا تتسع يظهر شريط تمرير رأسي فقط (بدون تمرير أفقي).
+    /// </summary>
+    private void FitMenu()
+    {
+        if (_buttonHeight == 0)
+        {
+            _buttonHeight = btnDashboard.Height;
+            _labelHeight = lblSecMain.Height;
+        }
+        var items = flpMenu.Controls.Cast<Control>().Where(c => c.Visible).ToList();
+        int Needed(double k) => flpMenu.Padding.Vertical + items.Sum(c =>
+            (int)((c is Button ? _buttonHeight : _labelHeight) * k) + c.Margin.Vertical);
+
+        double scale = Needed(1) <= flpMenu.ClientSize.Height ? 1 : 0.8;   // وضع مضغوط للشاشات الصغيرة
+        flpMenu.SuspendLayout();
+        foreach (var c in items)
+            c.Height = (int)((c is Button ? _buttonHeight : _labelHeight) * scale);
+        flpMenu.AutoScroll = Needed(scale) > flpMenu.ClientSize.Height;
+        int width = flpMenu.ClientSize.Width - (flpMenu.AutoScroll ? SystemInformation.VerticalScrollBarWidth : 0);
+        foreach (var c in items) c.Width = width - c.Margin.Horizontal;
+        flpMenu.ResumeLayout();
     }
 
     private string ButtonText(Button b)
